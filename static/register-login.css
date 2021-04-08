@@ -21,7 +21,7 @@
     justify-content: space-between;
     align-items: center;
     border-radius: 5px;
-    transition: all 05s ease;
+    transition: all 1.5s ease;
 }
 
 .name-field i,
@@ -56,7 +56,7 @@ div.inactive{
     transform: translate(-50%, 50%);
 }
 
-di.active{
+div.active{
     opacity: 1;
     pointer-events: all;
     transform: translate(-50%, -50%);
