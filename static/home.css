@@ -1,0 +1,165 @@
+#home-container{
+    width: 75%;
+    margin: auto;
+    margin-top: 2%;
+}
+
+#header-nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+#navigation{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#navigation ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#navigation ul li{
+    list-style: none;
+    margin-right: 6px;
+}
+
+#navigation ul li a{
+    border: 2px solid #e2d2d2;
+    border-radius: 5px;
+    padding: 6px 9px;
+    font-family: 'Lato', sans-serif;
+    transition: 0.4s;
+}
+
+.choose:hover{
+    padding: 7px 10px;
+    font-size: 17px;
+    background: linear-gradient(97deg, rgba(156,153,185,1) 16%, rgba(180,177,194,1) 44%, rgba(206,173,223,0.3225665266106442) 67%);
+    font-weight: 900;
+}
+
+#logo{
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+    position: relative;
+}
+
+#logo a{
+    text-decoration: none;
+}
+
+#logo::before{
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 31px;
+    transform: rotateX(180deg);
+    line-height: 29px;
+    transform-origin: bottom;
+    background: linear-gradient(to top, #fff, transparent);
+    -webkit-background-clip: text;
+    color: transparent;
+    opacity: 0.4;
+
+}
+
+#logo i{
+    color: #e2d2d2;
+    font-size: 25px;
+}
+
+/*  */
+
+#info-div{
+    margin: auto;
+    height: 35vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    width: 58%;
+    animation: fadeInUp  1.5s;
+}
+
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+    }
+  
+    to {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+}
+
+#greating{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 25px;
+}
+
+#greating a{
+    border: 2px solid #e2d2d2;
+    border-radius: 5px;
+    padding: 10px 13px;
+    font-family: 'Lato', sans-serif;
+    transition: 0.4s;
+    margin-top: 10px;
+    font-family: 'Lato', sans-serif;
+}
+
+#greating h1{
+    letter-spacing: 1px;
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+}
+
+#greating p{
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+}
+
+#list-icon i{
+    font-size: 150px;
+    margin-left:10px;
+}
+
+#show-more{
+    text-align: center;
+    margin-top: 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    opacity: 0.7;
+    animation: fadeInUpShow  1.5s;
+}
+
+@keyframes fadeInUpShow {
+    from {
+      opacity: 0;
+      -webkit-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+    }
+  
+    to {
+      opacity: 0.7;
+      -webkit-transform: none;
+      transform: none;
+    }
+}
+
+#show-more p i{
+    margin-top: 0;
+    font-size: 15px;
+}
