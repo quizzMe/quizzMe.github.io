@@ -1,6 +1,7 @@
 #register-container{
     height: 87vh;
-    transition: baclground 05s ease;
+    -webkit-transition: background-image 0.2s ease-in-out;
+transition: background-image 0.2s ease-in-out;
     position: relative;
 }
 
@@ -60,4 +61,16 @@ div.active{
     opacity: 1;
     pointer-events: all;
     transform: translate(-50%, -50%);
+}
+
+@keyframes shake{
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    50%{
+        transform: translate(-50%, -50%) rotate(10deg);
+    }
+    100%{
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
 }
