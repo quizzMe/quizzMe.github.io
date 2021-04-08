@@ -9,6 +9,19 @@
     <link href="https://unpkg.com/webkul-micron@1.1.6/dist/css/micron.min.css" type="text/css" rel="stylesheet">
     <script src="https://unpkg.com/webkul-micron@1.1.6/dist/script/micron.min.js" type="text/javascript"></script>
     <title>QuizzME</title>
+
+    <script type="text/javascript">
+        (function(l) {
+          if (l.search[1] === '/' ) {
+            var decoded = l.search.slice(1).split('&').map(function(s) { 
+              return s.replace(/~and~/g, '&')
+            }).join('?');
+            window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+            );
+          }
+        }(window.location))
+      </script>
 </head>
 
 <body>
