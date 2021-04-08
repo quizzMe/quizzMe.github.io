@@ -11,17 +11,17 @@
     <title>QuizzME</title>
 
     <script type="text/javascript">
-        (function(l) {
-          if (l.search[1] === '/' ) {
-            var decoded = l.search.slice(1).split('&').map(function(s) { 
-              return s.replace(/~and~/g, '&')
-            }).join('?');
-            window.history.replaceState(null, null,
-                l.pathname.slice(0, -1) + decoded + l.hash
-            );
-          }
+        (function (l) {
+            if (l.search[1] === '/') {
+                var decoded = l.search.slice(1).split('&').map(function (s) {
+                    return s.replace(/~and~/g, '&')
+                }).join('?');
+                window.history.replaceState(null, null,
+                    l.pathname.slice(0, -1) + decoded + l.hash
+                );
+            }
         }(window.location))
-      </script>
+    </script>
 </head>
 
 <body>
@@ -107,6 +107,45 @@
                         <i class="fas fa-angle-double-down"></i>
                     </p>
                 </a>
+            </div>
+        </section>
+
+        <section id="register-view">
+            <div id="register-container" class="glass">
+                <form id="register-form">
+                    <div class="name-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Username" name="username" required>
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+
+                    <div class="email-field inactive">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email" name="email" required>
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+
+                    <div class="password-field inactive">
+                        <i class="fas fa-key"></i>
+                        <input type="password" placeholder="Password" name="password" required>
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+
+                    <div class="rePass-field inactive">
+                        <i class="fas fa-key"></i>
+                        <input type="password" placeholder="Password" name="rePass" required>
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+
+                    <div class="submit-holder inactive">
+                        <input type="submit" value="Register">
+                    </div>
+
+                    <div class="finish-field inactive">
+                        <p>Successful Registration</p>
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </form>
             </div>
         </section>
 

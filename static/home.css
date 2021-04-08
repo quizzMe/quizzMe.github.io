@@ -1,9 +1,3 @@
-#home-container{
-    width: 75%;
-    margin: auto;
-    margin-top: 2%;
-}
-
 #header-nav{
     display: flex;
     justify-content: space-between;

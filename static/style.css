@@ -2,7 +2,9 @@
 @import "./loadingPage.css";
 @import "./fonts.css";
 @import "./home.css";
+@import "./register-login.css";
 @import 'https://use.fontawesome.com/releases/v5.10.2/css/all.css';
+
 
 * {
     margin: 0;
@@ -14,6 +16,13 @@ body, #guest-home-page {
     min-height: 90vh;
     background: linear-gradient(90deg, rgba(33,29,99,1) 0%, rgba(68,37,190,1) 38%, rgba(131,24,187,1) 100%);
     background-attachment: fixed;
+}
+
+#home-container,
+#register-container{
+    width: 75%;
+    margin: auto;
+    margin-top: 2%;
 }
 
 .glass{
@@ -54,7 +63,8 @@ body, #guest-home-page {
     font-weight: 300;
 }
 
-#loader-page{
+#loader-page,
+#guest-home-page{
     display: none;
 }
 
