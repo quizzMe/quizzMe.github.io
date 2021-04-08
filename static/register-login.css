@@ -1,16 +1,14 @@
 #register-container{
     height: 87vh;
     -webkit-transition: background-image 0.2s ease-in-out;
-transition: background-image 0.2s ease-in-out;
+    transition: background-image 0.2s ease-in-out;
     position: relative;
 }
 
 .name-field,
 .email-field,
 .password-field,
-.rePass-field,
-.submit-holder,
-.finish-field{
+.rePass-field{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -25,6 +23,57 @@ transition: background-image 0.2s ease-in-out;
     transition: all 1.5s ease;
 }
 
+.submit-holder{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.submit-holder input{
+    border: 3px solid #e2d2d2;
+    border-radius: 5px;
+    padding: 12px 60px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    transition: 0.4s;
+    background: transparent;
+}
+
+.submit-holder input:hover{
+    padding: 17px 65px;
+    font-size: 27px;
+    background: linear-gradient(97deg, rgba(156,153,185,1) 16%, rgba(180,177,194,1) 44%, rgba(206,173,223,0.3225665266106442) 67%);
+    font-weight: 900;
+}
+
+.finish-field{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.5s ease;
+
+}
+
+.finish-field p{
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 37px;
+    padding-bottom: 15px;
+}
+
+.finish-field i{
+    font-size: 34px;
+    color: rgb(84, 218, 84);
+}
+
+
+
 .name-field i,
 .email-field i,
 .password-field i,
@@ -37,7 +86,7 @@ transition: background-image 0.2s ease-in-out;
 }
 
 .fa-arrow-down:hover{
-    color: green;
+    color: rgb(84, 218, 84);
 }
 
 .name-field input,

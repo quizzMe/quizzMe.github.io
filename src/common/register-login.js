@@ -1,6 +1,8 @@
-export function animatedForm() {
+export function animateRegister() {
     const arrows = document.querySelectorAll('.fa-arrow-down');
-    let currentPass = ''
+    let currentPass = '';
+    const formData = {};
+
 
     arrows.forEach(arrow => {
         arrow.addEventListener('click', () => {
@@ -11,10 +13,13 @@ export function animatedForm() {
 
             //Check for validation
             if (input.name === 'username' && validateUser(input)) {
+                formData['username'] = input.value;
                 nextSlide(parent, nextForm);
             } else if (input.name === 'email' && validateEmail(input)){
+                formData['email'] = input.value;
                 nextSlide(parent, nextForm);
             } else if (input.name === 'password' && validateUser(input)){
+                formData['password'] = input.value;
                 currentPass = input.value
                 nextSlide(parent, nextForm);
             } else if((input.name === 'rePass') && (input.value == currentPass)){
@@ -30,6 +35,12 @@ export function animatedForm() {
 
     })
 
+    document.querySelector('#register-form').addEventListener('submit', (ev)=>{
+        ev.preventDefault();
+        let parent = ev.target.parentNode.querySelector('.submit-holder');
+        const nextForm = parent.nextElementSibling;     
+        nextSlide(parent, nextForm);
+    })
 }
 
 function validateUser(user) {

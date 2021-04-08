@@ -1,3 +1,3 @@
-import {animatedForm} from "./common/register-login.js";
+import {animateRegister} from "./common/register-login.js";
 
-animatedForm();
+animateRegister();
