@@ -63,10 +63,10 @@ body, #guest-home-page {
     font-weight: 300;
 }
 
-#loader-page,
+/* #loader-page,
 #guest-home-page{
     display: none;
-}
+} */
 
 a{
     text-decoration: none;
