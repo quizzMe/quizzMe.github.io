@@ -3,9 +3,15 @@ import {animateRegister} from "./common/register-login.js";
 import {homePage, loadingHomeTemplate} from "./views/home.js";
 import {registerPage} from './views/register.js';
 
-// animateRegister();
+const main = document.querySelector('main');
 
-page('/', homePage);
-page('/register', registerPage);
+page('/', decorateContext, homePage);
+page('/register', decorateContext, registerPage);
 
 page.start();
+
+function decorateContext(ctx, next){
+    ctx.render = (content) => render(content, main);
+
+    next();
+}

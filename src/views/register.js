@@ -43,8 +43,8 @@ const registerTemplate = (onArrowClick, onSubmit, formData, currentPass) => html
 
 const formData = {};
 let currentPass = '';
-export function registerPage() {
-    render(registerTemplate(onArrowClick, onSubmit, formData, currentPass), document.querySelector('main'));
+export function registerPage(ctx) {
+    ctx.render(registerTemplate(onArrowClick, onSubmit, formData, currentPass));
 }
 
 

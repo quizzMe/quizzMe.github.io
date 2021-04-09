@@ -84,11 +84,11 @@ const homeTemplate = () => html `
             </div>
 `;
 
-export function homePage(){
-    render(loadingHomeTemplate(), document.querySelector('main'));
+export function homePage(ctx){
+    ctx.render(loadingHomeTemplate());
     setTimeout(renderHome, 2000);
 
     function renderHome(){
-        render(homeTemplate(), document.querySelector('main'))
+        ctx.render(homeTemplate())
     }
 }
