@@ -3,6 +3,10 @@ import {onArrowClick,nextSlide} from '../common/formAction.js';
 
 const loginTemplate = (onArrowClick, onSubmit, formData, ctx) => html`
 <div @click=${onArrowClick.bind(event, formData,)} id="login-container" class="glass">
+    <div id="back-arrow-holder" class="common">
+        <i class="fas fa-angle-double-left"></i>
+        <span>Back</span>
+    </div>
     <form @submit=${onSubmit.bind(event, formData, ctx)} id="login-form">
         <div class="name-field">
             <i class="fas fa-user"></i>
