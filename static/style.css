@@ -19,7 +19,8 @@ body, #guest-home-page {
 }
 
 #home-container,
-#register-container{
+#register-container,
+#login-container{
     width: 75%;
     margin: auto;
     margin-top: 2%;

@@ -47,7 +47,7 @@ const homeTemplate = () => html `
 
                         <div class="guest">
                             <ul>
-                                <li><a href="#" class="common choose"data-micron="fade" data-micron-duration=".8">Login</a></li>
+                                <li><a href="/login" class="common choose"data-micron="fade" data-micron-duration=".8">Login</a></li>
                                 <li><a href="/register" class="common choose" data-micron="fade" data-micron-duration=".8">Register</a></li>
                                 <li><a href="#" class="common choose" data-micron="fade" data-micron-duration=".8">About</a></li>
                                 <li><a href="#" class="common choose" data-micron="fade" data-micron-duration=".8">Contact</a></li>
@@ -64,7 +64,7 @@ const homeTemplate = () => html `
                             QuizzMe is a free web application, where you can choose quizzes from variaty of categories.
                             You can compete with your friends and create your own quizzes as well. Start now!
                         </p>
-                        <a href="/register" class="common choose blink" data-micron="fade" data-micron-duration=".8">Sign in to
+                        <a href="/register" class="common choose blink" data-micron="fade" data-micron-duration=".8">Sign up to
                             create a quiz</a>
                     </div>
                     <div id="list-icon">
