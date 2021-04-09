@@ -1,11 +1,11 @@
-import { html, render, until } from '../libraries.js';
-import {onArrowClick,nextSlide} from '../common/formAction.js';
+import { html, render, until, styleMap} from '../libraries.js';
+import {onArrowClick,nextSlide, previousSlide} from '../common/formAction.js';
 
 const registerTemplate = (onArrowClick, onSubmit, formData, ctx) => html`
 <div @click=${onArrowClick.bind(event, formData)} id="register-container" class="glass">
-    <div id="back-arrow-holder" class="common">
+    <div @click=${previousSlide} id="back-arrow-holder" class="common" style = ${styleMap({display: 'none'})}>
         <i class="fas fa-angle-double-left"></i>
-        <span>Back</span>
+        <span class="use-for-check">Back</span>
     </div>
     <form @submit=${onSubmit.bind(event, formData, ctx)} id="register-form">
         <div class="name-field">
@@ -57,7 +57,7 @@ function onSubmit(formData, ctx) {
     const nextForm = parent.nextElementSibling;
     nextSlide(parent, nextForm, ctx);
     setTimeout(redirectHome, 1500);
-
+    console.log(formData);
     function redirectHome(){
         ctx.page.redirect('/')
     }

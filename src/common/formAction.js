@@ -4,11 +4,13 @@ export function onArrowClick(formData) {
         const input = event.target.previousElementSibling;
         const parent = event.target.parentNode;
         const nextForm = parent.nextElementSibling;
+        const backBtn = document.querySelector('#back-arrow-holder');
 
         //Check for validation
         if (input.name === 'username' && validateUser(input)) {
             formData['username'] = input.value;
             nextSlide(parent, nextForm);
+            backBtn.style.display = 'block'
         } else if (input.name === 'email' && validateEmail(input)) {
             formData['email'] = input.value;
             nextSlide(parent, nextForm);
@@ -57,4 +59,15 @@ export function nextSlide(parent, nextForm) {
     parent.classList.remove('active');
 
     nextForm.classList.add('active');
+}
+
+export function previousSlide(ev) {
+    if (ev.target.classList.contains('fa-angle-double-left') || ev.target.classList.contains('use-for-check')) {
+        const activeDiv = [...ev.target.parentNode.nextElementSibling.children].filter(el => el.classList.contains('active'))[0];
+        const previousDiv = activeDiv.previousElementSibling;
+        nextSlide(activeDiv, previousDiv);
+        if (previousDiv.classList.contains('name-field')) {
+            document.querySelector('#back-arrow-holder').style.display = 'none';
+        }
+    }
 }
