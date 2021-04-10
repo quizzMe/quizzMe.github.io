@@ -1,6 +1,6 @@
 #register-container,
 #login-container{
-    height: 87vh;
+    height: 60vh;
     -webkit-transition: background-image 0.2s ease-in-out;
     transition: background-image 0.2s ease-in-out;
     position: relative;

@@ -1,4 +1,4 @@
-import { html, render, until } from '../libraries.js';
+import { html, styleMap } from '../libraries.js';
 
 export const loadingHomeTemplate = () => html`
     <div id="load-container">
@@ -25,30 +25,42 @@ export const loadingHomeTemplate = () => html`
 
 const homeTemplate = () => html `
 <div class="glass" id="home-container">
-                <div id="info-div">
-                    <div id="greating" class="common">
-                        <h1>Welcome to QuizzMe!</h1>
-                        <p>
-                            QuizzMe is a free web application, where you can choose quizzes from variaty of categories.
-                            You can compete with your friends and create your own quizzes as well. Start now!
-                        </p>
-                        <a href="/register" class="common choose blink" data-micron="fade" data-micron-duration=".8">Sign up to
-                            create a quiz</a>
-                    </div>
-                    <div id="list-icon">
-                        <i class="fas fa-clipboard-list common"></i>
-                    </div>
-                </div>
+    <div id="info-div">
+        <div id="greating" class="common">
+            <h1>Welcome to QuizzMe!</h1>
+            <p>
+            QuizzMe is a free web application, where you can choose quizzes from variaty of categories.
+            You can compete with your friends and create your own quizzes as well. Start now!
+            </p>
+            <a href="/register" class="common choose blink" data-micron="fade" data-micron-duration=".8">Sign up to
+            create a quiz</a>
+        </div>
+        <div id="list-icon">
+             <i class="fas fa-clipboard-list common"></i>
+        </div>
+    </div>
 
-            </div>
+    <div id="more" style=${styleMap({display: 'none'})}>
+            <p>
+            QuizzMe is a free web application, where you can choose quizzes from variaty of categories. You can compete with your friends and create your own quizzes as well. Start now!
+            QuizzMe is a free web application, where you can choose quizzes from variaty of categories. You can compete with your friends and create your own quizzes as well. Start now!
+            QuizzMe is a free web application, where you can choose quizzes from variaty of categories. You can compete with your friends and create your own quizzes as well. Start now!
+            QuizzMe is a free web application, where you can choose quizzes from variaty of categories. You can compete with your friends and create your own quizzes as well. Start now!
+            QuizzMe is a free web application, where you can choose quizzes from variaty of categories. You can compete with your friends and create your own quizzes as well. Start now!
+            QuizzMe is a free web application, where you can choose quizzes from variaty of categories. You can compete with your friends and create your own quizzes as well. Start now!
+            QuizzMe is a free web application, where you can choose quizzes from variaty of categories. You can compete with your friends and create your own quizzes as well. Start now!
+            QuizzMe is a free web application, where you can choose quizzes from variaty of categories. You can compete with your friends and create your own quizzes as well. Start now!
+            </p>
+        </div>
+ </div>
 
-            <div id="show-more">
-                <a href="#" class="common">
+            <div @click=${onShowMore} id="show-more">
+                <span class="common">
                     Show More
                     <p>
                         <i class="fas fa-angle-double-down"></i>
                     </p>
-                </a>
+                </span>
             </div>
 `;
 
@@ -59,5 +71,18 @@ export function homePage(ctx){
     function renderHome(){
         ctx.render(homeTemplate());
         [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => btn.classList.remove('clicked'))
+    }
+}
+
+function onShowMore(ev){
+    if(ev.target.classList.contains('common') || ev.target.classList.contains('fa-angle-double-down')){
+        document.getElementById('more').style.display = 'block'
+        let showMoreContainer = ev.target.parentNode;
+        
+        while(showMoreContainer.id != 'show-more'){
+            showMoreContainer = showMoreContainer.parentNode;
+        }
+
+        showMoreContainer.style.display = 'none';
     }
 }

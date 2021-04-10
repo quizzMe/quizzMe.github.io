@@ -80,8 +80,8 @@
 
 #info-div{
     margin: auto;
-    height: 35vh;
-    padding-top: 30px;
+    height: 30vh;
+    padding-top: 40px;
     height: 40vh;
     display: flex;
     justify-content: space-around;
@@ -162,7 +162,13 @@
     }
 }
 
-#show-more p i{
+
+#show-more span{
+    cursor: pointer;
+}
+
+#show-more span i{
     margin-top: 0;
     font-size: 15px;
+    cursor: pointer;
 }
