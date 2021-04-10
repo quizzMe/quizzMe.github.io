@@ -38,6 +38,13 @@
     font-weight: 900;
 }
 
+.clicked{
+    padding: 7px 10px;
+    font-size: 17px;
+    background: linear-gradient(97deg, rgba(156,153,185,1) 16%, rgba(180,177,194,1) 44%, rgba(206,173,223,0.3225665266106442) 67%);
+    font-weight: 900;
+}
+
 #logo{
     font-family: 'Lato', sans-serif;
     font-weight: 900;

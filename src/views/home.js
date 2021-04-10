@@ -48,7 +48,7 @@ const homeTemplate = () => html `
                             <ul>
                                 <li><a href="/login" class="common choose"data-micron="fade" data-micron-duration=".8">Login</a></li>
                                 <li><a href="/register" class="common choose" data-micron="fade" data-micron-duration=".8">Register</a></li>
-                                <li><a href="#" class="common choose" data-micron="fade" data-micron-duration=".8">About</a></li>
+                                <li><a href="/about" class="common choose" data-micron="fade" data-micron-duration=".8">About</a></li>
                                 <li><a href="#" class="common choose" data-micron="fade" data-micron-duration=".8">Contacts</a></li>
                             </ul>
                         </div>

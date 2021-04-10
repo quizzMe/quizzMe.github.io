@@ -20,7 +20,8 @@ body, #guest-home-page {
 
 #home-container,
 #register-container,
-#login-container{
+#login-container,
+#about-container{
     width: 75%;
     margin: auto;
     margin-top: 2%;
