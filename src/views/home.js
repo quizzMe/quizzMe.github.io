@@ -57,6 +57,7 @@ export function homePage(ctx){
     setTimeout(renderHome, 2000);
 
     function renderHome(){
-        ctx.render(homeTemplate())
+        ctx.render(homeTemplate());
+        [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => btn.classList.remove('clicked'))
     }
 }
