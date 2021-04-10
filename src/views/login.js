@@ -8,7 +8,6 @@ const loginTemplate = (onArrowClick, onSubmit, formData, ctx) => html`
         <span class="use-for-check">Back</span>
     </div>
     
-    <p @click=${()=>ctx.page.redirect('/')} class="return-to-home common">Home</p>
     <form @submit=${onSubmit.bind(event, formData, ctx)} id="login-form">
         <div class="name-field">
             <i class="fas fa-user"></i>

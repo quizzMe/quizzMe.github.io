@@ -72,7 +72,7 @@ export function nextSlide(parent, nextForm) {
 
 export function previousSlide(ev) {
     if (ev.target.classList.contains('fa-angle-double-left') || ev.target.classList.contains('use-for-check')) {
-        const activeDiv = [...ev.target.parentNode.nextElementSibling.nextElementSibling.children].filter(el => el.classList.contains('active'))[0];
+        const activeDiv = [...ev.target.parentNode.nextElementSibling.children].filter(el => el.classList.contains('active'))[0];
         const previousDiv = activeDiv.previousElementSibling;
         nextSlide(activeDiv, previousDiv);
         if (previousDiv.classList.contains('name-field')) {
