@@ -1,6 +1,6 @@
 import { html } from '../libraries.js';
 
-const aboutPageTemplate = () => html `
+const contactPageTemplate = () => html `
      <header id="header-nav">
                     <div data-text="QuizzMe" id="logo" class="common">
                         <a class="common" href="/"><span><i class="far fa-question-circle"></i> QuizzMe <i
@@ -27,8 +27,8 @@ const aboutPageTemplate = () => html `
          </div>
 `;
 
-export function aboutPage(ctx){
-    ctx.render(aboutPageTemplate(ctx));
+export function contactPage(ctx){
+    ctx.render(contactPageTemplate(ctx));
     [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => {
         if(ctx.pathname.includes(btn.textContent.toLowerCase())){
             btn.classList.add('clicked')
