@@ -18,7 +18,7 @@ export function onArrowClick(formData) {
             formData['password'] = input.value;
             currentPass = input.value;
             nextSlide(parent, nextForm);
-        } else if ((input.name === 'rePass') && (input.value == currentPass)) {
+        } else if ((input.name === 'rePass') && validateSamePass(currentPass, input.value)) {
             nextSlide(parent, nextForm);
         } else {
             parent.style.animation = "shake 0.5s ease"
@@ -36,6 +36,15 @@ function validateUser(user) {
     } else {
         errorBackground(false);
         return true;
+    }
+}
+
+function validateSamePass(currentPass, inputPass){
+    if(currentPass == inputPass){
+        errorBackground(false);
+        return true;
+    } else {
+        errorBackground(true);
     }
 }
 
