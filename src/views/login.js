@@ -33,6 +33,13 @@ const loginTemplate = (onArrowClick, onSubmit, formData, ctx) => html`
 const formData = {};
 export function loginPage(ctx) {
     ctx.render(loginTemplate(onArrowClick, onSubmit, formData, ctx));
+    [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => {
+        if(ctx.pathname.includes(btn.textContent.toLowerCase())){
+            btn.classList.add('clicked')
+        } else {
+            btn.classList.remove('clicked')
+        }
+    })
 }
 
 function onSubmit(formData, ctx){

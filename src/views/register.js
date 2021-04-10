@@ -52,6 +52,13 @@ const formData = {};
 let currentPass = '';
 export function registerPage(ctx) {
     ctx.render(registerTemplate(onArrowClick, onSubmit, formData, ctx));
+    [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => {
+        if(ctx.pathname.includes(btn.textContent.toLowerCase())){
+            btn.classList.add('clicked')
+        } else {
+            btn.classList.remove('clicked')
+        }
+    })
 }
 
 function onSubmit(formData, ctx) {
