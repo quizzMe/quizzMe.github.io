@@ -24,7 +24,6 @@ export const loadingHomeTemplate = () => html`
 
 
 const homeTemplate = () => html `
-<div class="glass" id="home-container">
                 <header id="header-nav">
                     <div data-text="QuizzMe" id="logo" class="common">
                         <a class="common" href="/"><span><i class="far fa-question-circle"></i> QuizzMe <i
@@ -50,13 +49,13 @@ const homeTemplate = () => html `
                                 <li><a href="/login" class="common choose"data-micron="fade" data-micron-duration=".8">Login</a></li>
                                 <li><a href="/register" class="common choose" data-micron="fade" data-micron-duration=".8">Register</a></li>
                                 <li><a href="#" class="common choose" data-micron="fade" data-micron-duration=".8">About</a></li>
-                                <li><a href="#" class="common choose" data-micron="fade" data-micron-duration=".8">Contact</a></li>
+                                <li><a href="#" class="common choose" data-micron="fade" data-micron-duration=".8">Contacts</a></li>
                             </ul>
                         </div>
                     </nav>
                 </header>
 
-
+<div class="glass" id="home-container">
                 <div id="info-div">
                     <div id="greating" class="common">
                         <h1>Welcome to QuizzMe!</h1>

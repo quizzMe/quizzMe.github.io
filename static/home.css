@@ -1,13 +1,13 @@
 #header-nav{
+    margin: auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 15px;
     align-items: center;
     margin-bottom: 50px;
 }
 
 #navigation{
-    width: 50%;
     display: flex;
     justify-content: space-around;
 }
@@ -74,6 +74,8 @@
 #info-div{
     margin: auto;
     height: 35vh;
+    padding-top: 30px;
+    height: 40vh;
     display: flex;
     justify-content: space-around;
     align-items: stretch;
