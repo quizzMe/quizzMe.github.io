@@ -7,6 +7,9 @@ const registerTemplate = (onArrowClick, onSubmit, formData, ctx) => html`
         <i class="fas fa-angle-double-left"></i>
         <span class="use-for-check">Back</span>
     </div>
+    
+    <p @click=${()=>ctx.page.redirect('/')} class="return-to-home common">Home</p>
+    
     <form @submit=${onSubmit.bind(event, formData, ctx)} id="register-form">
         <div class="name-field">
             <i class="fas fa-user"></i>

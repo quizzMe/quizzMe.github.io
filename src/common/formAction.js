@@ -10,7 +10,7 @@ export function onArrowClick(formData) {
         if (input.name === 'username' && validateUser(input)) {
             formData['username'] = input.value;
             nextSlide(parent, nextForm);
-            backBtn.style.display = 'block'
+            backBtn.style.display = 'flex'
         } else if (input.name === 'email' && validateEmail(input)) {
             formData['email'] = input.value;
             nextSlide(parent, nextForm);
@@ -63,7 +63,7 @@ export function nextSlide(parent, nextForm) {
 
 export function previousSlide(ev) {
     if (ev.target.classList.contains('fa-angle-double-left') || ev.target.classList.contains('use-for-check')) {
-        const activeDiv = [...ev.target.parentNode.nextElementSibling.children].filter(el => el.classList.contains('active'))[0];
+        const activeDiv = [...ev.target.parentNode.nextElementSibling.nextElementSibling.children].filter(el => el.classList.contains('active'))[0];
         const previousDiv = activeDiv.previousElementSibling;
         nextSlide(activeDiv, previousDiv);
         if (previousDiv.classList.contains('name-field')) {
