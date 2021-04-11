@@ -18,6 +18,7 @@ page.start();
 
 function decorateContext(ctx, next){
     ctx.render = (content) => render(content, main);
+    ctx.setUserNav = setUserNav;
     next();
 }
 
