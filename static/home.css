@@ -80,6 +80,8 @@
 
 #info-div{
     margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
     height: 30vh;
     padding-top: 40px;
     height: 40vh;
@@ -171,4 +173,49 @@
     margin-top: 0;
     font-size: 15px;
     cursor: pointer;
+}
+
+#recent-quizzes{
+    width: 76%;
+    margin: auto;
+    padding-top: 45px;
+    padding-bottom: 45px;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#recent-quizzes h2{
+    letter-spacing: 1px;
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 25px;
+}
+
+.quiz-preview{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    box-shadow: inset 0 0 2000px  rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    margin: 32px 0;
+    border-left: 8px solid rgba(255, 255, 255, 0.9);;
+    padding: 16px 32px;
+    position: relative;
+}
+
+.view-quiz a{
+    border: 2px solid #e2d2d2;
+    border-radius: 5px;
+    padding: 6px 9px;
+    font-family: 'Lato', sans-serif;
+    transition: 0.4s;
+}
+
+.quiz-description h3{
+    margin-top: 5px;
+    margin-bottom: 7px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 21px;
 }

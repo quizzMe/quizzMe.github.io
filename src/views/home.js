@@ -41,19 +41,58 @@ const homeTemplate = () => html `
     </div>
 
     <div id="more" style=${styleMap({display: 'none'})}>
-            <p>
-            QuizzMe is a free web application, where you can choose quizzes from variaty of categories. You can compete with your friends and create your own quizzes as well. Start now!
-            QuizzMe is a free web application, where you can choose quizzes from variaty of categories. You can compete with your friends and create your own quizzes as well. Start now!
-            QuizzMe is a free web application, where you can choose quizzes from variaty of categories. You can compete with your friends and create your own quizzes as well. Start now!
-            QuizzMe is a free web application, where you can choose quizzes from variaty of categories. You can compete with your friends and create your own quizzes as well. Start now!
-            QuizzMe is a free web application, where you can choose quizzes from variaty of categories. You can compete with your friends and create your own quizzes as well. Start now!
-            QuizzMe is a free web application, where you can choose quizzes from variaty of categories. You can compete with your friends and create your own quizzes as well. Start now!
-            QuizzMe is a free web application, where you can choose quizzes from variaty of categories. You can compete with your friends and create your own quizzes as well. Start now!
-            QuizzMe is a free web application, where you can choose quizzes from variaty of categories. You can compete with your friends and create your own quizzes as well. Start now!
-            </p>
-        </div>
- </div>
+        <div id="recent-quizzes" class="common">
+            <h2 class="common">Most recent quizzes</h2>
+             <article class="quiz-preview">
+                <div class="quiz-description">
+                 <h3><a class="common" href="javascript.void(0)">Some Title</a></h3>
+                    <span class="quiz-topic">Topic: History</span>
+                    <div class="quiz-meta">
+                       <span>17 questions</span>
+                       <span>|</span>
+                      <span>Taken 4 times</span>
+                     </div>
+                </div>
 
+                <div class="view-quiz">
+                     <a class="common choose" href="javascript.void(0)">View Quiz</a>
+                </div>
+            </article>
+
+            <article class="quiz-preview">
+                <div class="quiz-description">
+                 <h3><a class="common" href="javascript.void(0)">Some Title</a></h3>
+                    <span class="quiz-topic">Topic: History</span>
+                    <div class="quiz-meta">
+                       <span>17 questions</span>
+                       <span>|</span>
+                      <span>Taken 4 times</span>
+                     </div>
+                </div>
+
+                <div class="view-quiz">
+                     <a class="common choose" href="javascript.void(0)">View Quiz</a>
+                </div>
+            </article>
+
+            <article class="quiz-preview">
+                <div class="quiz-description">
+                 <h3><a class="common" href="javascript.void(0)">Some Title</a></h3>
+                    <span class="quiz-topic">Topic: History</span>
+                    <div class="quiz-meta">
+                       <span>17 questions</span>
+                       <span>|</span>
+                      <span>Taken 4 times</span>
+                     </div>
+                </div>
+
+                <div class="view-quiz">
+                     <a class="common choose" href="javascript.void(0)">View Quiz</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
             <div @click=${onShowMore} id="show-more">
                 <span class="common">
                     Show More
@@ -75,7 +114,8 @@ export function homePage(ctx){
 }
 
 function onShowMore(ev){
-    if(ev.target.classList.contains('common') || ev.target.classList.contains('fa-angle-double-down')){
+    console.log(ev.target);
+    if(ev.target.classList.contains('common') || ev.target.classList.contains('fa-angle-double-down') || ev.target.tagName == 'P'){
         document.getElementById('more').style.display = 'block'
         let showMoreContainer = ev.target.parentNode;
         
