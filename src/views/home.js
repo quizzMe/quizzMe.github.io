@@ -90,17 +90,21 @@ const homeTemplate = () => html `
                      <a class="common choose" href="javascript.void(0)">View Quiz</a>
                 </div>
             </article>
+
+            <div class="veiw-all-quizzes">
+                <a class="common choose" href="#">See All Quizzes</a>
+            </div>
         </div>
     </div>
 </div>
-            <div @click=${onShowMore} id="show-more">
-                <span class="common">
-                    Show More
-                    <p>
-                        <i class="fas fa-angle-double-down"></i>
-                    </p>
-                </span>
-            </div>
+<div @click=${onShowMore} id="show-more">
+    <span class="common">
+        Show More
+        <p>
+            <i class="fas fa-angle-double-down"></i>
+        </p>
+    </span>
+</div>
 `;
 
 export function homePage(ctx){
