@@ -45,7 +45,7 @@ const homeTemplate = () => html `
             <h2 class="common">Most recent quizzes</h2>
              <article class="quiz-preview">
                 <div class="quiz-description">
-                 <h3><a class="common" href="javascript.void(0)">Some Title</a></h3>
+                 <h3><a class="common" href="javascript.void(0)">History of the Roman Empire</a></h3>
                     <span class="quiz-topic">Topic: History</span>
                     <div class="quiz-meta">
                        <span>17 questions</span>
@@ -61,12 +61,12 @@ const homeTemplate = () => html `
 
             <article class="quiz-preview">
                 <div class="quiz-description">
-                 <h3><a class="common" href="javascript.void(0)">Some Title</a></h3>
-                    <span class="quiz-topic">Topic: History</span>
+                 <h3><a class="common" href="javascript.void(0)">Quantum Physics</a></h3>
+                    <span class="quiz-topic">Topic: Science</span>
                     <div class="quiz-meta">
-                       <span>17 questions</span>
+                       <span>15 questions</span>
                        <span>|</span>
-                      <span>Taken 4 times</span>
+                      <span>Taken 2 times</span>
                      </div>
                 </div>
 
@@ -77,12 +77,12 @@ const homeTemplate = () => html `
 
             <article class="quiz-preview">
                 <div class="quiz-description">
-                 <h3><a class="common" href="javascript.void(0)">Some Title</a></h3>
-                    <span class="quiz-topic">Topic: History</span>
+                 <h3><a class="common" href="javascript.void(0)">Capitals of Europe</a></h3>
+                    <span class="quiz-topic">Topic: Geography</span>
                     <div class="quiz-meta">
-                       <span>17 questions</span>
+                       <span>21 questions</span>
                        <span>|</span>
-                      <span>Taken 4 times</span>
+                      <span>Taken 10 times</span>
                      </div>
                 </div>
 
