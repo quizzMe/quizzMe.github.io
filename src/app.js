@@ -6,6 +6,7 @@ import {aboutPage} from './views/about.js';
 import {contactPage} from './views/contacts.js';
 
 const main = document.querySelector('main');
+setUserNav();
 
 page('/', decorateContext, homePage);
 page('/register', decorateContext, registerPage);
@@ -18,4 +19,16 @@ page.start();
 function decorateContext(ctx, next){
     ctx.render = (content) => render(content, main);
     next();
+}
+
+function setUserNav(){
+    const user = sessionStorage.getItem('user')
+
+    if(user){
+        document.querySelector('.user').style.display = 'block';
+        document.querySelector('.guest').style.display = 'none';
+    } else {
+        document.querySelector('.user').style.display = 'none';
+        document.querySelector('.guest').style.display = 'block';
+    }
 }
