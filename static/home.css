@@ -204,6 +204,11 @@
     position: relative;
 }
 
+.quiz-preview:hover{
+    border-color: rgba(247, 69, 69, 0.644);
+    background-color: red;
+}
+
 .view-quiz a{
     border: 2px solid #e2d2d2;
     border-radius: 5px;
