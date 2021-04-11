@@ -217,6 +217,11 @@
     transition: 0.4s;
 }
 
+.view-quiz a:hover{
+    /* background: linear-gradient(97deg, rgba(238, 24, 52, 0.726) 16%, rgba(224, 29, 71, 0.678) 44%,rgba(238, 24, 52, 0.726) 16%); */
+    background: rgba(247, 69, 69, 0.644);
+}
+
 .quiz-description h3{
     margin-top: 5px;
     margin-bottom: 7px;
