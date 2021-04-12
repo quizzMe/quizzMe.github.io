@@ -42,7 +42,7 @@ const homeTemplate = () => html `
 
     <div id="more" style=${styleMap({display: 'none'})}>
         <div id="recent-quizzes" class="common">
-            <h2 class="common">Most recent quizzes</h2>
+            <h2 class="common">Most recent quizzes:</h2>
              <article class="quiz-preview">
                 <div class="quiz-description">
                  <h3><a class="common" href="javascript.void(0)">History of the Roman Empire</a></h3>
@@ -92,7 +92,7 @@ const homeTemplate = () => html `
             </article>
 
             <div class="veiw-all-quizzes">
-                <a class="common choose" href="#">See All Quizzes</a>
+                <a class="common choose" href="/browse">See All Quizzes</a>
             </div>
         </div>
     </div>
@@ -113,7 +113,8 @@ export function homePage(ctx){
 
     function renderHome(){
         ctx.render(homeTemplate());
-        [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => btn.classList.remove('clicked'))
+        [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => btn.classList.remove('clicked'));
+        
     }
 }
 

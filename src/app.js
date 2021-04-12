@@ -4,6 +4,7 @@ import {registerPage} from './views/register.js';
 import {loginPage} from './views/login.js';
 import {aboutPage} from './views/about.js';
 import {contactPage} from './views/contacts.js';
+import {renderBrowsePage} from './views/browse.js';
 
 const main = document.querySelector('main');
 setUserNav();
@@ -13,6 +14,7 @@ page('/register', decorateContext, registerPage);
 page('/login', decorateContext, loginPage);
 page('/about', decorateContext, aboutPage);
 page('/contacts', decorateContext, contactPage);
+page('/browse', decorateContext, renderBrowsePage);
 
 page.start();
 

@@ -190,6 +190,16 @@
     margin-bottom: 25px;
 }
 
+#browse-container header h1{
+    letter-spacing: 1px;
+    font-size: 37px;
+    font-family: 'Montserrat', sans-serif;
+    width: 76%;
+    margin: auto;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
 .quiz-preview{
     width: 90%;
     display: flex;
