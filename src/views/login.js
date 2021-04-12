@@ -44,5 +44,6 @@ export function loginPage(ctx) {
 function onSubmit(formData, ctx){
     event.preventDefault();
     console.log(formData);
+    ctx.setUserNav();
     ctx.page.redirect('/')
 }

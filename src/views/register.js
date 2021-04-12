@@ -67,6 +67,7 @@ function onSubmit(formData, ctx) {
     setTimeout(redirectHome, 1500);
     console.log(formData);
     function redirectHome(){
+        ctx.setUserNav();
         ctx.page.redirect('/')
     }
 }
