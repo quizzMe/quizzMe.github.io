@@ -45,13 +45,13 @@ body::before{
 body::after{
     content: '';
     background: url(/assets/award.svg);
-    background-repeat:no-repeat;
-    width: 148px;
-    height: 100px;
+    width: 150px;
+    height: 135px;
     position: absolute;
-    right: 70px;
-    top: 110px;
-    transform: rotate(30deg);
+    z-index: -2;
+    right: 10px;
+    top: 150px;
+    opacity: 0.6;
 }
 
 
@@ -73,7 +73,7 @@ body::after{
     right: 0;
     bottom: 0;
     box-shadow: inset 0 0 2000px  rgba(255, 255, 255, 0.5);
-    filter: blur(3px);
+    filter: blur(5px);
     margin: -5px;
     z-index: -1;
 }
