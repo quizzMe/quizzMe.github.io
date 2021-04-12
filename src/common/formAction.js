@@ -49,12 +49,13 @@ function validateSamePass(currentPass, inputPass){
 }
 
 function validateEmail(email) {
-    //add regexp
-    if (email.value.length < 6) {
-        errorBackground(true);
-    } else {
+    const pattern= /^([a-z]+[\.\-\_]?([a-z]+|[0-9]+)+)@([a-z]+[\.\-\_]?[a-z]+[\.][a-z]+[\.]?[a-z]+)/g;
+
+    if (email.value.length > 6 && pattern.test(email.value)) {
         errorBackground(false);
         return true;
+    } else {
+        errorBackground(true);
     }
 }
 
