@@ -113,13 +113,21 @@ export function homePage(ctx){
 
     function renderHome(){
         ctx.render(homeTemplate());
-        [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => btn.classList.remove('clicked'));
+        [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => btn.classList.remove('clicked')); 
+        
+        const user = sessionStorage.getItem('user');
+
+        if(user){
+            document.getElementById('more').style.display = 'block'
+            document.getElementById('show-more').style.display = 'none';
+            document.getElementById('info-div').style.display = 'none';
+            document.getElementById('recent-quizzes').style.borderTop = 'none';
+        }
         
     }
 }
 
 function onShowMore(ev){
-    console.log(ev.target);
     if(ev.target.classList.contains('common') || ev.target.classList.contains('fa-angle-double-down') || ev.target.tagName == 'P'){
         document.getElementById('more').style.display = 'block'
         let showMoreContainer = ev.target.parentNode;

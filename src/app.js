@@ -25,7 +25,7 @@ function decorateContext(ctx, next){
 }
 
 function setUserNav(){
-    const user = sessionStorage.getItem('user')
+    const user = sessionStorage.getItem('user');
 
     if(user){
         document.querySelector('.user').style.display = 'block';
