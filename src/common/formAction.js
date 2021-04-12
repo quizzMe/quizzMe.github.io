@@ -63,6 +63,13 @@ function validateEmail(email) {
 
 function validatePassword(pass){
     const pattern = /(^[A-Za-z]+[0-9]+$)|(^[0-9]+[A-Za-z]+$)/g;
+
+    if (pass.value.length > 5 && pattern.test(pass.value)) {
+        errorBackground(false);
+        return true;
+    } else {
+        errorBackground(true);
+    }
 }
 
 function errorBackground(mistake) {
