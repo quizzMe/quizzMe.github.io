@@ -14,7 +14,7 @@ export function onArrowClick(formData) {
         } else if (input.name === 'email' && validateEmail(input)) {
             formData['email'] = input.value;
             nextSlide(parent, nextForm);
-        } else if (input.name === 'password' && validateUser(input)) {
+        } else if (input.name === 'password' && validatePassword(input)) {
             formData['password'] = input.value;
             currentPass = input.value;
             nextSlide(parent, nextForm);
@@ -31,11 +31,13 @@ export function onArrowClick(formData) {
 }
 
 function validateUser(user) {
-    if (user.value.length < 5) {
-        errorBackground(true);
-    } else {
+    const pattern = /^[A-Za-z][\w]+$/g;
+
+    if (user.value.length > 5 && pattern.test(user.value)) {
         errorBackground(false);
         return true;
+    } else {
+        errorBackground(true);
     }
 }
 
@@ -57,6 +59,10 @@ function validateEmail(email) {
     } else {
         errorBackground(true);
     }
+}
+
+function validatePassword(pass){
+    const pattern = /(^[A-Za-z]+[0-9]+$)|(^[0-9]+[A-Za-z]+$)/g;
 }
 
 function errorBackground(mistake) {
