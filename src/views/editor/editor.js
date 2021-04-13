@@ -45,8 +45,9 @@ const template = () => html`
                 placeholder="Enter question"></textarea>
             <div class="editor-input">
 
-                <label class="radio">
-                    <input type="radio" name="question-1" value="0" />
+                <label for="radioId" class="radio">
+                    <input class="radio-input" id="radioId" type="radio" name="question-1" value="0" />
+                    <div class="radio-radio"></div>
                 </label>
 
                 <input class=" input question-input" type="text" name="answer-0" />
@@ -54,8 +55,9 @@ const template = () => html`
             </div>
             <div class="editor-input">
 
-                <label class="radio">
-                    <input type="radio" name="question-1" value="1" />
+                <label for="radioId" class="radio">
+                    <input class="radio-input" id="radioId" type="radio" name="question-1" value="1" />
+                    <div class="radio-radio"></div>
                 </label>
 
                 <input class="input question-input" type="text" name="answer-1" />
@@ -63,8 +65,9 @@ const template = () => html`
             </div>
             <div class="editor-input">
 
-                <label class="radio">
-                    <input type="radio" name="question-1" value="2" />
+                <label for="radioId" class="radio">
+                    <input class="radio-input" id="radioId" type="radio" name="question-1" value="2" />
+                    <div class="radio-radio"></div>
                 </label>
 
                 <input class="input question-input" type="text" name="answer-2" />
