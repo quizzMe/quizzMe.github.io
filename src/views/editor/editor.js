@@ -46,7 +46,7 @@ const template = () => html`
             <div class="editor-input">
 
                 <label  class="radio">
-                    <input class="radio-input"  type="radio" name="question-1" value="0" />
+                    <input class="radio-input"  type="radio" id="question-1" name="answer" value="0" />
                     <div class="radio-radio"></div>
                 </label>
 
@@ -56,7 +56,7 @@ const template = () => html`
             <div class="editor-input">
 
                 <label  class="radio">
-                    <input class="radio-input" type="radio" name="question-2" value="1" />
+                    <input class="radio-input" type="radio" id="question-2" name="answer" value="1" />
                     <div class="radio-radio"></div>
                 </label>
 
@@ -66,7 +66,7 @@ const template = () => html`
             <div class="editor-input">
 
                 <label class="radio">
-                    <input class="radio-input" type="radio" name="question-3" value="2" />
+                    <input class="radio-input" type="radio" id="question-3" name="answer" value="2" />
                     <div class="radio-radio"></div>
                 </label>
 

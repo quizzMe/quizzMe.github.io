@@ -209,13 +209,9 @@
     border-radius: 50%;
 
     transform: scale(0);
-    transition: transform 0.3s;
+    transition: transform 0.5s;
 }
 
 .radio-input:checked + .radio-radio::after{
     transform: scale(1);
-}
-
-.radio-input:not(:checked) + .radio-radio::after {
-    transform: scale(0);
 }
