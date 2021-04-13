@@ -91,6 +91,7 @@
 
 .question-holder{
     margin-top: 30px;
+    width: 60%;
 }
 
 .question-head{
@@ -119,22 +120,34 @@
 .editor-question form textarea{
     width: 100%;
     margin-top: 10px;
-    height: 40px;
+    height: 60px;
     margin-bottom: 10px;
+    border-radius: 5px;
 }
 
 .question-control button{
     font-size: 15px;
     padding: 6px 8px;
+    cursor: pointer;
 }
 
 .question-control button:hover{
     font-size: 15px;
-    padding: 6px 9px;
+    padding: 6px 8px;
 }
 
 .editor-input{
     margin-bottom: 10px;
+}
+
+.delete-answer{
+    padding: 6px 8px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.delete-answer:hover{
+    color: rgba(247, 69, 69, 0.644);
 }
 
 .radio{
@@ -142,10 +155,30 @@
 }
 
 .radio input{
-    
+    cursor: pointer;
+    outline: none;
 }
 
 
 .question-input{
-    width: 300px;
+    width: 80%;
+}
+
+.add-answer-btn{
+    padding: 7px 9px;
+    background: transparent;
+    border: 2px solid #e2d2d2;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 5px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    transition: 0.4s ease;
+}
+
+.add-answer-btn:hover{
+    font-weight: 900;
+    padding: 7px 9px;
+    font-size: 14px;
 }

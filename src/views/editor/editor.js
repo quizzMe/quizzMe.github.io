@@ -31,7 +31,7 @@ const template = () => html`
 
 <div class="question-holder">
 
-    <article class="editor-question">
+    <article class="editor-question glass">
         <div class="question-head">
             <h3>Question 1</h3>
             <div class="question-control">
@@ -50,7 +50,7 @@ const template = () => html`
                 </label>
 
                 <input class=" input question-input" type="text" name="answer-0" />
-                <button><i class="fas fa-trash-alt"></i></button>
+                <button class="delete-answer"><i class="fas fa-trash-alt"></i></button>
             </div>
             <div class="editor-input">
 
@@ -59,7 +59,7 @@ const template = () => html`
                 </label>
 
                 <input class="input question-input" type="text" name="answer-1" />
-                <button><i class="fas fa-trash-alt"></i></button>
+                <button class="delete-answer"><i class="fas fa-trash-alt"></i></button>
             </div>
             <div class="editor-input">
 
@@ -68,10 +68,10 @@ const template = () => html`
                 </label>
 
                 <input class="input question-input" type="text" name="answer-2" />
-                <button><i class="fas fa-trash-alt"></i></button>
+                <button class="delete-answer"><i class="fas fa-trash-alt"></i></button>
             </div>
             <div class="editor-input">
-                <button class="input submit action">
+                <button class="add-answer-btn common choose">
                     <i class="fas fa-plus-circle"></i>
                     Add answer
                 </button>
