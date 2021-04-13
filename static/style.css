@@ -4,8 +4,8 @@
 @import "./home.css";
 @import "./register-login.css";
 @import "./contacts.css";
+@import './editor.css';
 @import 'https://use.fontawesome.com/releases/v5.10.2/css/all.css';
-
 
 * {
     margin: 0;
@@ -25,7 +25,8 @@ body, #guest-home-page {
 #login-container,
 #about-container,
 #contacts-container,
-#browse-container{
+#browse-container,
+#editor{
     width: 75%;
     margin: auto;
     margin-top: 2%;

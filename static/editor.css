@@ -1,0 +1,116 @@
+#editor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-create-title{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.edit-create-title h1{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+}
+
+.setup-new-quiz{
+    width: 60%;
+    height: 22vh;
+    margin-bottom: 25px;
+}
+
+.setup-new-quiz form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.setup-new-quiz form label{
+    margin-top: 15px;
+}
+
+.setup-new-quiz form span{
+    font-family: 'Lato', sans-serif;
+}
+
+.input{
+    flex: 1;
+    height: 100%;
+    outline: none;
+    height: 25px;
+    width: 200px;
+    border-radius: 5px;
+    border: none;
+}
+
+.save-btn{
+    border: 2px solid #e2d2d2;
+    border-radius: 5px;
+    padding: 6px 9px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    transition: 0.5s;
+    background: transparent;
+    margin-top: 13px;
+    margin-bottom: 13px;
+}
+
+.save-btn:hover{
+    padding: 7px 10px;
+    font-size: 17px;
+}
+
+.quiestions-banner{
+    margin-top: 20px;
+}
+
+.quiestions-banner::before{
+    content: " ";
+    width: 100%;
+    height: 40px;
+    left: 0;
+    top: 265px;
+    position: absolute;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.quiestions-banner::after{
+    content: " ";
+    width: 100%;
+    height: 40px;
+    left: 0;
+    top: 315px;
+    position: absolute;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+
+.question-holder{
+    margin-top: 30px;
+}
+
+.question-head{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.editor-question form textarea{
+    width: 100%;
+    margin-top: 10px;
+    height: 40px;
+}
+
+.question-control button{
+    font-size: 15px;
+    padding: 6px 8px;
+}
+
+.question-control button:hover{
+    font-size: 15px;
+    padding: 6px 9px;
+}
