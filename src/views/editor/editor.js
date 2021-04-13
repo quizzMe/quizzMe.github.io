@@ -46,32 +46,29 @@ const template = () => html`
             <div class="editor-input">
 
                 <label class="radio">
-                    <input class="input" type="radio" name="question-1" value="0" />
-                    <i class="fas fa-check-circle"></i>
+                    <input type="radio" name="question-1" value="0" />
                 </label>
 
-                <input class="input" type="text" name="answer-0" />
-                <button class="input submit action"><i class="fas fa-trash-alt"></i></button>
+                <input class=" input question-input" type="text" name="answer-0" />
+                <button><i class="fas fa-trash-alt"></i></button>
             </div>
             <div class="editor-input">
 
                 <label class="radio">
-                    <input class="input" type="radio" name="question-1" value="1" />
-                    <i class="fas fa-check-circle"></i>
+                    <input type="radio" name="question-1" value="1" />
                 </label>
 
-                <input class="input" type="text" name="answer-1" />
-                <button class="input submit action"><i class="fas fa-trash-alt"></i></button>
+                <input class="input question-input" type="text" name="answer-1" />
+                <button><i class="fas fa-trash-alt"></i></button>
             </div>
             <div class="editor-input">
 
                 <label class="radio">
-                    <input class="input" type="radio" name="question-1" value="2" />
-                    <i class="fas fa-check-circle"></i>
+                    <input type="radio" name="question-1" value="2" />
                 </label>
 
-                <input class="input" type="text" name="answer-2" />
-                <button class="input submit action"><i class="fas fa-trash-alt"></i></button>
+                <input class="input question-input" type="text" name="answer-2" />
+                <button><i class="fas fa-trash-alt"></i></button>
             </div>
             <div class="editor-input">
                 <button class="input submit action">
