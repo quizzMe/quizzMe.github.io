@@ -82,58 +82,57 @@ const template = () => html`
         </form>
     </article>
 
-    <!-- <article class="editor-question"> 
-        <div class="layout">
+    <article class="editor-question glass"> 
+    <div class="question-head">
+            <h3>Question 2</h3>
             <div class="question-control">
-                <button disabled class="input submit action"><i class="fas fa-check-double"></i>
+                <button disabled class="save-btn choose common" ><i class="fas fa-check-double"></i>
                     Save</button>
-                <button disabled class="input submit action"><i class="fas fa-times"></i>
-                    Cancel</button>
+                <button disabled class="save-btn choose common" ><i class="fas fa-times"></i> Cancel</button>
             </div>
-            <h3>Question 1</h3>
         </div>
         <form>
-            <textarea disabled class="input editor-input editor-text" name="text"
+            <textarea disabled  class="inputd" name="text"
                 placeholder="Enter question"></textarea>
             <div class="editor-input">
 
-                <label class="radio">
-                    <input disabled class="input" type="radio" name="question-1" value="0" />
-                    <i class="fas fa-check-circle"></i>
+                <label  class="radio">
+                    <input disabled class="radio-input"  type="radio" id="question-1" name="answer" value="0" />
+                    <div class="radio-radio"></div>
                 </label>
 
-                <input disabled class="input" type="text" name="answer-0" />
-                <button disabled class="input submit action"><i class="fas fa-trash-alt"></i></button>
+                <input disabled class="input question-input" type="text" name="answer-0" />
+                <button disabled class="delete-answer"><i class="fas fa-trash-alt"></i></button>
+            </div>
+            <div class="editor-input">
+
+                <label  class="radio">
+                    <input disabled class="radio-input" type="radio" id="question-2" name="answer" value="1" />
+                    <div class="radio-radio"></div>
+                </label>
+
+                <input disabled class="input question-input" type="text" name="answer-1" />
+                <button disabled class="delete-answer"><i class="fas fa-trash-alt"></i></button>
             </div>
             <div class="editor-input">
 
                 <label class="radio">
-                    <input disabled class="input" type="radio" name="question-1" value="1" />
-                    <i class="fas fa-check-circle"></i>
+                    <input disabled class="radio-input" type="radio" id="question-3" name="answer" value="2" />
+                    <div class="radio-radio"></div>
                 </label>
 
-                <input disabled class="input" type="text" name="answer-1" />
-                <button disabled class="input submit action"><i class="fas fa-trash-alt"></i></button>
+                <input disabled class="input question-input" type="text" name="answer-2" />
+                <button disabled class="delete-answer"><i class="fas fa-trash-alt"></i></button>
             </div>
             <div class="editor-input">
-
-                <label class="radio">
-                    <input disabled class="input" type="radio" name="question-1" value="2" />
-                    <i class="fas fa-check-circle"></i>
-                </label>
-
-                <input disabled class="input" type="text" name="answer-2" />
-                <button disabled class="input submit action"><i class="fas fa-trash-alt"></i></button>
-            </div>
-            <div class="editor-input">
-                <button disabled class="input submit action">
+                <button disabled class="add-answer-btn common choose">
                     <i class="fas fa-plus-circle"></i>
                     Add answer
                 </button>
             </div>
         </form>
         <div class="loading-overlay working"></div>
-    </article> -->
+    </article>
 
     <!-- <article class="editor-question">
         <div class="layout">

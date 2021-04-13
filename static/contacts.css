@@ -50,3 +50,43 @@
     color: #EE5C04;
     padding: 9px 13px;
 }
+
+
+/* Animated overlay */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+/* overlays */
+
+
+.working {
+    background: linear-gradient(to right, rgba(56, 146, 236, 0.25), rgba(56, 146, 236, 0.25), rgba(56, 146, 236, 1), rgba(56, 146, 236, 0.25), rgba(56, 146, 236, 0.25));
+    background-size: 400% 100%;
+    animation: loading-pulse 1.5s infinite;
+}
+
+.updated {
+    animation: loading-complete 3s;
+}
+
+.failed {
+    background-color: #ff7b72;
+}
+
+@keyframes loading-pulse {
+    0%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+@keyframes loading-complete {
+    0%{background: rgba(56, 236, 131, 1)}
+    15%{background: rgba(56, 236, 131, 1)}
+    100%{background: rgba(56, 236, 131, 0)}
+}
+/* END overlays */
