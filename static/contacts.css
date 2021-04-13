@@ -14,32 +14,39 @@
     font-size: 40px;
     margin-right: 20px;
     list-style: none;
+    padding-right: 5px;
 }
 
 .social-links li a{
     border-radius: 50%;
-    padding: 8px 12px;
+    padding: 7px 11px;
     background-color: rgba(226, 210, 210, 0.5);
     color: #262626;
+    transition: 0.4s;
 }
 
 
 .facebook a:hover {
-    color: #3B59A5;
+    color: #3A5794;
+    padding: 9px 13px;
 }
 
-.twitter a:hover{
-    color: #00ACED;
+.github a:hover{
+    color: #995a13;
+    padding: 9px 13px;
 }
 
-.google a:hover{
+.mail a:hover{
     color: #DD4B39;
+    padding: 9px 13px;
 }
 
 .linkedin a:hover{
     color: #007BB6;
+    padding: 9px 13px;
 }
 
 .instagram a:hover{
-    color: #6486A9;
+    color: #EE5C04;
+    padding: 9px 13px;
 }
