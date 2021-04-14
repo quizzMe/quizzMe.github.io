@@ -7,6 +7,11 @@ import {contactPage} from './views/contacts.js';
 import {renderBrowsePage} from './views/browse.js';
 import {editorPage} from './views/editor/editor.js';
 
+import * as api from './api/api.js';
+
+api.settings.host = 'https://parseapi.back4app.com/';
+window.api = api;
+
 const main = document.querySelector('main');
 setUserNav();
 
