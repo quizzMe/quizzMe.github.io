@@ -1,5 +1,6 @@
 import {html, styleMap} from "../libraries.js";
 import {onArrowClick,previousSlide} from '../common/formAction.js';
+import { login } from '../api/data.js';
 
 const loginTemplate = (onArrowClick, onSubmit, formData, ctx) => html`
 <div @click=${onArrowClick.bind(event, formData,)} id="login-container" class="glass">
@@ -41,9 +42,9 @@ export function loginPage(ctx) {
     })
 }
 
-function onSubmit(formData, ctx){
+async function onSubmit(formData, ctx){
     event.preventDefault();
-    console.log(formData);
+    await login(formData);
     ctx.setUserNav();
     ctx.page.redirect('/')
 }

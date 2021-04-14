@@ -1,5 +1,6 @@
 import { html, render, until, styleMap} from '../libraries.js';
 import {onArrowClick,nextSlide, previousSlide} from '../common/formAction.js';
+import { register } from '../api/data.js';
 
 const registerTemplate = (onArrowClick, onSubmit, formData, ctx) => html`
 <div @click=${onArrowClick.bind(event, formData)} id="register-container" class="glass">
@@ -59,13 +60,14 @@ export function registerPage(ctx) {
     })
 }
 
-function onSubmit(formData, ctx) {
+async function onSubmit(formData, ctx) {
     event.preventDefault();
     let parent = event.target.parentNode.querySelector('.submit-holder');
     const nextForm = parent.nextElementSibling;
     nextSlide(parent, nextForm, ctx);
     setTimeout(redirectHome, 1500);
-    console.log(formData);
+    await register(formData);
+
     function redirectHome(){
         ctx.setUserNav();
         ctx.page.redirect('/')

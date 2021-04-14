@@ -30,7 +30,7 @@ function decorateContext(ctx, next){
 }
 
 function setUserNav(){
-    const user = sessionStorage.getItem('user');
+    const user = sessionStorage.getItem('username');
 
     if(user){
         document.querySelector('.user').style.display = 'block';
