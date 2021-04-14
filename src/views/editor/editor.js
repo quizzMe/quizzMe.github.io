@@ -84,7 +84,7 @@ const template = () => html`
 
     <article class="editor-question glass"> 
     <div class="question-head">
-            <h3>Question 2</h3>
+            <h3>Question 1</h3>
             <div class="question-control">
                 <button disabled class="save-btn choose common" ><i class="fas fa-check-double"></i>
                     Save</button>
@@ -134,40 +134,47 @@ const template = () => html`
         <div class="loading-overlay working"></div>
     </article>
 
-    <!-- <article class="editor-question">
-        <div class="layout">
-            <div class="question-control">
-                <button class="input submit action"><i class="fas fa-edit"></i> Edit</button>
-                <button class="input submit action"><i class="fas fa-trash-alt"></i> Delete</button>
-            </div>
+    <article class="editor-question glass">
+        <div class="question-head">
             <h3>Question 2</h3>
+            <div class="question-control">
+                <button class="save-btn choose common" ><i class="fas fa-edit"></i> Edit</button>
+                <button class="save-btn choose common" ><i class="fas fa-trash-alt"></i> Delete</button>
+            </div>
         </div>
         <form>
             <p class="editor-input">This is the second question.</p>
             <div class="editor-input">
-                <label class="radio">
-                    <input class="input" type="radio" name="question-2" value="0" disabled />
-                    <i class="fas fa-check-circle"></i>
+
+                <label  class="radio">
+                    <input class="radio-input"  type="radio" id="question-1" name="answer" value="0" />
+                    <div class="radio-radio"></div>
                 </label>
-                <span>Answer 0</span>
-            </div>
-            <div class="editor-input">
-                <label class="radio">
-                    <input class="input" type="radio" name="question-2" value="1" disabled />
-                    <i class="fas fa-check-circle"></i>
-                </label>
+
                 <span>Answer 1</span>
             </div>
             <div class="editor-input">
-                <label class="radio">
-                    <input class="input" type="radio" name="question-2" value="2" disabled />
-                    <i class="fas fa-check-circle"></i>
+
+                <label  class="radio">
+                    <input class="radio-input" type="radio" id="question-2" name="answer" value="1" />
+                    <div class="radio-radio"></div>
                 </label>
+
                 <span>Answer 2</span>
             </div>
-        </form>
-    </article>  -->
+            <div class="editor-input">
 
+                <label class="radio">
+                    <input class="radio-input" type="radio" id="question-3" name="answer" value="2" />
+                    <div class="radio-radio"></div>
+                </label>
+
+                <span>Answer 3</span>
+            </div>
+        </form>
+    </article>
+
+   
     <!-- <article class="editor-question">
         <div class="editor-input">
             <button class="input submit action">
