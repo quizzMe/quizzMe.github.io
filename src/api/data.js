@@ -56,8 +56,8 @@ export async function getQuestionsByQuizId(quizId){
 
 export async function createQuestion(quizId, question){
     const body = addOwner(question);
-    question.quiz = createPointer('Quiz', quizId);
-    return await api.post(host + '/classes/Question', body)
+    body.quiz = createPointer('Quiz', quizId);
+    return await api.post(host + '/classes/Question', body);
 }
 
 export async function updateQuestion(id, question){
