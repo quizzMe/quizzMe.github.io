@@ -8,6 +8,20 @@ export const register = api.register;
 export const logout = api.logout;
 
 //Implement application spesific requests
+function createPointer(name, id) {
+    return {
+        __type: 'Pointer',
+        className: name,
+        objectId: id
+    }
+}
+
+function addOwner(object){
+    const userId = sessionStorage.getItem('userId');
+    object.owner = createPointer('_User', userId);
+}
+
+
 export async function getQuizzes() {
     return await api.get(host + '/classes/Quiz');
 }
@@ -25,14 +39,7 @@ export async function deleteQuiz(id) {
 }
 
 export async function createQuiz(quiz) {
-    const userId = sessionStorage.getItem('userId');
-    const body = Object.assign({}, quiz, {
-        owner: {
-            __type: 'Pointer',
-            className: '_User',
-            objectId: userId
-        }
-    })
+    addOwner(quiz);
 
-    return await api.post(host + '/classes/Quiz', body);
+    return await api.post(host + '/classes/Quiz', quiz);
 }
