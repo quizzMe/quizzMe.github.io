@@ -27,7 +27,7 @@ export async function getQuizzes() {
 }
 
 export async function getQuizById(id) {
-    return await api.get(host + '/classes/Quiz/' + id);
+    return await api.get(host + '/classes/Quiz/' + id + '?include=owner');
 }
 
 export async function updateQuiz(id, quiz) {
