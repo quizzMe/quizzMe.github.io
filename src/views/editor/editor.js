@@ -175,14 +175,13 @@ const template = () => html`
     </article>
 
    
-    <!-- <article class="editor-question">
-        <div class="editor-input">
-            <button class="input submit action">
-                <i class="fas fa-plus-circle"></i>
-                Add question
-            </button>
-        </div>
-    </article> -->
+    <div class="editor-input">
+        <button class="add-question-btn common choose blink" data-micron="fade" data-micron-duration=".8">
+            <i class="fas fa-plus-circle"></i>
+            Add question
+        </button>
+    </div>
+   
 
 </div>
 
