@@ -1,13 +1,14 @@
 import {html} from "../../libraries.js";
+import { createQuestion } from "./question.js";
 
-const template = () => html`
+const template = (questions) => html`
  <section id="editor" class="glass common">
 
-<header class="edit-create-title">
-    <h1>New quiz</h1>
-</header>
+    <header class="edit-create-title">
+        <h1>New quiz</h1>
+    </header>
 
-<div class="setup-new-quiz glass">
+    <div class="setup-new-quiz glass">
     <form>
         <label>
             <span>Title:</span>
@@ -23,158 +24,23 @@ const template = () => html`
         </label>
         <input class="save-btn choose common" type="submit" value="Save">
     </form>
-</div>
+    </div>
 
-<header class="quiestions-banner">
-    <h2>Questions</h2>
-</header>
+    <header class="quiestions-banner">
+        <h2>Questions</h2>
+    </header>
 
+    ${questionList(questions)}
+
+</section>
+`;
+
+
+const questionList = (questions) => html`
 <div class="question-holder">
 
-    <article class="editor-question glass">
-        <div class="question-head">
-            <h3>Question 1</h3>
-            <div class="question-control">
-                <button class="save-btn choose common" ><i class="fas fa-check-double"></i>
-                    Save</button>
-                <button class="save-btn choose common" ><i class="fas fa-times"></i> Cancel</button>
-            </div>
-        </div>
-        <form>
-            <textarea class="inputd" name="text"
-                placeholder="Enter question"></textarea>
-            <div class="editor-input">
+    ${questions.map((q, i) => createQuestion(q, i+1, false))}
 
-                <label  class="radio">
-                    <input class="radio-input"  type="radio" id="question-1" name="answer" value="0" />
-                    <div class="radio-radio"></div>
-                </label>
-
-                <input class="input question-input" type="text" name="answer-0" />
-                <button class="delete-answer"><i class="fas fa-trash-alt"></i></button>
-            </div>
-            <div class="editor-input">
-
-                <label  class="radio">
-                    <input class="radio-input" type="radio" id="question-2" name="answer" value="1" />
-                    <div class="radio-radio"></div>
-                </label>
-
-                <input class="input question-input" type="text" name="answer-1" />
-                <button class="delete-answer"><i class="fas fa-trash-alt"></i></button>
-            </div>
-            <div class="editor-input">
-
-                <label class="radio">
-                    <input class="radio-input" type="radio" id="question-3" name="answer" value="2" />
-                    <div class="radio-radio"></div>
-                </label>
-
-                <input class="input question-input" type="text" name="answer-2" />
-                <button class="delete-answer"><i class="fas fa-trash-alt"></i></button>
-            </div>
-            <div class="editor-input">
-                <button class="add-answer-btn common choose">
-                    <i class="fas fa-plus-circle"></i>
-                    Add answer
-                </button>
-            </div>
-        </form>
-    </article>
-
-    <article class="editor-question glass"> 
-    <div class="question-head">
-            <h3>Question 1</h3>
-            <div class="question-control">
-                <button disabled class="save-btn choose common" ><i class="fas fa-check-double"></i>
-                    Save</button>
-                <button disabled class="save-btn choose common" ><i class="fas fa-times"></i> Cancel</button>
-            </div>
-        </div>
-        <form>
-            <textarea disabled  class="inputd" name="text"
-                placeholder="Enter question"></textarea>
-            <div class="editor-input">
-
-                <label  class="radio">
-                    <input disabled class="radio-input"  type="radio" id="question-1" name="answer" value="0" />
-                    <div class="radio-radio"></div>
-                </label>
-
-                <input disabled class="input question-input" type="text" name="answer-0" />
-                <button disabled class="delete-answer"><i class="fas fa-trash-alt"></i></button>
-            </div>
-            <div class="editor-input">
-
-                <label  class="radio">
-                    <input disabled class="radio-input" type="radio" id="question-2" name="answer" value="1" />
-                    <div class="radio-radio"></div>
-                </label>
-
-                <input disabled class="input question-input" type="text" name="answer-1" />
-                <button disabled class="delete-answer"><i class="fas fa-trash-alt"></i></button>
-            </div>
-            <div class="editor-input">
-
-                <label class="radio">
-                    <input disabled class="radio-input" type="radio" id="question-3" name="answer" value="2" />
-                    <div class="radio-radio"></div>
-                </label>
-
-                <input disabled class="input question-input" type="text" name="answer-2" />
-                <button disabled class="delete-answer"><i class="fas fa-trash-alt"></i></button>
-            </div>
-            <div class="editor-input">
-                <button disabled class="add-answer-btn common choose">
-                    <i class="fas fa-plus-circle"></i>
-                    Add answer
-                </button>
-            </div>
-        </form>
-        <div class="loading-overlay working"></div>
-    </article>
-
-    <article class="editor-question glass">
-        <div class="question-head">
-            <h3>Question 2</h3>
-            <div class="question-control">
-                <button class="save-btn choose common" ><i class="fas fa-edit"></i> Edit</button>
-                <button class="save-btn choose common" ><i class="fas fa-trash-alt"></i> Delete</button>
-            </div>
-        </div>
-        <form>
-            <p class="editor-input">This is the second question.</p>
-            <div class="editor-input">
-
-                <label  class="radio">
-                    <input class="radio-input"  type="radio" id="question-1" name="answer" value="0" />
-                    <div class="radio-radio"></div>
-                </label>
-
-                <span>Answer 1</span>
-            </div>
-            <div class="editor-input">
-
-                <label  class="radio">
-                    <input class="radio-input" type="radio" id="question-2" name="answer" value="1" />
-                    <div class="radio-radio"></div>
-                </label>
-
-                <span>Answer 2</span>
-            </div>
-            <div class="editor-input">
-
-                <label class="radio">
-                    <input class="radio-input" type="radio" id="question-3" name="answer" value="2" />
-                    <div class="radio-radio"></div>
-                </label>
-
-                <span>Answer 3</span>
-            </div>
-        </form>
-    </article>
-
-   
     <div class="editor-input">
         <button class="add-question-btn common choose blink" data-micron="fade" data-micron-duration=".8">
             <i class="fas fa-plus-circle"></i>
@@ -184,10 +50,21 @@ const template = () => html`
    
 
 </div>
-
-</section>
 `;
 
+
+const questions = [{
+    text: 'Is this the first question?',
+    answers: ['Yes', 'No', 'Maybe'],
+    correctIndex: 0
+},
+{
+    text: 'Is this the second question?',
+    answers: ['Maybe', 'Yes', 'No'],
+    correctIndex: 1
+}
+]
+
 export function editorPage(ctx){
-    ctx.render(template())
+    ctx.render(template(questions));
 }
