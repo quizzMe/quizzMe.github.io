@@ -153,6 +153,7 @@
     cursor: pointer;
     transition: 0.5s ease;
     margin-left: 10px;
+    outline: none;
 }
 
 .delete-answer:hover{
@@ -176,6 +177,7 @@
     font-family: 'Lato', sans-serif;
     font-weight: 700;
     transition: 0.6s ease;
+    outline: none;
 }
 
 .add-question-btn{
@@ -205,7 +207,7 @@
 }
 
 .radio-input{
-    display: none;
+    /* display: none; */
 }
 
 .radio-radio{

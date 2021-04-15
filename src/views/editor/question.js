@@ -11,16 +11,9 @@ const editorTemplate = (data, index, onSave, onCancel) => html`
     </div>
 </div>
 <form>
-    <textarea class="inputd" name="text" placeholder="Enter question" .value=${data.text}></textarea>
+    <textarea class="input" name="text" placeholder="Enter question" .value=${data.text}></textarea>
     
     ${createAnswerList(data.answers, index, data.correctIndex)}
-
-    <div class="editor-input">
-        <button class="add-answer-btn common choose">
-            <i class="fas fa-plus-circle"></i>
-            Add answer
-        </button>
-    </div>
 </form>
 `;
 

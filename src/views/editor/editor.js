@@ -47,7 +47,6 @@ const questionList = (questions) => html`
             Add question
         </button>
     </div>
-   
 
 </div>
 `;
