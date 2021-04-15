@@ -1,12 +1,12 @@
 import { html, render } from "../../libraries.js";
 
-const editorTemplate = (data, index) => html`
+const editorTemplate = (data, index, onSave, onCancel) => html`
 <div class="question-head">
     <h3>Qestion ${index}</h3>
     <div class="question-control">
-        <button class="save-btn choose common"><i class="fas fa-check-double"></i>
+        <button @click=${onSave} class="save-btn choose common"><i class="fas fa-check-double"></i>
             Save</button>
-        <button class="save-btn choose common"><i class="fas fa-times"></i> Cancel</button>
+        <button @click=${onCancel} class="save-btn choose common"><i class="fas fa-times"></i> Cancel</button>
     </div>
 </div>
 <form>
@@ -85,7 +85,7 @@ export function createQuestion(question, index, edit) {
 
 
     function onEdit(){
-        render(editorTemplate(question, index), element);
+        render(editorTemplate(question, index, onSave, onCancel), element);
     }
 
     async function onDelete(){
@@ -101,6 +101,6 @@ export function createQuestion(question, index, edit) {
     }
 
     function onCancel(){
-        
+        render(viewTemplate(question, index, onEdit, onDelete), element);
     }
 }
