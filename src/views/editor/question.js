@@ -71,21 +71,17 @@ const radioView = (value, isChecked) => html`
 
 
 
-export function createQuestion(question, index, edit) {
+export function createQuestion(question, index) {
     const element = document.createElement('article');
     element.className = 'editor-question glass';
 
-    if (edit) {
-        render(editorTemplate(question, index, onSave, onCancel), element);
-    } else {
-        render(viewTemplate(question, index, onEdit, onDelete), element);
-    }
+    showView();
 
     return element;
 
 
     function onEdit(){
-        render(editorTemplate(question, index, onSave, onCancel), element);
+       showEditor();
     }
 
     async function onDelete(){
@@ -101,6 +97,14 @@ export function createQuestion(question, index, edit) {
     }
 
     function onCancel(){
+        showView();
+    }
+
+    function showView(){
         render(viewTemplate(question, index, onEdit, onDelete), element);
+    }
+
+    function showEditor(){
+        render(editorTemplate(question, index, onSave, onCancel), element);
     }
 }
