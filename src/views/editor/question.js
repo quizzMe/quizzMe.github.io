@@ -71,7 +71,10 @@ export function createQuestion(question, index) {
     }
 
     async function onSave(){
+        const formData = new FormData(element.querySelector('form'));
 
+        const data = [...formData.entries()].reduce((a,[k,v])=> Object.assign(a, {[k]:v}),{});
+        console.log(data);
     }
 
     function onCancel(){
