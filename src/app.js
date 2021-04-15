@@ -12,6 +12,7 @@ window.api = api;
 
 const main = document.querySelector('main');
 setUserNav();
+document.getElementById('logoutBtn').addEventListener('click', logoutUser.bind(event, api));
 
 page('/', decorateContext, homePage);
 page('/register', decorateContext, registerPage);
@@ -39,4 +40,11 @@ function setUserNav(){
         document.querySelector('.user').style.display = 'none';
         document.querySelector('.guest').style.display = 'block';
     }
+}
+
+//update!!
+async function logoutUser(api) {
+    await api.logout();
+    setUserNav();
+    page.redirect('/');
 }
