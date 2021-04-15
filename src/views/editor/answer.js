@@ -1,39 +1,38 @@
 import { html, render } from "../../libraries.js";
 
-const radioEdit = (questionIndex, index, value, isChecked) => html`
-    <div class="editor-input">
+const radioEdit = (questionIndex, index, value, isChecked, onDelete) => html`
+   <div class="editor-input">
     
-        <label class="radio">
-            <input class="radio-input" type="radio" name=${`question-${questionIndex}`} value=${index}
-                ?checked=${isChecked} />
-            <div class="radio-radio"></div>
-        </label>
-    
-        <input class="input question-input" type="text" name=${`answer-${index}`} .value=${value} />
-        <button data-index=${index} class="delete-answer"><i class="fas fa-trash-alt"></i></button>
-    </div>
+    <label class="radio">
+       <input type="radio" class="radio-input" name=${`question-${questionIndex}`} value=${index}
+           ?checked=${isChecked} />
+       <div class="radio-radio"></div> 
+   </label> 
+   
+   <input class="input question-input" type="text" name=${`answer-${index}`} .value=${value} />
+   <button @click=${onDelete} data-index=${index} class="delete-answer"><i class="fas fa-trash-alt"></i></button>
+</div>
 `;
 
 
 export function createAnswerList(answers, questionIndex, correctIndex) {
     const current = answers.slice();
-    const element = document.createElement('div');
-    element.addEventListener('click', onDelete);
+    const fragment = document.createDocumentFragment();
 
     update();
 
-    return element;
+    return fragment;
 
 
     function update() {
         render(html`
-        ${current.map((a, i) => radioEdit(questionIndex, i, a, correctIndex == i))}
+        ${current.map((a, i) => radioEdit(questionIndex, i, a, correctIndex == i, onDelete))}
         <div class="editor-input">
             <button @click=${addAnswer} class="add-answer-btn common choose">
                 <i class="fas fa-plus-circle"></i>
                 Add answer
             </button>
-        </div>`, element);
+        </div>`, fragment);
     }
 
     function addAnswer(ev) {
@@ -45,16 +44,15 @@ export function createAnswerList(answers, questionIndex, correctIndex) {
     function onDelete(ev){
         ev.preventDefault();
         let target = ev.target;
-        while(target && target != element && target.tagName != 'BUTTON'){
+        if(target.tagName == 'I'){
             target = target.parentNode;
         }
         
         const index = target.dataset.index;
-        if(index != undefined){
-            console.log(index);
-            current.splice(index, 1);
-            console.log(current);
-            update();
-        }
+        console.log(index);
+        current.splice(index, 1);
+        update();
+        // if(index != undefined){
+        // }
     }
 }

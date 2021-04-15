@@ -14,8 +14,10 @@ const editorTemplate = (data, index, onSave, onCancel) => html`
     <textarea class="input" name="text" placeholder="Enter question" .value=${data.text}></textarea>
     
     ${createAnswerList(data.answers, index, data.correctIndex)}
+
 </form>
 `;
+
 
 
 const viewTemplate = (data, index, onEdit, onDelete) => html`
@@ -26,12 +28,12 @@ const viewTemplate = (data, index, onEdit, onDelete) => html`
                 <button @click=${onDelete} class="save-btn choose common"><i class="fas fa-trash-alt"></i> Delete</button>
             </div>
         </div>
-        <form>
+        <div>
             <p class="editor-input">${data.text}</p>
             
             ${data.answers.map((a,i)=>radioView(a, data.correctIndex==i))}
 
-        </form>
+        </div>
 `;
 
 
