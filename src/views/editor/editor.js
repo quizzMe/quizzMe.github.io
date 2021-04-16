@@ -13,11 +13,11 @@ const template = (quiz, onSave, inProgress) => html`
     <form @submit=${onSave}>
         <label>
             <span>Title:</span>
-            <input class="input" type="text" name="title" .value=${quiz ? quiz.title : ''} >
+            <input class="input" type="text" name="title" .value=${quiz ? quiz.title : ''} ?disabled=${inProgress} >
         </label>
         <label>
             <span>Topic:</span>
-            <select class="input" name="topic" .value = ${quiz ? quiz.topic : '0'} >
+            <select class="input" name="topic" .value = ${quiz ? quiz.topic : '0'}  ?disabled=${inProgress} >
                 <option value="0">-- Select Category</option>
                 <option value="it">Languages</option>
                 <option value="hardware">Hardware</option>
@@ -26,9 +26,9 @@ const template = (quiz, onSave, inProgress) => html`
         </label>
         <label>
             <span>Description:</span>
-            <textarea name="description" .value=${quiz ? quiz.description : ''}></textarea>
+            <textarea name="description" .value=${quiz ? quiz.description : ''} ?disabled=${inProgress} ></textarea>
         </label>
-        <input class="save-btn choose common" type="submit" value="Save">
+        <input class="save-btn choose common" type="submit" value="Save" ?disabled=${inProgress} >
     </form>
 
         ${inProgress ? html`<div class="loading-overlay working"></div>` : ''}
