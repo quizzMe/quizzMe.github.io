@@ -13,7 +13,7 @@ const editorTemplate = (data, index, onSave, onCancel) => html`
 <form>
     <textarea class="input" name="text" placeholder="Enter question" .value=${data.text}></textarea>
     
-    ${createAnswerList(data.answers, index, data.correctIndex)}
+    ${createAnswerList(data, index)}
 
 </form>
 `;
@@ -52,6 +52,7 @@ const radioView = (value, isChecked) => html`
 
 
 export function createQuestion(question, removeQuestion) {
+    let currentQuestion = copyQuestion(question);
     let index = 0;
     let editorActive = false;
     const element = document.createElement('article');
@@ -78,14 +79,6 @@ export function createQuestion(question, removeQuestion) {
        showEditor();
     }
 
-    // async function onDelete(){
-    //     const confirmed = confirm('Are you sure you want to delete this quesiton?');
-
-    //     if(confirmed){
-    //         element.remove();
-    //     }
-    // }
-
     async function onSave(){
         const formData = new FormData(element.querySelector('form'));
 
@@ -95,14 +88,22 @@ export function createQuestion(question, removeQuestion) {
 
     function onCancel(){
         editorActive = false;
+        currentQuestion = copyQuestion(question);
         showView();
     }
 
     function showView(){
-        render(viewTemplate(question, index, onEdit, removeQuestion), element);
+        render(viewTemplate(currentQuestion, index, onEdit, removeQuestion), element);
     }
 
     function showEditor(){
-        render(editorTemplate(question, index, onSave, onCancel), element);
+        render(editorTemplate(currentQuestion, index, onSave, onCancel), element);
     }
+}
+
+function copyQuestion(question){
+    const currentQuestion = Object.assign({}, question);
+    currentQuestion.answers = currentQuestion.answers.slice();
+
+    return currentQuestion;
 }

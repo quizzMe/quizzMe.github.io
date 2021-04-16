@@ -73,7 +73,7 @@ export function editorPage(ctx){
             text: '',
             answers: [],
             correctIndex: 0
-        }, removeQuestion.bind(null, currentQuestions.length)));
+        }, removeQuestion));
 
         update();
     }
