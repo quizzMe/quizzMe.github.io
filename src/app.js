@@ -20,7 +20,8 @@ page('/login', decorateContext, loginPage);
 page('/about', decorateContext, aboutPage);
 page('/contacts', decorateContext, contactPage);
 page('/browse', decorateContext, renderBrowsePage);
-page('/edit', decorateContext, editorPage);
+page('/create', decorateContext, editorPage);
+page('/edit/:id', decorateContext, editorPage);
 
 page.start();
 

@@ -1,22 +1,23 @@
 import {html} from "../../libraries.js";
 import {createList} from './list.js';
 
-const template = (questions) => html`
+const template = (quiz) => html`
  <section id="editor" class="glass common">
 
     <header class="edit-create-title">
-        <h1>New quiz</h1>
+        <h1>${quiz ? 'Edit Quiz' : 'New Quiz'}</h1>
     </header>
 
     <div class="setup-new-quiz glass">
     <form>
         <label>
             <span>Title:</span>
-            <input class="input" type="text" name="title"></label>
+            <input class="input" type="text" name="title" .value=${quiz ? quiz.title : ''} >
+        </label>
         <label>
             <span>Topic:</span>
-            <select class="input" name="topic">
-                <option value="all">All Categories</option>
+            <select class="input" name="topic" .value = ${quiz ? quiz.topic : '0'} >
+                <option value="0">-- Select Category</option>
                 <option value="it">Languages</option>
                 <option value="hardware">Hardware</option>
                 <option value="software">Tools and Software</option>
@@ -26,11 +27,11 @@ const template = (questions) => html`
     </form>
     </div>
 
-    <header class="quiestions-banner">
+    ${quiz ? html`<header class="quiestions-banner">
         <h2>Questions</h2>
-    </header>
+    </header>` : ''}
 
-    ${createList(questions)}
+    ${quiz ? createList(quiz.questions) : ''}
 
 </section>
 `;
@@ -49,5 +50,9 @@ const questions = [{
 ]
 
 export function editorPage(ctx){
-    ctx.render(template(questions))
+    const quizId = ctx.params.id;
+
+    const quiz = null;
+
+    ctx.render(template(quiz))
 }
