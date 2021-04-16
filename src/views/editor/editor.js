@@ -41,19 +41,6 @@ const template = (quiz, onSave) => html`
 </section>
 `;
 
-
-// const questions = [{
-//     text: 'Is this the first question?',
-//     answers: ['Yes', 'No', 'Maybe'],
-//     correctIndex: 0
-// },
-// {
-//     text: 'Is this the second question?',
-//     answers: ['Maybe', 'Yes', 'No'],
-//     correctIndex: 1
-// }
-// ]
-
 export async function editorPage(ctx){
     const quizId = ctx.params.id;
     let quiz = null;
