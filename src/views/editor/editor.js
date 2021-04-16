@@ -1,7 +1,8 @@
 import {html} from "../../libraries.js";
 import {createList} from './list.js';
+import {createQuiz, updateQuiz, getQuizById, getQuestionsByQuizId} from '../../api/data.js';
 
-const template = (quiz) => html`
+const template = (quiz, onSave) => html`
  <section id="editor" class="glass common">
 
     <header class="edit-create-title">
@@ -9,7 +10,7 @@ const template = (quiz) => html`
     </header>
 
     <div class="setup-new-quiz glass">
-    <form>
+    <form @submit=${onSave}>
         <label>
             <span>Title:</span>
             <input class="input" type="text" name="title" .value=${quiz ? quiz.title : ''} >
@@ -22,6 +23,10 @@ const template = (quiz) => html`
                 <option value="hardware">Hardware</option>
                 <option value="software">Tools and Software</option>
             </select>
+        </label>
+        <label>
+            <span>Description:</span>
+            <textarea name="description" .value=${quiz ? quiz.description : ''}></textarea>
         </label>
         <input class="save-btn choose common" type="submit" value="Save">
     </form>
@@ -37,22 +42,55 @@ const template = (quiz) => html`
 `;
 
 
-const questions = [{
-    text: 'Is this the first question?',
-    answers: ['Yes', 'No', 'Maybe'],
-    correctIndex: 0
-},
-{
-    text: 'Is this the second question?',
-    answers: ['Maybe', 'Yes', 'No'],
-    correctIndex: 1
-}
-]
+// const questions = [{
+//     text: 'Is this the first question?',
+//     answers: ['Yes', 'No', 'Maybe'],
+//     correctIndex: 0
+// },
+// {
+//     text: 'Is this the second question?',
+//     answers: ['Maybe', 'Yes', 'No'],
+//     correctIndex: 1
+// }
+// ]
 
-export function editorPage(ctx){
+export async function editorPage(ctx){
     const quizId = ctx.params.id;
+    let quiz = null;
+    let questions = [];
 
-    const quiz = null;
+    if(quizId){
+        [quiz, questions] = await Promise.all([
+            getQuizById(quizId),
+            getQuestionsByQuizId(quizId)
+        ]);
 
-    ctx.render(template(quiz))
+        quiz.questions = questions;
+    }
+
+    ctx.render(template(quiz, onSave))
+
+    async function onSave(ev){
+        ev.preventDefault();
+        const formData = new FormData(ev.target);
+
+        const title = formData.get('title');
+        const topic = formData.get('topic');
+        const description = formData.get('description');
+    
+        const data = {
+            title,
+            topic,
+            description,
+            questionCount: questions.length
+        }
+
+        if(quizId){
+            await updateQuiz(quizId, data)
+        } else {
+            const result = await createQuiz(data);
+            ctx.page.redirect('/edit/' + result.objectId);
+        }
+
+    }
 }

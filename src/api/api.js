@@ -72,8 +72,8 @@ export async function login({username, password}){
     return result;
 }
 
-export async function register({username, email, password}){
-    const result = await post(settings.host + '/users', {email, username, password})
+export async function register(username, email, password){
+    const result = await post(settings.host + '/users', {username, email, password})
 
     sessionStorage.setItem('username', username);
     sessionStorage.setItem('authToken', result.sessionToken);
