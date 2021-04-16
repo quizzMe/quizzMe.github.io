@@ -2,7 +2,7 @@ import {html} from "../../libraries.js";
 import {createList} from './list.js';
 import {createQuiz, updateQuiz, getQuizById, getQuestionsByQuizId} from '../../api/data.js';
 
-const template = (quiz, onSave) => html`
+const template = (quiz, onSave, inProgress) => html`
  <section id="editor" class="glass common">
 
     <header class="edit-create-title">
@@ -30,6 +30,8 @@ const template = (quiz, onSave) => html`
         </label>
         <input class="save-btn choose common" type="submit" value="Save">
     </form>
+
+        ${inProgress ? html`<div class="loading-overlay working"></div>` : ''}
     </div>
 
     ${quiz ? html`<header class="quiestions-banner">
@@ -72,11 +74,19 @@ export async function editorPage(ctx){
             questionCount: questions.length
         }
 
-        if(quizId){
-            await updateQuiz(quizId, data)
-        } else {
-            const result = await createQuiz(data);
-            ctx.page.redirect('/edit/' + result.objectId);
+        try{
+            ctx.render(template(quiz, onSave, true));
+
+            if(quizId){
+                await updateQuiz(quizId, data)
+            } else {
+                const result = await createQuiz(data);
+                ctx.page.redirect('/edit/' + result.objectId);
+            }
+        } catch (err){
+            console.error(err);
+        } finally {
+            ctx.render(template(quiz, false));
         }
 
     }
