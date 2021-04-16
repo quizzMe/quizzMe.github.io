@@ -3,7 +3,7 @@ import { createAnswerList } from "./answer.js";
 
 const editorTemplate = (data, index, onSave, onCancel) => html`
 <div class="question-head">
-    <h3>Qestion ${index}</h3>
+    <h3>Qestion ${index + 1}</h3>
     <div class="question-control">
         <button @click=${onSave} class="save-btn choose common"><i class="fas fa-check-double"></i>
             Save</button>
@@ -22,10 +22,10 @@ const editorTemplate = (data, index, onSave, onCancel) => html`
 
 const viewTemplate = (data, index, onEdit, onDelete) => html`
         <div class="question-head">
-            <h3>Question ${index}</h3>
+            <h3>Question ${index +1}</h3>
             <div class="question-control">
                 <button @click=${onEdit} class="save-btn choose common"><i class="fas fa-edit"></i> Edit</button>
-                <button @click=${onDelete} class="save-btn choose common"><i class="fas fa-trash-alt"></i> Delete</button>
+                <button @click=${()=>onDelete(index)} class="save-btn choose common"><i class="fas fa-trash-alt"></i> Delete</button>
             </div>
         </div>
         <div>
@@ -51,26 +51,40 @@ const radioView = (value, isChecked) => html`
 
 
 
-export function createQuestion(question, index) {
+export function createQuestion(question, removeQuestion) {
+    let index = 0;
+    let editorActive = false;
     const element = document.createElement('article');
     element.className = 'editor-question glass';
 
     showView();
 
-    return element;
+    return update;
+    
+    function update(newIndex){
+        index = newIndex
+        if(editorActive){
+            showEditor();
+        } else {
+            showView();
+        }
+
+        return element;
+    }
 
 
     function onEdit(){
+        editorActive = true;
        showEditor();
     }
 
-    async function onDelete(){
-        const confirmed = confirm('Are you sure you want to delete this quesiton?');
+    // async function onDelete(){
+    //     const confirmed = confirm('Are you sure you want to delete this quesiton?');
 
-        if(confirmed){
-            element.remove();
-        }
-    }
+    //     if(confirmed){
+    //         element.remove();
+    //     }
+    // }
 
     async function onSave(){
         const formData = new FormData(element.querySelector('form'));
@@ -80,11 +94,12 @@ export function createQuestion(question, index) {
     }
 
     function onCancel(){
+        editorActive = false;
         showView();
     }
 
     function showView(){
-        render(viewTemplate(question, index, onEdit, onDelete), element);
+        render(viewTemplate(question, index, onEdit, removeQuestion), element);
     }
 
     function showEditor(){

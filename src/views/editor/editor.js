@@ -65,7 +65,7 @@ const questions = [{
 ]
 
 export function editorPage(ctx){
-    const currentQuestions = questions.map((q, i) => createQuestion(q, i+1));
+    const currentQuestions = questions.map(q => createQuestion(q, removeQuestion));
     update();
 
     function addQuestion(){
@@ -73,12 +73,21 @@ export function editorPage(ctx){
             text: '',
             answers: [],
             correctIndex: 0
-        }, currentQuestions.length + 1));
+        }, removeQuestion.bind(null, currentQuestions.length)));
 
         update();
     }
 
     function update(){
-        ctx.render(template(currentQuestions, addQuestion));
+        ctx.render(template(currentQuestions.map((c, i) => c(i)), addQuestion));
+    }
+
+    function removeQuestion(index){
+        const confirmed = confirm('Are you sure you want to delete this question');
+
+        if(confirmed){
+            currentQuestions.splice(index, 1);
+            update();
+        }
     }
 }
