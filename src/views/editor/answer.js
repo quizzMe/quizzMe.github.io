@@ -49,10 +49,7 @@ export function createAnswerList(answers, questionIndex, correctIndex) {
         }
         
         const index = target.dataset.index;
-        console.log(index);
         current.splice(index, 1);
         update();
-        // if(index != undefined){
-        // }
     }
 }

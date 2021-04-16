@@ -1,7 +1,7 @@
 import {html} from "../../libraries.js";
 import { createQuestion } from "./question.js";
 
-const template = (questions) => html`
+const template = (questions, addQuestion) => html`
  <section id="editor" class="glass common">
 
     <header class="edit-create-title">
@@ -30,19 +30,19 @@ const template = (questions) => html`
         <h2>Questions</h2>
     </header>
 
-    ${questionList(questions)}
+    ${questionList(questions, addQuestion)}
 
 </section>
 `;
 
 
-const questionList = (questions) => html`
+const questionList = (questions, addQuestion) => html`
 <div class="question-holder">
 
-    ${questions.map((q, i) => createQuestion(q, i+1, false))}
+    ${questions}
 
     <div class="editor-input">
-        <button class="add-question-btn common choose blink" data-micron="fade" data-micron-duration=".8">
+        <button @click=${addQuestion} class="add-question-btn common choose blink" data-micron="fade" data-micron-duration=".8">
             <i class="fas fa-plus-circle"></i>
             Add question
         </button>
@@ -65,5 +65,20 @@ const questions = [{
 ]
 
 export function editorPage(ctx){
-    ctx.render(template(questions));
+    const currentQuestions = questions.map((q, i) => createQuestion(q, i+1));
+    update();
+
+    function addQuestion(){
+        currentQuestions.push(createQuestion({
+            text: '',
+            answers: [],
+            correctIndex: 0
+        }, currentQuestions.length + 1));
+
+        update();
+    }
+
+    function update(){
+        ctx.render(template(currentQuestions, addQuestion));
+    }
 }
