@@ -1,7 +1,7 @@
 import {html} from "../../libraries.js";
-import { createQuestion } from "./question.js";
+import {createList} from './list.js';
 
-const template = (questions, addQuestion) => html`
+const template = (questions) => html`
  <section id="editor" class="glass common">
 
     <header class="edit-create-title">
@@ -30,25 +30,9 @@ const template = (questions, addQuestion) => html`
         <h2>Questions</h2>
     </header>
 
-    ${questionList(questions, addQuestion)}
+    ${createList(questions)}
 
 </section>
-`;
-
-
-const questionList = (questions, addQuestion) => html`
-<div class="question-holder">
-
-    ${questions}
-
-    <div class="editor-input">
-        <button @click=${addQuestion} class="add-question-btn common choose blink" data-micron="fade" data-micron-duration=".8">
-            <i class="fas fa-plus-circle"></i>
-            Add question
-        </button>
-    </div>
-
-</div>
 `;
 
 
@@ -65,29 +49,5 @@ const questions = [{
 ]
 
 export function editorPage(ctx){
-    const currentQuestions = questions.map(q => createQuestion(q, removeQuestion));
-    update();
-
-    function addQuestion(){
-        currentQuestions.push(createQuestion({
-            text: '',
-            answers: [],
-            correctIndex: 0
-        }, removeQuestion));
-
-        update();
-    }
-
-    function update(){
-        ctx.render(template(currentQuestions.map((c, i) => c(i)), addQuestion));
-    }
-
-    function removeQuestion(index){
-        const confirmed = confirm('Are you sure you want to delete this question');
-
-        if(confirmed){
-            currentQuestions.splice(index, 1);
-            update();
-        }
-    }
+    ctx.render(template(questions))
 }
