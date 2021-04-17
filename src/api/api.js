@@ -72,7 +72,7 @@ export async function login({username, password}){
     return result;
 }
 
-export async function register({username, email, password}){
+export async function register({email, username, password}){
     const result = await post(settings.host + '/users', {username, email, password})
 
     sessionStorage.setItem('username', username);
