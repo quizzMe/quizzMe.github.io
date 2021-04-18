@@ -1,6 +1,8 @@
 import { html, render } from "../../libraries.js";
 import { createAnswerList } from "./answer.js";
 
+import {createQuestion as apiCreate, updateQuestion} from '../../api/data.js';
+
 const editorTemplate = (data, index, onSave, onCancel) => html`
 <div class="question-head">
     <h3>Qestion ${index + 1}</h3>
@@ -51,7 +53,7 @@ const radioView = (value, isChecked) => html`
 
 
 
-export function createQuestion(question, removeQuestion) {
+export function createQuestion(quizId, question, removeQuestion) {
     let currentQuestion = copyQuestion(question);
     let index = 0;
     let editorActive = false;
@@ -82,8 +84,29 @@ export function createQuestion(question, removeQuestion) {
     async function onSave(){
         const formData = new FormData(element.querySelector('form'));
 
-        const data = [...formData.entries()].reduce((a,[k,v])=> Object.assign(a, {[k]:v}),{});
-        console.log(data);
+        const data = [...formData.entries()];
+        const answers = data
+        .filter(([k, v])=> k.includes('answer-'))
+        .reduce((a, [k, v]) => {
+            const index = Number(k.split('-')[1]);
+            a[index] = v;
+
+            return a;
+        }, []);
+
+        const body = {
+            text: formData.get('text'),
+            answers,
+            correctIndex: data.find(([k,v])=>k.includes('question-'))[1]
+        };
+
+        console.log(quizId, body);
+
+        if(question.objectId){
+            //update
+        } else {
+            //create
+        }
     }
 
     function onCancel(){

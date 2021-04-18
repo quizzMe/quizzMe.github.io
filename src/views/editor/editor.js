@@ -16,7 +16,7 @@ const template = (quiz, quizEditor) => html`
         <h2>Questions</h2>
     </header>` : ''}
 
-    ${quiz ? createList(quiz.questions) : ''}
+    ${quiz ? createList(quiz.objectId, quiz.questions) : ''}
 
 </section>
 `;

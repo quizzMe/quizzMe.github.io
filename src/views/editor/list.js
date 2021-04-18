@@ -13,8 +13,8 @@ const questionList = (questions, addQuestion) => html`
 `;
 
 
-export function createList(questions){
-    const currentQuestions = questions.map(q => createQuestion(q, removeQuestion));
+export function createList(quizId, questions){
+    const currentQuestions = questions.map(q => createQuestion(quizId, q, removeQuestion));
     
     const element = document.createElement('div');
     element.className = 'question-holder';
@@ -24,7 +24,7 @@ export function createList(questions){
     return element;
 
     function addQuestion(){
-        currentQuestions.push(createQuestion({
+        currentQuestions.push(createQuestion(quizId, {
             text: '',
             answers: [],
             correctIndex: 0
