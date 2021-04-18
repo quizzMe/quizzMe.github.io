@@ -1,15 +1,28 @@
-import {html} from "../../libraries.js";
+import {html, render} from "../../libraries.js";
 import {createList} from './list.js';
 import {createQuiz, updateQuiz, getQuizById, getQuestionsByQuizId} from '../../api/data.js';
 
-const template = (quiz, onSave, inProgress) => html`
+const template = (quiz, quizEditor) => html`
  <section id="editor" class="glass common">
 
     <header class="edit-create-title">
         <h1>${quiz ? 'Edit Quiz' : 'New Quiz'}</h1>
     </header>
 
-    <div class="setup-new-quiz glass">
+    ${quizEditor}
+
+
+    ${quiz ? html`<header class="quiestions-banner">
+        <h2>Questions</h2>
+    </header>` : ''}
+
+    ${quiz ? createList(quiz.questions) : ''}
+
+</section>
+`;
+
+
+const quizEditorTemplate = (quiz, onSave, inProgress) => html`
     <form @submit=${onSave}>
         <label>
             <span>Title:</span>
@@ -32,16 +45,21 @@ const template = (quiz, onSave, inProgress) => html`
     </form>
 
         ${inProgress ? html`<div class="loading-overlay working"></div>` : ''}
-    </div>
-
-    ${quiz ? html`<header class="quiestions-banner">
-        <h2>Questions</h2>
-    </header>` : ''}
-
-    ${quiz ? createList(quiz.questions) : ''}
-
-</section>
 `;
+
+
+function createQuizEditor(quiz, onSave){
+    const editor = document.createElement('div');
+    editor.className = 'setup-new-quiz glass';
+    update();
+    
+    return {editor, updateEditor: update};
+    
+    function update(inProgress){
+        render(quizEditorTemplate(quiz, onSave, inProgress), editor);
+    }
+}
+
 
 export async function editorPage(ctx){
     const quizId = ctx.params.id;
@@ -57,7 +75,8 @@ export async function editorPage(ctx){
         quiz.questions = questions;
     }
 
-    ctx.render(template(quiz, onSave))
+    const { editor, updateEditor } = createQuizEditor(quiz, onSave);
+    ctx.render(template(quiz, editor));
 
     async function onSave(ev){
         ev.preventDefault();
@@ -75,7 +94,7 @@ export async function editorPage(ctx){
         }
 
         try{
-            ctx.render(template(quiz, onSave, true));
+            updateEditor(true);
 
             if(quizId){
                 await updateQuiz(quizId, data)
@@ -86,7 +105,7 @@ export async function editorPage(ctx){
         } catch (err){
             console.error(err);
         } finally {
-            ctx.render(template(quiz, false));
+            updateEditor(false);
         }
 
     }
