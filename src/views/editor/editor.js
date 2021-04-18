@@ -1,4 +1,4 @@
-import {html, render} from "../../libraries.js";
+import {html, render, topics} from "../../libraries.js";
 import {createList} from './list.js';
 import {createQuiz, updateQuiz, getQuizById, getQuestionsByQuizId} from '../../api/data.js';
 
@@ -32,9 +32,7 @@ const quizEditorTemplate = (quiz, onSave, inProgress) => html`
             <span>Topic:</span>
             <select class="input" name="topic" .value = ${quiz ? quiz.topic : '0'}  ?disabled=${inProgress} >
                 <option value="0">-- Select Category</option>
-                <option value="it">Languages</option>
-                <option value="hardware">Hardware</option>
-                <option value="software">Tools and Software</option>
+                ${Object.entries(topics).map(([k,v]) => html`<option value=${k}>${v}</option>`)}
             </select>
         </label>
         <label>
