@@ -1,5 +1,6 @@
 import { html, until, styleMap } from '../libraries.js';
 import { spinner } from '../common/loaders.js';
+import { getMostRecentQuizzes } from '../api/data.js';
 
 // export const loadingHomeTemplate = () => html`
 //     <div id="load-container">
@@ -31,61 +32,12 @@ const homeTemplate = (userId) => html `
     </div>
 
     <div id="more" style=${styleMap(userId ? {display: 'block'}: {display: 'none'})}>
-        <div id="recent-quizzes" class="common" style=${styleMap( userId ? {border: 'none'} : {'border-top': '1px solid rgba(255, 255, 255, 0.5)'})}>
-            <h2 class="common">Most recent quizzes:</h2>
-             <article class="quiz-preview">
-                <div class="quiz-description">
-                 <h3><a class="common" href="javascript.void(0)">History of the Roman Empire</a></h3>
-                    <span class="quiz-topic">Topic: History</span>
-                    <div class="quiz-meta">
-                       <span>17 questions</span>
-                       <span>|</span>
-                      <span>Taken 4 times</span>
-                     </div>
-                </div>
 
-                <div class="view-quiz">
-                     <a class="common choose" href="javascript.void(0)">View Quiz</a>
-                </div>
-            </article>
+    ${until(loadRecent(userId), spinner())}
 
-            <article class="quiz-preview">
-                <div class="quiz-description">
-                 <h3><a class="common" href="javascript.void(0)">Quantum Physics</a></h3>
-                    <span class="quiz-topic">Topic: Science</span>
-                    <div class="quiz-meta">
-                       <span>15 questions</span>
-                       <span>|</span>
-                      <span>Taken 2 times</span>
-                     </div>
-                </div>
-
-                <div class="view-quiz">
-                     <a class="common choose" href="javascript.void(0)">View Quiz</a>
-                </div>
-            </article>
-
-            <article class="quiz-preview">
-                <div class="quiz-description">
-                 <h3><a class="common" href="javascript.void(0)">Capitals of Europe</a></h3>
-                    <span class="quiz-topic">Topic: Geography</span>
-                    <div class="quiz-meta">
-                       <span>21 questions</span>
-                       <span>|</span>
-                      <span>Taken 10 times</span>
-                     </div>
-                </div>
-
-                <div class="view-quiz">
-                     <a class="common choose" href="javascript.void(0)">View Quiz</a>
-                </div>
-            </article>
-
-            <div class="veiw-all-quizzes">
-                <a class="common choose" href="/browse">See All Quizzes</a>
-            </div>
-        </div>
     </div>
+
+    
 </div>
 <div @click=${onShowMore} id="show-more" style=${styleMap(userId ? {display: 'none'}: {display: 'block'})}>
     <span class="common">
@@ -95,6 +47,46 @@ const homeTemplate = (userId) => html `
         </p>
     </span>
 </div>
+`;
+
+
+async function loadRecent (userId){
+    const quiz = await getMostRecentQuizzes();
+
+    return quiz.length > 0 ? html `
+        <div id="recent-quizzes" class="common" style=${styleMap( userId ? {border: 'none'} : {'border-top': '1px solid rgba(255, 255, 255, 0.5)'})}>
+            <h2 class="common">Most recent quizzes:</h2>
+
+            ${quiz.map(quizRecentTemplate)}
+
+            <div class="veiw-all-quizzes">
+                <a class="common choose" href="/browse">See All Quizzes</a>
+            </div>
+        </div>
+    ` : html`
+    <div id="recent-quizzes" class="common" style=${styleMap( userId ? {border: 'none'} : {'border-top': '1px solid rgba(255, 255, 255, 0.5)'})}>
+            <h2 class="common">There are no quizzes yet</h2>
+
+    </div>
+    `
+}
+
+const quizRecentTemplate = (quiz) => html`
+<article class="quiz-preview">
+    <div class="quiz-description">
+        <h3><a class="common" href=${'/details/' + quiz.objectId}>${quiz.title}</a></h3>
+        <span class="quiz-topic">Topic: ${quiz.topic}</span>
+        <div class="quiz-meta">
+            <span>${quiz.questionCount} question${quiz.questionCount == 1 ? '' : 's'}</span>
+            <span>|</span>
+            <span>Taken ? times</span>
+            </div>
+        </div>
+
+        <div class="view-quiz">
+            <a class="common choose" href=${'/details/' + quiz.objectId}>View Quiz</a>
+        </div>
+</article>
 `;
 
 export function homePage(ctx){

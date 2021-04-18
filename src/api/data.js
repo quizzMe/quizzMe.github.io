@@ -34,6 +34,12 @@ export async function getQuizById(id) {
     return await api.get(host + '/classes/Quiz/' + id + '?include=owner');
 }
 
+export async function getMostRecentQuizzes(){
+    const quiz = (await api.get(host + '/classes/Quiz?order=-createdAt&limit=3')).results;
+
+    return quiz;
+}
+
 export async function updateQuiz(id, quiz) {
     return await api.put(host + '/classes/Quiz/' + id, quiz);
 }
