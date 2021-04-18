@@ -1,7 +1,8 @@
 import { html, render } from "../../libraries.js";
 import { createAnswerList } from "./answer.js";
 
-import {createQuestion as apiCreate, updateQuestion} from '../../api/data.js';
+import {createOverlay} from '../../common/loaders.js';
+import { createQuestion as apiCreate, updateQuestion } from '../../api/data.js';
 
 const editorTemplate = (data, index, onSave, onCancel) => html`
 <div class="question-head">
@@ -14,7 +15,7 @@ const editorTemplate = (data, index, onSave, onCancel) => html`
 </div>
 <form>
     <textarea class="input" name="text" placeholder="Enter question" .value=${data.text}></textarea>
-    
+
     ${createAnswerList(data, index)}
 
 </form>
@@ -24,31 +25,32 @@ const editorTemplate = (data, index, onSave, onCancel) => html`
 
 const viewTemplate = (data, index, onEdit, onDelete) => html`
         <div class="question-head">
-            <h3>Question ${index +1}</h3>
+            <h3>Question ${index + 1}</h3>
             <div class="question-control">
                 <button @click=${onEdit} class="save-btn choose common"><i class="fas fa-edit"></i> Edit</button>
-                <button @click=${()=>onDelete(index)} class="save-btn choose common"><i class="fas fa-trash-alt"></i> Delete</button>
+                <button @click=${() => onDelete(index)} class="save-btn choose common"><i class="fas fa-trash-alt"></i>
+                    Delete</button>
             </div>
         </div>
         <div>
             <p class="editor-input">${data.text}</p>
-            
-            ${data.answers.map((a,i)=>radioView(a, data.correctIndex==i))}
-
+        
+            ${data.answers.map((a, i) => radioView(a, data.correctIndex == i))}
+        
         </div>
 `;
 
 
 const radioView = (value, isChecked) => html`
- <div class="editor-input">
-        
-        <label class="radio">
-            <input class="radio-input" type="radio" disabled ?checked=${isChecked} />
-            <div class="radio-radio"></div>
-        </label>
+<div class="editor-input">
 
-        <span>${value}</span>
-    </div>
+    <label class="radio">
+        <input class="radio-input" type="radio" disabled ?checked=${isChecked} />
+        <div class="radio-radio"></div>
+    </label>
+
+    <span>${value}</span>
+</div>
 `;
 
 
@@ -63,10 +65,10 @@ export function createQuestion(quizId, question, removeQuestion) {
     showView();
 
     return update;
-    
-    function update(newIndex){
+
+    function update(newIndex) {
         index = newIndex
-        if(editorActive){
+        if (editorActive) {
             showEditor();
         } else {
             showView();
@@ -76,55 +78,68 @@ export function createQuestion(quizId, question, removeQuestion) {
     }
 
 
-    function onEdit(){
+    function onEdit() {
         editorActive = true;
-       showEditor();
+        showEditor();
     }
 
-    async function onSave(){
+    async function onSave() {
         const formData = new FormData(element.querySelector('form'));
 
         const data = [...formData.entries()];
         const answers = data
-        .filter(([k, v])=> k.includes('answer-'))
-        .reduce((a, [k, v]) => {
-            const index = Number(k.split('-')[1]);
-            a[index] = v;
+            .filter(([k, v]) => k.includes('answer-'))
+            .reduce((a, [k, v]) => {
+                const index = Number(k.split('-')[1]);
+                a[index] = v;
 
-            return a;
-        }, []);
+                return a;
+            }, []);
 
         const body = {
             text: formData.get('text'),
             answers,
-            correctIndex: data.find(([k,v])=>k.includes('question-'))[1]
+            correctIndex: Number(data.find(([k, v]) => k.includes('question-'))[1])
         };
 
-        console.log(quizId, body);
+        const loader = createOverlay();
+        try {
+            element.appendChild(loader);
 
-        if(question.objectId){
-            //update
-        } else {
-            //create
+            if (question.objectId) {
+                await updateQuestion(question.objectId, body)
+            } else {
+                const result = await apiCreate(quizId, body);
+                question.objectId = result.objectId;
+            }
+
+            Object.assign(question, body);
+            currentQuestion = copyQuestion(question);
+            editorActive = false;
+            update(index);
+        } catch (err) {
+            console.error(err);
+        } finally{
+            loader.remove();
         }
     }
 
-    function onCancel(){
+    function onCancel() {
         editorActive = false;
         currentQuestion = copyQuestion(question);
         showView();
     }
 
-    function showView(){
+    function showView() {
         render(viewTemplate(currentQuestion, index, onEdit, removeQuestion), element);
     }
 
-    function showEditor(){
+    function showEditor() {
         render(editorTemplate(currentQuestion, index, onSave, onCancel), element);
     }
 }
 
-function copyQuestion(question){
+function copyQuestion(question) {
     const currentQuestion = Object.assign({}, question);
     currentQuestion.answers = currentQuestion.answers.slice();
 
