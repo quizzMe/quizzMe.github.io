@@ -23,9 +23,9 @@ export const loadingHomeTemplate = () => html`
 `;
 
 
-const homeTemplate = () => html `
+const homeTemplate = (userId) => html `
 <div class="glass" id="home-container">
-    <div id="info-div">
+    <div id="info-div" style=${styleMap(userId ? {display: 'none'}: {display: 'flex'})}>
         <div id="greating" class="common">
             <h1>Welcome to QuizzMe!</h1>
             <p>
@@ -40,8 +40,8 @@ const homeTemplate = () => html `
         </div>
     </div>
 
-    <div id="more" style=${styleMap({display: 'none'})}>
-        <div id="recent-quizzes" class="common">
+    <div id="more" style=${styleMap(userId ? {display: 'block'}: {display: 'none'})}>
+        <div id="recent-quizzes" class="common" style=${styleMap( userId ? {border: 'none'} : {'border-top': '1px solid rgba(255, 255, 255, 0.5)'})}>
             <h2 class="common">Most recent quizzes:</h2>
              <article class="quiz-preview">
                 <div class="quiz-description">
@@ -97,7 +97,7 @@ const homeTemplate = () => html `
         </div>
     </div>
 </div>
-<div @click=${onShowMore} id="show-more">
+<div @click=${onShowMore} id="show-more" style=${styleMap(userId ? {display: 'none'}: {display: 'block'})}>
     <span class="common">
         Show More
         <p>
@@ -112,7 +112,8 @@ export function homePage(ctx){
     setTimeout(renderHome, 2000);
 
     function renderHome(){
-        ctx.render(homeTemplate());
+        const userId = sessionStorage.getItem('userId')
+        ctx.render(homeTemplate(userId));
         [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => btn.classList.remove('clicked')); 
         
         const user = sessionStorage.getItem('user');
