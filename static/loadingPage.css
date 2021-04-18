@@ -34,8 +34,17 @@
 }
 
 #spinner-container{
-    margin-top: 70px;
-    margin-bottom: 20px;
+    position: relative; 
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 150px;   
+    margin-bottom: 150px; 
+}
+
+.lds-roller{
+    position: relative; 
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #loading{

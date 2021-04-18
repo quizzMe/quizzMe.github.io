@@ -9,7 +9,7 @@ const browseTemplate = () => html `
     </header>
 
     ${until(loadAllQuizzes(), spinner())}
-
+    
     </div>
 `;
 
