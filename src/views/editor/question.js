@@ -55,7 +55,7 @@ const radioView = (value, isChecked) => html`
 
 
 
-export function createQuestion(quizId, question, removeQuestion, edit) {
+export function createQuestion(quizId, question, removeQuestion, updateCount, edit) {
     let currentQuestion = copyQuestion(question);
     let index = 0;
     let editorActive = edit || false;
@@ -110,6 +110,7 @@ export function createQuestion(quizId, question, removeQuestion, edit) {
                 await updateQuestion(question.objectId, body)
             } else {
                 const result = await apiCreate(quizId, body);
+                updateCount();
                 question.objectId = result.objectId;
             }
 

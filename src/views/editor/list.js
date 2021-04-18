@@ -15,8 +15,8 @@ const questionList = (questions, addQuestion) => html`
 `;
 
 
-export function createList(quizId, questions){
-    const currentQuestions = questions.map(q => createQuestion(quizId, q, removeQuestion));
+export function createList(quizId, questions, updateCount){
+    const currentQuestions = questions.map(q => createQuestion(quizId, q, removeQuestion, updateCount));
     
     const element = document.createElement('div');
     element.className = 'question-holder';
@@ -26,11 +26,17 @@ export function createList(quizId, questions){
     return element;
 
     function addQuestion(){
+        questions.push({
+            text: '',
+            answers: [],
+            correctIndex: 0
+        })
+
         currentQuestions.push(createQuestion(quizId, {
             text: '',
             answers: [],
             correctIndex: 0
-        }, removeQuestion, true));
+        }, removeQuestion, updateCount, true));
 
         update();
     }
@@ -43,12 +49,12 @@ export function createList(quizId, questions){
         const confirmed = confirm('Are you sure you want to delete this question');
 
         if(confirmed){
-   
-            console.log(id);
             if(id){
                 await deleteQuestion(id);
+                updateCount(-1);
             }
 
+            questions.splice(index, 1);
             currentQuestions.splice(index, 1);
             update();
         }
