@@ -1,5 +1,6 @@
-import { html, styleMap } from '../libraries.js';
-
+import { html, styleMap, until } from '../libraries.js';
+import {getQuizzes} from '../api/data.js';
+import { spinner } from '../common/loaders.js';
 
 const browseTemplate = () => html `
     <div id="browse-container" class="glass">
@@ -7,91 +8,37 @@ const browseTemplate = () => html `
         <h1 class="common">All quizzes</h1>
     </header>
 
+    ${until(loadAllQuizzes(), spinner())}
 
+    </div>
+`;
+
+
+async function loadAllQuizzes(){
+    const quizzes = await getQuizzes();
+
+    return html `
     <div id="recent-quizzes" class="common">
-             <article class="quiz-preview">
-                <div class="quiz-description">
-                 <h3><a class="common" href="javascript.void(0)">History of the Roman Empire</a></h3>
-                    <span class="quiz-topic">Topic: History</span>
-                    <div class="quiz-meta">
-                       <span>17 questions</span>
-                       <span>|</span>
-                      <span>Taken 4 times</span>
-                     </div>
-                </div>
+        ${[...quizzes].map(quizTemplate)}
+    </div>`;
+}
 
-                <div class="view-quiz">
-                     <a class="common choose" href="javascript.void(0)">View Quiz</a>
-                </div>
-            </article>
-
-            <article class="quiz-preview">
-                <div class="quiz-description">
-                 <h3><a class="common" href="javascript.void(0)">Quantum Physics</a></h3>
-                    <span class="quiz-topic">Topic: Science</span>
-                    <div class="quiz-meta">
-                       <span>15 questions</span>
-                       <span>|</span>
-                      <span>Taken 2 times</span>
-                     </div>
-                </div>
-
-                <div class="view-quiz">
-                     <a class="common choose" href="javascript.void(0)">View Quiz</a>
-                </div>
-            </article>
-
-            <article class="quiz-preview">
-                <div class="quiz-description">
-                 <h3><a class="common" href="javascript.void(0)">Capitals of Europe</a></h3>
-                    <span class="quiz-topic">Topic: Geography</span>
-                    <div class="quiz-meta">
-                       <span>21 questions</span>
-                       <span>|</span>
-                      <span>Taken 10 times</span>
-                     </div>
-                </div>
-
-                <div class="view-quiz">
-                     <a class="common choose" href="javascript.void(0)">View Quiz</a>
-                </div>
-            </article>
-
-            <article class="quiz-preview">
-                <div class="quiz-description">
-                 <h3><a class="common" href="javascript.void(0)">Middle Ages</a></h3>
-                    <span class="quiz-topic">Topic: History</span>
-                    <div class="quiz-meta">
-                       <span>10 questions</span>
-                       <span>|</span>
-                      <span>Taken 3 times</span>
-                     </div>
-                </div>
-
-                <div class="view-quiz">
-                     <a class="common choose" href="javascript.void(0)">View Quiz</a>
-                </div>
-            </article>
-
-            <article class="quiz-preview">
-                <div class="quiz-description">
-                 <h3><a class="common" href="javascript.void(0)">Space</a></h3>
-                    <span class="quiz-topic">Topic: Science</span>
-                    <div class="quiz-meta">
-                       <span>13 questions</span>
-                       <span>|</span>
-                      <span>Taken 6 times</span>
-                     </div>
-                </div>
-
-                <div class="view-quiz">
-                     <a class="common choose" href="javascript.void(0)">View Quiz</a>
-                </div>
-            </article>
+const quizTemplate = (quiz) => html`
+<article class="quiz-preview">
+    <div class="quiz-description">
+        <h3><a class="common" href=${'/details/' + quiz.objectId}>${quiz.title}</a></h3>
+        <span class="quiz-topic">Topic: ${quiz.topic}</span>
+        <div class="quiz-meta">
+            <span>${quiz.questionCount} question${quiz.questionCount == 1 ? '' : 's'}</span>
+            <span>|</span>
+            <span>Taken ? times</span>
+            </div>
         </div>
-    </div>
 
-    </div>
+        <div class="view-quiz">
+            <a class="common choose" href=${'/details/' + quiz.objectId}>View Quiz</a>
+        </div>
+</article>
 `;
 
 export function renderBrowsePage(ctx){

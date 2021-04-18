@@ -25,7 +25,9 @@ function addOwner(object){
 
 // Quiz Collection
 export async function getQuizzes() {
-    return await api.get(host + '/classes/Quiz');
+    const quizzes = (await api.get(host + '/classes/Quiz')).results;
+
+    return quizzes;
 }
 
 export async function getQuizById(id) {
