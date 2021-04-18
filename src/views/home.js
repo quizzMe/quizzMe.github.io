@@ -1,26 +1,16 @@
-import { html, styleMap } from '../libraries.js';
+import { html, until, styleMap } from '../libraries.js';
+import { spinner } from '../common/loaders.js';
 
-export const loadingHomeTemplate = () => html`
-    <div id="load-container">
-        <h1 class="common" id="welcome-header">Welcome</h1>
-         <p class="common" id="wait-msg">We shall start any minute now</p>
+// export const loadingHomeTemplate = () => html`
+//     <div id="load-container">
+//         <h1 class="common" id="welcome-header">Welcome</h1>
+//          <p class="common" id="wait-msg">We shall start any minute now</p>
             
-        <div id="spinner-container">
-            <div class="lds-roller">
-               <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
+//        ${spinner()}
             
-        <p class="common" id="loading">Loading ...</p>
-    </div>
-`;
+//         <p class="common" id="loading">Loading ...</p>
+//     </div>
+// `;
 
 
 const homeTemplate = (userId) => html `
@@ -108,23 +98,17 @@ const homeTemplate = (userId) => html `
 `;
 
 export function homePage(ctx){
-    ctx.render(loadingHomeTemplate());
-    setTimeout(renderHome, 2000);
-
-    function renderHome(){
-        const userId = sessionStorage.getItem('userId')
-        ctx.render(homeTemplate(userId));
-        [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => btn.classList.remove('clicked')); 
+    const userId = sessionStorage.getItem('userId')
+    ctx.render(homeTemplate(userId));
+    [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => btn.classList.remove('clicked')); 
         
-        const user = sessionStorage.getItem('user');
+     const user = sessionStorage.getItem('user');
 
-        if(user){
-            document.getElementById('more').style.display = 'block'
-            document.getElementById('show-more').style.display = 'none';
-            document.getElementById('info-div').style.display = 'none';
-            document.getElementById('recent-quizzes').style.borderTop = 'none';
-        }
-        
+    if(user){
+        document.getElementById('more').style.display = 'block'
+        document.getElementById('show-more').style.display = 'none';
+        document.getElementById('info-div').style.display = 'none';
+        document.getElementById('recent-quizzes').style.borderTop = 'none';
     }
 }
 

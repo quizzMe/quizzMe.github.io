@@ -1,5 +1,5 @@
 import { page, render } from './libraries.js';
-import {homePage, loadingHomeTemplate} from "./views/home.js";
+import {homePage} from "./views/home.js";
 import {registerPage} from './views/register.js';
 import {loginPage} from './views/login.js';
 import {aboutPage} from './views/about.js';
