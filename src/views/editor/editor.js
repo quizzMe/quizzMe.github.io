@@ -69,7 +69,7 @@ export async function editorPage(ctx){
     if(quizId){
         [quiz, questions] = await Promise.all([
             getQuizById(quizId),
-            getQuestionsByQuizId(quizId)
+            getQuestionsByQuizId(quizId, sessionStorage.getItem('userId'))
         ]);
 
         quiz.questions = questions;

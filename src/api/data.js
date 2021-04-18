@@ -56,8 +56,11 @@ export async function createQuiz(quiz) {
 
 
 //Question Collection
-export async function getQuestionsByQuizId(quizId){
-    const query = JSON.stringify({quiz: createPointer('Quiz', quizId)});
+export async function getQuestionsByQuizId(quizId, ownerId){
+    const query = JSON.stringify({
+        quiz: createPointer('Quiz', quizId),
+        owner: createPointer('_User', ownerId)
+    });
     const response = await api.get(host + '/classes/Question?where=' + encodeURIComponent(query));
     return response.results;
 }
