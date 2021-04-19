@@ -2,9 +2,9 @@ import { html } from '../../libraries.js';
 
 const quizTemplate = (quiz) => html`
 <section id="quiz" class="glass common">
-    <header class="edit-create-title">
+    <header id="quiz-navigation" class="edit-create-title">
         <h1>Extensible Markup Language: Question 1 / 15</h1>
-        <nav class="layout q-control">
+        <nav class="quiestions-banner">
             <span class="block">Question index</span>
             <a class="q-index q-current" href="#"></a>
             <a class="q-index q-answered" href="#"></a>
@@ -23,7 +23,7 @@ const quizTemplate = (quiz) => html`
             <a class="q-index" href="#"></a>
         </nav>
     </header>
-    <!-- <div class="pad-large alt-page">
+    <div class="question-template">
 
         <article class="question">
             <p class="q-text">
@@ -31,23 +31,23 @@ const quizTemplate = (quiz) => html`
                 harum accusamus adipisci?
             </p>
 
-            <div>
-                <label class="q-answer radio">
-                    <input class="input" type="radio" name="question-1" value="0" />
-                    <i class="fas fa-check-circle"></i>
+            <div class="option-holder">
+                <label class="radio">
+                    <input class="radio-input" type="radio" name="question-1" value="0" />
                     This is answer 1
+                    <div class="radio-radio"></div>
                 </label>
 
-                <label class="q-answer radio">
-                    <input class="input" type="radio" name="question-1" value="0" />
-                    <i class="fas fa-check-circle"></i>
+                <label class="radio">
+                    <input class="radio-input" type="radio" name="question-1" value="0" />
                     This is answer 2
+                    <div class="radio-radio"></div>
                 </label>
 
-                <label class="q-answer radio">
-                    <input class="input" type="radio" name="question-1" value="0" />
-                    <i class="fas fa-check-circle"></i>
+                <label class="radio">
+                    <input class="radio-input" type="radio" name="question-1" value="0" />
                     This is answer 3
+                    <div class="radio-radio"></div>
                 </label>
 
             </div>
@@ -63,7 +63,7 @@ const quizTemplate = (quiz) => html`
             </nav>
         </article>
 
-    </div> -->
+    </div>
 </section>
 `;
 
