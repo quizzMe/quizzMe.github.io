@@ -6,6 +6,7 @@ import {aboutPage} from './views/about.js';
 import {contactPage} from './views/contacts.js';
 import {renderBrowsePage} from './views/browse.js';
 import {editorPage} from './views/editor/editor.js';
+import { quizPage } from './views/quiz/quiz.js';
 
 import * as api from './api/data.js';
 window.api = api;
@@ -22,6 +23,7 @@ page('/contacts', decorateContext, contactPage);
 page('/browse', decorateContext, renderBrowsePage);
 page('/create', decorateContext, editorPage);
 page('/edit/:id', decorateContext, editorPage);
+page('/quiz/:id', decorateContext, quizPage)
 
 page.start();
 
