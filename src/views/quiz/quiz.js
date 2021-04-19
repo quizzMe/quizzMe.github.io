@@ -3,7 +3,8 @@ import { html } from '../../libraries.js';
 const quizTemplate = (quiz) => html`
 <section id="quiz" class="glass common">
     <header id="quiz-navigation" class="edit-create-title">
-        <h1>Extensible Markup Language: Question 1 / 15</h1>
+        <h1>Extensible Markup Language</h1>
+        <h2>Question 1 / 15</h2>
         <nav class="quiestions-banner">
             <span class="block">Question index</span>
             <a class="q-index q-current" href="#"></a>
@@ -32,33 +33,36 @@ const quizTemplate = (quiz) => html`
             </p>
 
             <div class="option-holder">
+            <div class="editor-input">
                 <label class="radio">
                     <input class="radio-input" type="radio" name="question-1" value="0" />
-                    This is answer 1
                     <div class="radio-radio"></div>
                 </label>
+                <span>This is answer 1</span>
 
+            </div>
+            <div class="editor-input">
                 <label class="radio">
                     <input class="radio-input" type="radio" name="question-1" value="0" />
-                    This is answer 2
                     <div class="radio-radio"></div>
                 </label>
-
+                <span>This is answer 2</span>
+            </div>
+            <div class="editor-input">
                 <label class="radio">
                     <input class="radio-input" type="radio" name="question-1" value="0" />
-                    This is answer 3
                     <div class="radio-radio"></div>
                 </label>
-
+                <span>This is answer 3</span>
             </div>
 
             <nav class="q-control">
-                <span class="block">12 questions remaining</span>
-                <a class="action" href=#><i class="fas fa-arrow-left"></i> Previous</a>
-                <a class="action" href=#><i class="fas fa-sync-alt"></i> Start over</a>
+                <span class="block question-progress">12 questions remaining</span>
+                <a class="add-answer-btn common choose" href=#><i class="fas fa-arrow-left"></i> Previous</a>
+                <a class="add-answer-btn common choose" href=#><i class="fas fa-sync-alt"></i> Start over</a>
                 <div class="right-col">
-                    <a class="action" href=#>Next <i class="fas fa-arrow-right"></i></a>
-                    <a class="action" href=#>Submit answers</a>
+                    <a class="add-answer-btn common choose" href=#>Next <i class="fas fa-arrow-right"></i></a>
+                    <a class="add-answer-btn common choose" href=#>Submit answers</a>
                 </div>
             </nav>
         </article>
