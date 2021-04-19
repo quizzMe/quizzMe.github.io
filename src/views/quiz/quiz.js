@@ -1,8 +1,8 @@
 import { html } from '../../libraries.js';
 
 const quizTemplate = (quiz) => html`
-<section id="quiz">
-    <header class="pad-large">
+<section id="quiz" class="glass common">
+    <header class="edit-create-title">
         <h1>Extensible Markup Language: Question 1 / 15</h1>
         <nav class="layout q-control">
             <span class="block">Question index</span>
@@ -23,7 +23,7 @@ const quizTemplate = (quiz) => html`
             <a class="q-index" href="#"></a>
         </nav>
     </header>
-    <div class="pad-large alt-page">
+    <!-- <div class="pad-large alt-page">
 
         <article class="question">
             <p class="q-text">
@@ -63,7 +63,7 @@ const quizTemplate = (quiz) => html`
             </nav>
         </article>
 
-    </div>
+    </div> -->
 </section>
 `;
 

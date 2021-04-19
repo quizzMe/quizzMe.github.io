@@ -5,6 +5,8 @@
 @import "./register-login.css";
 @import "./contacts.css";
 @import './editor.css';
+@import './quiz.css';
+
 @import 'https://use.fontawesome.com/releases/v5.10.2/css/all.css';
 
 * {
@@ -26,7 +28,8 @@ body, #guest-home-page {
 #about-container,
 #contacts-container,
 #browse-container,
-#editor{
+#editor,
+#quiz{
     width: 75%;
     margin: auto;
     margin-top: 2%;
