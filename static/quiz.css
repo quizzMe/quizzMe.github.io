@@ -24,7 +24,9 @@
 }
 
 .question-progress{
-    margin-bottom: 17px;
+    margin-bottom: 18px;
+    font-size: 17px;
+    padding-left: 4px;
 }
 
 .edit-create-title h2 {
@@ -118,6 +120,7 @@
 
 .q-control a{
     font-size: 16px;
+    margin-right: 2px;
 }
 
 .q-control a:hover{
