@@ -25,7 +25,7 @@ const quizTemplate = (quiz, questions, answers, currentIndex, onSelect) => html`
             </form>
 
             <nav class="q-control">
-                <span class="block question-progress">12 questions remaining</span>
+                <span class="block question-progress">${answers.filter(x => x == undefined).length} questions remaining</span>
                 <a class="add-answer-btn common choose" href=#><i class="fas fa-arrow-left"></i> Previous</a>
                 <a class="add-answer-btn common choose" href=#><i class="fas fa-sync-alt"></i> Start over</a>
                 <div class="right-col">
