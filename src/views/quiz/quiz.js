@@ -10,7 +10,7 @@ const quizTemplate = (quiz, questions, currentIndex) => html`
         <nav class="quiestions-banner">
             <span class="block">Question index</span>
             ${questions.map((q, i) => html`<a class="q-index q-current q-answered"
-                href="/quiz/${quiz.objectId}?question=${i}"></a>`)}
+                href="/quiz/${quiz.objectId}?question=${i +1}"></a>`)}
         </nav>
     </header>
     <div class="question-template">
@@ -63,13 +63,14 @@ const answerTemplate = (questionIndex, index, value) => html`
 
 export async function quizPage(ctx) {
     const quizId = ctx.params.id;
-    ctx.render(until(getQuiz(quizId), spinner()));
+    const index = Number(ctx.querystring.split('=')[1] || 1) - 1;
+    ctx.render(until(getQuiz(quizId, index), spinner()));
 }
 
-async function getQuiz(quizId) {
+async function getQuiz(quizId, index) {
     const quiz = await getQuizById(quizId);
     const ownerId = quiz.owner.objectId;
     const questions = await getQuestionsByQuizId(quizId, ownerId);
 
-    return quizTemplate(quiz, questions, 0);
+    return quizTemplate(quiz, questions, index);
 }
