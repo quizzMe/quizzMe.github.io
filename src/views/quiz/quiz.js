@@ -26,11 +26,16 @@ const quizTemplate = (quiz, questions, answers, currentIndex, onSelect) => html`
 
             <nav class="q-control">
                 <span class="block question-progress">${answers.filter(x => x == undefined).length} questions remaining</span>
-                <a class="add-answer-btn common choose" href=#><i class="fas fa-arrow-left"></i> Previous</a>
+                ${currentIndex > 0 ?
+                    html`<a class="add-answer-btn common choose" href="/quiz/${quiz.objectId}?question=${currentIndex}" ><i class="fas fa-arrow-left"></i> Previous</a>` 
+                    : ''
+                }
                 <a class="add-answer-btn common choose" href=#><i class="fas fa-sync-alt"></i> Start over</a>
                 <div class="right-col">
-                    <a class="add-answer-btn common choose" href=#>Next <i class="fas fa-arrow-right"></i></a>
-                    <a class="add-answer-btn common choose" href=#>Submit answers</a>
+                   ${currentIndex < questions.length - 1 ? 
+                   html` <a class="add-answer-btn common choose" href="/quiz/${quiz.objectId}?question=${currentIndex + 2}" >Next <i class="fas fa-arrow-right"></i></a>` 
+                : ''}
+                    <a class="add-answer-btn common choose" href='#' >Submit answers</a>
                 </div>
             </nav>
         </article>
