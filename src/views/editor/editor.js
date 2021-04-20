@@ -32,7 +32,7 @@ const quizEditorTemplate = (quiz, onSave, inProgress) => html`
             <span>Topic:</span>
             <select class="input" name="topic" .value = ${quiz ? quiz.topic : '0'}  ?disabled=${inProgress} >
                 <option value="0">-- Select Category</option>
-                ${Object.entries(topics).map(([k,v]) => html`<option value=${k} ?selected=${quiz.topic == k} >${v}</option>`)}
+                ${Object.entries(topics).map(([k,v]) => html`<option value=${k} ?selected=${quiz? quiz.topic == k : 0} >${v}</option>`)}
             </select>
         </label>
         <label>
