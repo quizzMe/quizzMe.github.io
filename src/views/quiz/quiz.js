@@ -1,4 +1,4 @@
-import { html, until, cache } from '../../libraries.js';
+import { html, until, styleMap, classMap } from '../../libraries.js';
 import { spinner } from '../../common/loaders.js';
 
 const quizTemplate = (quiz, questions, currentIndex) => html`
@@ -8,8 +8,7 @@ const quizTemplate = (quiz, questions, currentIndex) => html`
         <h2>Question ${currentIndex + 1} / ${questions.length}</h2>
         <nav class="quiestions-banner">
             <span class="block">Question index</span>
-            ${questions.map((q, i) => html`<a class="q-index q-current q-answered"
-                href="/quiz/${quiz.objectId}?question=${i +1}"></a>`)}
+            ${questions.map((q, i) => indexTemplate(quiz.objectId, i, currentIndex == i))}
         </nav>
     </header>
     <div class="question-template">
@@ -21,7 +20,7 @@ const quizTemplate = (quiz, questions, currentIndex) => html`
 
             <form>
 
-                ${questions.map((q,i) => questionTemplate(q, i, i==currentIndex))}
+                ${questions.map((q,i) => questionTemplate(q, i, i==currentIndex, false))}
 
             </form>
 
@@ -40,9 +39,19 @@ const quizTemplate = (quiz, questions, currentIndex) => html`
 </section>
 `;
 
+const indexTemplate = (quizId, i, isCurrent, isAnswered) => {
+    const className = {
+        'q-index': true,
+        'q-current': isCurrent,
+        'q-answered' : isAnswered
+    }
+
+    return html`<a class=${classMap(className)}
+    href="/quiz/${quizId}?question=${i +1}"></a>`
+};
 
 const questionTemplate = (question, index, isCurrent) => html`
-<div data-index='question-${index}' class="option-holder" style=${isCurrent ? '' : 'display:none' } >
+<div data-index='question-${index}' class="option-holder" style=${styleMap({display: isCurrent ? '' : 'none'})} >
 
     ${question.answers.map((a, i) => answerTemplate(index, i, a))}
 
@@ -59,6 +68,8 @@ const answerTemplate = (questionIndex, index, value) => html`
         <span>${value}</span>
     </div>
 `;
+
+
 
 export async function quizPage(ctx) {
     const index = Number(ctx.querystring.split('=')[1] || 1) - 1;

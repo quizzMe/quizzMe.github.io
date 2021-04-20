@@ -32,7 +32,7 @@ page.start();
 async function getQuiz(ctx, next){
     const quizId = ctx.params.id;
     if(cache[quizId] == undefined){
-        ctx.render(spinner())
+        ctx.render(spinner());
         cache[quizId] = await getQuizById(quizId);
         const ownerId = cache[quizId].owner.objectId;
         cache[quizId].questions = await getQuestionsByQuizId(quizId, ownerId)
