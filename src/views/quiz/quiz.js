@@ -1,14 +1,14 @@
 import { html, until, styleMap, classMap } from '../../libraries.js';
 import { spinner } from '../../common/loaders.js';
 
-const quizTemplate = (quiz, questions, currentIndex) => html`
+const quizTemplate = (quiz, questions, answers, currentIndex, onSelect) => html`
 <section id="quiz" class="glass common">
     <header id="quiz-navigation" class="edit-create-title">
         <h1>${quiz.title}</h1>
         <h2>Question ${currentIndex + 1} / ${questions.length}</h2>
         <nav class="quiestions-banner">
             <span class="block">Question index</span>
-            ${questions.map((q, i) => indexTemplate(quiz.objectId, i, currentIndex == i))}
+            ${questions.map((q, i) => indexTemplate(quiz.objectId, i, currentIndex == i, answers[i] != undefined))}
         </nav>
     </header>
     <div class="question-template">
@@ -18,7 +18,7 @@ const quizTemplate = (quiz, questions, currentIndex) => html`
                 ${questions[currentIndex].text}
             </p>
 
-            <form>
+            <form @change=${onSelect}>
 
                 ${questions.map((q,i) => questionTemplate(q, i, i==currentIndex, false))}
 
@@ -74,5 +74,21 @@ const answerTemplate = (questionIndex, index, value) => html`
 export async function quizPage(ctx) {
     const index = Number(ctx.querystring.split('=')[1] || 1) - 1;
     const questions = ctx.quiz.questions;
-    ctx.render(quizTemplate(ctx.quiz, questions, index));
+    const answers = ctx.quiz.answers;
+    update();
+
+    function onSelect(event){
+        const questionIndex = Number(event.target.name.split('-')[1]);
+        
+        if(Number.isNaN(questionIndex) != true){
+            const answer = Number(event.target.value);
+            answers[questionIndex] = answer;
+            update();
+        }
+    }
+
+    function update(){
+        ctx.render(quizTemplate(ctx.quiz, questions, answers, index, onSelect));
+    }
+
 }
