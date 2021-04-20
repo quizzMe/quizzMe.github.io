@@ -8,12 +8,12 @@ import {renderBrowsePage} from './views/browse.js';
 import {editorPage} from './views/editor/editor.js';
 import { quizPage } from './views/quiz/quiz.js';
 
-import * as api from './api/data.js';
-window.api = api;
+import {getQuestionsByQuizId, getQuizById, logout as apiLogout} from './api/data.js';
 
+const cache = {};
 const main = document.querySelector('main');
 setUserNav();
-document.getElementById('logoutBtn').addEventListener('click', logoutUser.bind(event, api));
+document.getElementById('logoutBtn').addEventListener('click', logoutUser);
 
 page('/', decorateContext, homePage);
 page('/register', decorateContext, registerPage);
@@ -23,9 +23,26 @@ page('/contacts', decorateContext, contactPage);
 page('/browse', decorateContext, renderBrowsePage);
 page('/create', decorateContext, editorPage);
 page('/edit/:id', decorateContext, editorPage);
-page('/quiz/:id', decorateContext, quizPage)
+page('/quiz/:id', decorateContext, getQuiz, quizPage)
 
 page.start();
+
+function getQuiz(ctx, next){
+    const quizId = ctx.params.id;
+    if(cache[quizId] == undefined){
+        cache[quizId] = getQuizById(quizId).then(quiz => {
+            const ownerId = quiz.owner.objectId;
+            return getQuestionsByQuizId(quizId, ownerId).then(questions => {
+                quiz.questions = questions;
+                return quiz;
+            });
+        });
+    }
+
+    ctx.quiz = cache[quizId];
+    next();
+}
+
 
 function decorateContext(ctx, next){
     ctx.render = (content) => render(content, main);
@@ -45,9 +62,9 @@ function setUserNav(){
     }
 }
 
-//update!!
-async function logoutUser(api) {
-    await api.logout();
+
+async function logoutUser() {
+    await apiLogout();
     setUserNav();
     page.redirect('/');
 }

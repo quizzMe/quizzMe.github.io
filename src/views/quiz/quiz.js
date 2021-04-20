@@ -62,15 +62,13 @@ const answerTemplate = (questionIndex, index, value) => html`
 `;
 
 export async function quizPage(ctx) {
-    const quizId = ctx.params.id;
     const index = Number(ctx.querystring.split('=')[1] || 1) - 1;
-    ctx.render(until(getQuiz(quizId, index), spinner()));
+    ctx.render(until(resolveQuiz(ctx.quiz, index), spinner()));
 }
 
-async function getQuiz(quizId, index) {
-    const quiz = await getQuizById(quizId);
-    const ownerId = quiz.owner.objectId;
-    const questions = await getQuestionsByQuizId(quizId, ownerId);
+async function resolveQuiz(quiz, index) {
+    quiz = await quiz;
+    const questions = quiz.questions;
 
     return quizTemplate(quiz, questions, index);
 }
