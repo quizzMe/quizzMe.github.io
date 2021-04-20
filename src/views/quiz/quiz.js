@@ -1,5 +1,4 @@
-import { html, until } from '../../libraries.js';
-import { getQuizById, getQuestionsByQuizId } from '../../api/data.js';
+import { html, until, cache } from '../../libraries.js';
 import { spinner } from '../../common/loaders.js';
 
 const quizTemplate = (quiz, questions, currentIndex) => html`
@@ -63,12 +62,6 @@ const answerTemplate = (questionIndex, index, value) => html`
 
 export async function quizPage(ctx) {
     const index = Number(ctx.querystring.split('=')[1] || 1) - 1;
-    ctx.render(until(resolveQuiz(ctx.quiz, index), spinner()));
-}
-
-async function resolveQuiz(quiz, index) {
-    quiz = await quiz;
-    const questions = quiz.questions;
-
-    return quizTemplate(quiz, questions, index);
+    const questions = ctx.quiz.questions;
+    ctx.render(quizTemplate(ctx.quiz, questions, index));
 }

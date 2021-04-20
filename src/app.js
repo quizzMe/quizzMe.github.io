@@ -7,6 +7,7 @@ import {contactPage} from './views/contacts.js';
 import {renderBrowsePage} from './views/browse.js';
 import {editorPage} from './views/editor/editor.js';
 import { quizPage } from './views/quiz/quiz.js';
+import { spinner } from './common/loaders.js';
 
 import {getQuestionsByQuizId, getQuizById, logout as apiLogout} from './api/data.js';
 
@@ -27,16 +28,14 @@ page('/quiz/:id', decorateContext, getQuiz, quizPage)
 
 page.start();
 
-function getQuiz(ctx, next){
+// Middleware //
+async function getQuiz(ctx, next){
     const quizId = ctx.params.id;
     if(cache[quizId] == undefined){
-        cache[quizId] = getQuizById(quizId).then(quiz => {
-            const ownerId = quiz.owner.objectId;
-            return getQuestionsByQuizId(quizId, ownerId).then(questions => {
-                quiz.questions = questions;
-                return quiz;
-            });
-        });
+        ctx.render(spinner())
+        cache[quizId] = await getQuizById(quizId);
+        const ownerId = cache[quizId].owner.objectId;
+        cache[quizId].questions = await getQuestionsByQuizId(quizId, ownerId)
     }
 
     ctx.quiz = cache[quizId];
