@@ -1,7 +1,8 @@
 import { html, until, styleMap, classMap } from '../../libraries.js';
+import { submitSolution } from '../../api/data.js';
 import { spinner } from '../../common/loaders.js';
 
-const quizTemplate = (quiz, questions, answers, currentIndex, onSelect, resetQuiz) => html`
+const quizTemplate = (quiz, questions, answers, currentIndex, onSelect, resetQuiz, onSubmit) => html`
 <section id="quiz" class="glass common">
     <header id="quiz-navigation" class="edit-create-title">
         <h1>${quiz.title}</h1>
@@ -18,7 +19,7 @@ const quizTemplate = (quiz, questions, answers, currentIndex, onSelect, resetQui
                 ${questions[currentIndex].text}
             </p>
 
-            <form @change=${onSelect}>
+            <form id='quiz-form' @change=${onSelect}>
 
                 ${questions.map((q,i) => questionTemplate(q, i, i==currentIndex, false))}
 
@@ -30,12 +31,17 @@ const quizTemplate = (quiz, questions, answers, currentIndex, onSelect, resetQui
                     html`<a class="add-answer-btn common choose" href="/quiz/${quiz.objectId}?question=${currentIndex}" ><i class="fas fa-arrow-left"></i> Previous</a>` 
                     : ''
                 }
-                <a @click=${resetQuiz} class="add-answer-btn common choose" href=javascript:void(0)><i class="fas fa-sync-alt"></i> Start over</a>
+                <a @click=${resetQuiz} class="add-answer-btn common choose" href="javascript:void(0)"><i class="fas fa-sync-alt"></i> Start over</a>
                 <div class="right-col">
                    ${currentIndex < questions.length - 1 ? 
                    html` <a class="add-answer-btn common choose" href="/quiz/${quiz.objectId}?question=${currentIndex + 2}" >Next <i class="fas fa-arrow-right"></i></a>` 
                 : ''}
-                    <a class="add-answer-btn common choose" href='#' >Submit answers</a>
+                    
+
+                    ${(answers.filter(x => x == undefined).length == 0 || currentIndex == questions.length - 1) ?
+                        html`<a @click=${onSubmit} class="add-answer-btn common choose" href="javascript:void(0)" >Submit answers</a>`
+                        : ''
+                    }
                 </div>
             </nav>
         </article>
@@ -101,8 +107,36 @@ export async function quizPage(ctx) {
         }
     }
 
+    async function onSubmit(){
+        const unaswered = answers.filter(x => x == undefined).length;
+        if(unaswered > 0){
+            const confirmed = confirm(`There are ${unaswered} unanswered questions. Are you sure you want to proceed forward?`)
+        
+            if(confirmed == false){
+                return;
+            }
+        }
+
+        let correct = 0;
+        for(let i = 0; i < questions.length; i++){
+            if(questions[i].correctIndex == answers[i]){
+                correct++;
+            };
+        }
+
+        const solution = {
+            correct,
+            total: questions.length
+        };
+
+        ctx.render(spinner())
+        await submitSolution(ctx.quiz.objectId, solution);
+        ctx.page.redirect('/result/' + ctx.quiz.objectId);
+    }
+
+
     function update(){
-        ctx.render(quizTemplate(ctx.quiz, questions, answers, index, onSelect, resetQuiz));
+        ctx.render(quizTemplate(ctx.quiz, questions, answers, index, onSelect, resetQuiz, onSubmit));
     }
 
 }

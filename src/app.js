@@ -11,7 +11,7 @@ import { spinner } from './common/loaders.js';
 
 import { getQuestionsByQuizId, getQuizById, logout as apiLogout } from './api/data.js';
 
-const cache = {};
+const state = {};
 const main = document.querySelector('main');
 setUserNav();
 document.getElementById('logoutBtn').addEventListener('click', logoutUser);
@@ -32,21 +32,21 @@ page.start();
 async function getQuiz(ctx, next) {
     ctx.clearCache = clearCache;
     const quizId = ctx.params.id;
-    if (cache[quizId] == undefined) {
+    if (state[quizId] == undefined) {
         ctx.render(spinner());
-        cache[quizId] = await getQuizById(quizId);
-        const ownerId = cache[quizId].owner.objectId;
-        cache[quizId].questions = await getQuestionsByQuizId(quizId, ownerId)
-        cache[quizId].answers = cache[quizId].questions.map(q => undefined);
+        state[quizId] = await getQuizById(quizId);
+        const ownerId = state[quizId].owner.objectId;
+        state[quizId].questions = await getQuestionsByQuizId(quizId, ownerId)
+        state[quizId].answers = state[quizId].questions.map(q => undefined);
     }
 
-    ctx.quiz = cache[quizId];
+    ctx.quiz = state[quizId];
     next();
 }
 
 function clearCache(quizId) {
-    if (cache[quizId]) {
-        delete cache[quizId];
+    if (state[quizId]) {
+        delete state[quizId];
     }
 }
 
