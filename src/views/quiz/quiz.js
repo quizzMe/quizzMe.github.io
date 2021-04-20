@@ -1,7 +1,7 @@
 import { html, until, styleMap, classMap } from '../../libraries.js';
 import { spinner } from '../../common/loaders.js';
 
-const quizTemplate = (quiz, questions, answers, currentIndex, onSelect) => html`
+const quizTemplate = (quiz, questions, answers, currentIndex, onSelect, resetQuiz) => html`
 <section id="quiz" class="glass common">
     <header id="quiz-navigation" class="edit-create-title">
         <h1>${quiz.title}</h1>
@@ -30,7 +30,7 @@ const quizTemplate = (quiz, questions, answers, currentIndex, onSelect) => html`
                     html`<a class="add-answer-btn common choose" href="/quiz/${quiz.objectId}?question=${currentIndex}" ><i class="fas fa-arrow-left"></i> Previous</a>` 
                     : ''
                 }
-                <a class="add-answer-btn common choose" href=#><i class="fas fa-sync-alt"></i> Start over</a>
+                <a @click=${resetQuiz} class="add-answer-btn common choose" href=javascript:void(0)><i class="fas fa-sync-alt"></i> Start over</a>
                 <div class="right-col">
                    ${currentIndex < questions.length - 1 ? 
                    html` <a class="add-answer-btn common choose" href="/quiz/${quiz.objectId}?question=${currentIndex + 2}" >Next <i class="fas fa-arrow-right"></i></a>` 
@@ -92,8 +92,17 @@ export async function quizPage(ctx) {
         }
     }
 
+    function resetQuiz(){
+        const confirmed = confirm('Are you sure you want to reset your answers?');
+
+        if(confirmed){
+            ctx.clearCache(ctx.quiz.objectId);
+            ctx.page.redirect('/quiz/' + ctx.quiz.objectId)
+        }
+    }
+
     function update(){
-        ctx.render(quizTemplate(ctx.quiz, questions, answers, index, onSelect));
+        ctx.render(quizTemplate(ctx.quiz, questions, answers, index, onSelect, resetQuiz));
     }
 
 }

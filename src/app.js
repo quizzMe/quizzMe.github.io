@@ -1,15 +1,15 @@
 import { page, render } from './libraries.js';
-import {homePage} from "./views/home.js";
-import {registerPage} from './views/register.js';
-import {loginPage} from './views/login.js';
-import {aboutPage} from './views/about.js';
-import {contactPage} from './views/contacts.js';
-import {renderBrowsePage} from './views/browse.js';
-import {editorPage} from './views/editor/editor.js';
+import { homePage } from "./views/home.js";
+import { registerPage } from './views/register.js';
+import { loginPage } from './views/login.js';
+import { aboutPage } from './views/about.js';
+import { contactPage } from './views/contacts.js';
+import { renderBrowsePage } from './views/browse.js';
+import { editorPage } from './views/editor/editor.js';
 import { quizPage } from './views/quiz/quiz.js';
 import { spinner } from './common/loaders.js';
 
-import {getQuestionsByQuizId, getQuizById, logout as apiLogout} from './api/data.js';
+import { getQuestionsByQuizId, getQuizById, logout as apiLogout } from './api/data.js';
 
 const cache = {};
 const main = document.querySelector('main');
@@ -29,9 +29,10 @@ page('/quiz/:id', decorateContext, getQuiz, quizPage)
 page.start();
 
 // Middleware //
-async function getQuiz(ctx, next){
+async function getQuiz(ctx, next) {
+    ctx.clearCache = clearCache;
     const quizId = ctx.params.id;
-    if(cache[quizId] == undefined){
+    if (cache[quizId] == undefined) {
         ctx.render(spinner());
         cache[quizId] = await getQuizById(quizId);
         const ownerId = cache[quizId].owner.objectId;
@@ -43,17 +44,23 @@ async function getQuiz(ctx, next){
     next();
 }
 
+function clearCache(quizId) {
+    if (cache[quizId]) {
+        delete cache[quizId];
+    }
+}
 
-function decorateContext(ctx, next){
+
+function decorateContext(ctx, next) {
     ctx.render = (content) => render(content, main);
     ctx.setUserNav = setUserNav;
     next();
 }
 
-function setUserNav(){
+function setUserNav() {
     const user = sessionStorage.getItem('username');
 
-    if(user){
+    if (user) {
         document.querySelector('.user').style.display = 'block';
         document.querySelector('.guest').style.display = 'none';
     } else {
