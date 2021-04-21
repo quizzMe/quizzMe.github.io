@@ -65,14 +65,24 @@ function setUserNav() {
     const user = sessionStorage.getItem('userId');
 
     if (user) {
-        document.querySelector('.user').style.display = 'block';
+        // Sets elements according to user
+        [...document.querySelectorAll('.user')].forEach(a => a.style.display = 'block')
         document.querySelector('.guest').style.display = 'none';
 
-        const profileBtn = [...document.querySelector('.user').querySelectorAll('a')].filter(l => l.textContent == 'Profile')[0];
+        // sets href to profile button
+        const profileBtn = [...document.getElementById('navigation').querySelectorAll('a')].filter(l => l.textContent == 'Profile')[0];
         profileBtn.setAttribute('href', '/profile/' + user);
+
+        // sets welcome message
+        document.getElementById('welcome-user').querySelector('span').textContent = `Welcome, ${sessionStorage.getItem('username')}`
+        document.getElementById('welcome-user').querySelector('a').setAttribute('href', '/profile/' + user);
+
+        document.getElementById('header-nav').style.width = '94%'
     } else {
-        document.querySelector('.user').style.display = 'none';
+        [...document.querySelectorAll('.user')].forEach(a => a.style.display = 'none')
         document.querySelector('.guest').style.display = 'block';
+
+        document.getElementById('header-nav').style.width = '100%'
     }
 }
 
