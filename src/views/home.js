@@ -84,6 +84,9 @@ const quizRecentTemplate = (quiz) => html`
         </div>
 
         <div class="view-quiz">
+        ${ quiz.owner.objectId == sessionStorage.getItem('userId') ? 
+        html`<a class="common choose" href=${'/edit/' + quiz.objectId}>Edit Quiz</a>` 
+        : ''}
             <a class="common choose" href=${'/details/' + quiz.objectId}>View Quiz</a>
         </div>
 </article>
