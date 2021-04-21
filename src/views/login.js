@@ -3,7 +3,7 @@ import {onArrowClick,previousSlide} from '../common/formAction.js';
 import { login } from '../api/data.js';
 
 const loginTemplate = (onArrowClick, onSubmit, formData, ctx) => html`
-<div @click=${onArrowClick.bind(event, formData,)} id="login-container" class="glass">
+<div @keypress=${onArrowClick.bind(event, formData)} @click=${onArrowClick.bind(event, formData,)} id="login-container" class="glass">
 <div @click=${previousSlide} id="back-arrow-holder" class="common" style = ${styleMap({display: 'none'})}>
         <i class="fas fa-angle-double-left"></i>
         <span class="use-for-check">Back</span>
@@ -12,7 +12,7 @@ const loginTemplate = (onArrowClick, onSubmit, formData, ctx) => html`
     <form @submit=${onSubmit.bind(event, formData, ctx)} id="login-form">
         <div class="name-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Username" name="username" required>
+            <input type="text" placeholder="Username" name="username" required autofocus>
             <i class="fas fa-arrow-down"></i>
         </div>
 

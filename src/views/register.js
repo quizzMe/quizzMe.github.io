@@ -12,26 +12,26 @@ const registerTemplate = (onArrowClick, onSubmit, formData, ctx) => html`
     <form @submit=${onSubmit.bind(event, formData, ctx)} id="register-form">
         <div class="name-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Username" name="username" autofocus required>
+            <input type="text" placeholder="Username" name="username" required autofocus >
             <i class="fas fa-arrow-down"></i>
         </div>
 
 
         <div class="email-field inactive">
             <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="Email" name="email" autofocus required>
+            <input type="email" placeholder="Email" name="email"  required>
             <i class="fas fa-arrow-down"></i>
         </div>
 
         <div class="password-field inactive">
             <i class="fas fa-key"></i>
-            <input type="password" placeholder="Password" name="password" autofocus required>
+            <input type="password" placeholder="Password" name="password"  required>
             <i class="fas fa-arrow-down"></i>
         </div>
 
         <div class="rePass-field inactive">
             <i class="fas fa-key"></i>
-            <input type="password" placeholder="Repeat Password" name="rePass" autofocus required>
+            <input type="password" placeholder="Repeat Password" name="rePass"  required>
             <i class="fas fa-arrow-down"></i>
         </div>
 
