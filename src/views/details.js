@@ -24,4 +24,7 @@ const detailsTemplate = (quiz) => html`
 
 export async function detailsPage (ctx){
     ctx.render(detailsTemplate(ctx.quiz));
+
+    // clears the clicked effect on all buttons
+    [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => btn.classList.remove('clicked'))
 }
