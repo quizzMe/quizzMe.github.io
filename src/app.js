@@ -7,6 +7,7 @@ import { contactPage } from './views/contacts.js';
 import { renderBrowsePage } from './views/browse.js';
 import { editorPage } from './views/editor/editor.js';
 import { quizPage } from './views/quiz/quiz.js';
+import { detailsPage } from './views/details.js';
 import { spinner } from './common/loaders.js';
 
 import { getQuestionsByQuizId, getQuizById, logout as apiLogout } from './api/data.js';
@@ -24,6 +25,7 @@ page('/contacts', decorateContext, contactPage);
 page('/browse', decorateContext, renderBrowsePage);
 page('/create', decorateContext, editorPage);
 page('/edit/:id', decorateContext, editorPage);
+page('/details/:id', decorateContext, detailsPage);
 page('/quiz/:id', decorateContext, getQuiz, quizPage)
 
 page.start();

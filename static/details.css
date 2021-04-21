@@ -1,0 +1,56 @@
+/* #details{
+    animation: fadeInUp 1.5s;
+} */
+
+.details{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    animation: fadeInUp 1.5s;
+}
+
+.details h1{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.quiz-topic{
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.quiz-meta{
+    margin-bottom: 15px;
+}
+
+.quiz-meta span{
+    font-family: 'Latto', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.quiz-desc{
+    /* font-family: 'Latto', sans-serif; */
+    margin-bottom: 20px;
+    font-size: 17px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.start-quiz-holder{
+    margin-bottom: 25px;
+    margin-top: 10px;
+}
+
+.start-quiz-holder a{
+    font-size: 16px;
+    margin-right: 2px;
+}
+
+.start-quiz-holder a:hover{
+    font-size: 16px;
+}

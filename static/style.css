@@ -6,6 +6,7 @@
 @import "./contacts.css";
 @import './editor.css';
 @import './quiz.css';
+@import './details.css';
 
 @import 'https://use.fontawesome.com/releases/v5.10.2/css/all.css';
 
@@ -29,7 +30,8 @@ body, #guest-home-page {
 #contacts-container,
 #browse-container,
 #editor,
-#quiz{
+#quiz,
+#details{
     width: 75%;
     margin: auto;
     margin-top: 2%;
