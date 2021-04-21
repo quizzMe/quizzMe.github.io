@@ -225,7 +225,8 @@
     border-radius: 5px;
     padding: 6px 9px;
     font-family: 'Lato', sans-serif;
-    transition: 0.4s;
+    transition: 0.6s;
+    margin-right: 5px;
 }
 
 .view-quiz a:hover{
