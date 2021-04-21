@@ -112,7 +112,7 @@ a{
 }
 
 .blink {
-    animation: blinker 1.7s linear infinite;
+    animation: blinker 2.5s linear infinite;
     /* animation: blinkingBackground 4s infinite; */
   }
   

@@ -8,6 +8,7 @@ import { renderBrowsePage } from './views/browse.js';
 import { editorPage } from './views/editor/editor.js';
 import { quizPage } from './views/quiz/quiz.js';
 import { detailsPage } from './views/details.js';
+import { profilePage } from './views/profile.js';
 import { spinner } from './common/loaders.js';
 
 import { getQuestionsByQuizId, getQuizById, logout as apiLogout } from './api/data.js';
@@ -26,6 +27,7 @@ page('/browse', decorateContext, renderBrowsePage);
 page('/create', decorateContext, editorPage);
 page('/edit/:id', decorateContext, editorPage);
 page('/details/:id', decorateContext, getQuiz, detailsPage);
+page('/profile/:id', decorateContext, profilePage);
 page('/quiz/:id', decorateContext, getQuiz, quizPage)
 
 page.start();

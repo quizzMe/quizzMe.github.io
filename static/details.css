@@ -24,6 +24,10 @@
     margin-bottom: 20px;
 }
 
+.quiz-topic a{
+    color: rgb(84, 218, 84);
+}
+
 .quiz-meta{
     margin-bottom: 15px;
 }

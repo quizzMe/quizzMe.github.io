@@ -5,7 +5,7 @@ const detailsTemplate = (quiz) => html`
     <div class="question-template">
         <article class="details">
             <h1> ${quiz.title} </h1>
-            <span class="quiz-topic">A quiz by <a href="#" class="blink" data-micron="fade" data-micron-duration=".8" > ${quiz.owner.username} </a> on the topic of ${quiz.topic} </span>
+            <span class="quiz-topic">A quiz by <a href=${'/profile/' + quiz.owner.objectId} class="blink" data-micron="fade" data-micron-duration="2" > ${quiz.owner.username} </a> on the topic of ${quiz.topic} </span>
             <div class="quiz-meta">
                 <span> ${quiz.questions.length} Questions</span>
                 <span>|</span>
