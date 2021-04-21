@@ -1,10 +1,23 @@
 let currentPass = '';
 export function onArrowClick(formData) {
-    if (event.target.classList.contains('fa-arrow-down')) {
-        const input = event.target.previousElementSibling;
-        const parent = event.target.parentNode;
-        const nextForm = parent.nextElementSibling;
-        const backBtn = document.querySelector('#back-arrow-holder');
+    if (event.target.classList.contains('fa-arrow-down') || event.key == 'Enter') {
+        event.preventDefault();
+        let input;
+        let parent;
+        let nextForm;
+        let backBtn;
+
+        if(event.key != undefined){
+            input = event.target;
+            parent = event.target.parentNode;
+            nextForm = parent.nextElementSibling;
+        } else {
+            input = event.target.previousElementSibling;
+            parent = event.target.parentNode;
+            nextForm = parent.nextElementSibling;
+        }
+        
+        backBtn = document.querySelector('#back-arrow-holder');
 
         //Check for validation
         if (input.name === 'username' && validateUser(input)) {
@@ -80,8 +93,10 @@ function errorBackground(mistake) {
 export function nextSlide(parent, nextForm) {
     parent.classList.add('inactive');
     parent.classList.remove('active');
+    parent.querySelector('input').blur();
 
     nextForm.classList.add('active');
+    nextForm.querySelector('input').focus();
 }
 
 export function previousSlide(ev) {

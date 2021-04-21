@@ -3,34 +3,35 @@ import {onArrowClick,nextSlide, previousSlide} from '../common/formAction.js';
 import { register } from '../api/data.js';
 
 const registerTemplate = (onArrowClick, onSubmit, formData, ctx) => html`
-<div @click=${onArrowClick.bind(event, formData)} id="register-container" class="glass">
+<div @keypress=${onArrowClick.bind(event, formData)} @click=${onArrowClick.bind(event, formData)} id="register-container" class="glass">
     <div @click=${previousSlide} id="back-arrow-holder" class="common" style = ${styleMap({display: 'none'})}>
         <i class="fas fa-angle-double-left"></i>
         <span class="use-for-check">Back</span>
     </div>
-    
+
     <form @submit=${onSubmit.bind(event, formData, ctx)} id="register-form">
         <div class="name-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Username" name="username" required>
+            <input type="text" placeholder="Username" name="username" autofocus required>
             <i class="fas fa-arrow-down"></i>
         </div>
 
+
         <div class="email-field inactive">
             <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="Email" name="email" required>
+            <input type="email" placeholder="Email" name="email" autofocus required>
             <i class="fas fa-arrow-down"></i>
         </div>
 
         <div class="password-field inactive">
             <i class="fas fa-key"></i>
-            <input type="password" placeholder="Password" name="password" required>
+            <input type="password" placeholder="Password" name="password" autofocus required>
             <i class="fas fa-arrow-down"></i>
         </div>
 
         <div class="rePass-field inactive">
             <i class="fas fa-key"></i>
-            <input type="password" placeholder="Repeat Password" name="rePass" required>
+            <input type="password" placeholder="Repeat Password" name="rePass" autofocus required>
             <i class="fas fa-arrow-down"></i>
         </div>
 
