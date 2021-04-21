@@ -76,6 +76,15 @@ export async function editorPage(ctx){
     const { editor, updateEditor } = createQuizEditor(quiz, onSave);
     ctx.render(template(quiz, editor, updateCount));
 
+    [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => {
+        if(btn.textContent == 'Create New Quiz'){
+            btn.classList.add('clicked')
+        } else {
+            btn.classList.remove('clicked')
+        }
+    })
+
+
     async function updateCount(change = 0){
         const count = questions.length + change;
         await updateQuiz(quizId, {questionCount: count});
