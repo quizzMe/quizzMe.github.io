@@ -62,11 +62,14 @@ function decorateContext(ctx, next) {
 }
 
 function setUserNav() {
-    const user = sessionStorage.getItem('username');
+    const user = sessionStorage.getItem('userId');
 
     if (user) {
         document.querySelector('.user').style.display = 'block';
         document.querySelector('.guest').style.display = 'none';
+
+        const profileBtn = [...document.querySelector('.user').querySelectorAll('a')].filter(l => l.textContent == 'Profile')[0];
+        profileBtn.setAttribute('href', '/profile/' + user);
     } else {
         document.querySelector('.user').style.display = 'none';
         document.querySelector('.guest').style.display = 'block';

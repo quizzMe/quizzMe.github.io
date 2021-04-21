@@ -2,17 +2,6 @@ import { html, until, styleMap } from '../libraries.js';
 import { spinner } from '../common/loaders.js';
 import { getMostRecentQuizzes } from '../api/data.js';
 
-// export const loadingHomeTemplate = () => html`
-//     <div id="load-container">
-//         <h1 class="common" id="welcome-header">Welcome</h1>
-//          <p class="common" id="wait-msg">We shall start any minute now</p>
-            
-//        ${spinner()}
-            
-//         <p class="common" id="loading">Loading ...</p>
-//     </div>
-// `;
-
 
 const homeTemplate = (userId) => html `
 <div class="glass" id="home-container">

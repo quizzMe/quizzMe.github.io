@@ -1,7 +1,9 @@
-import { html, styleMap } from '../libraries.js';
+import { html, until } from '../libraries.js';
 import { getQuizzes, getUserById } from '../api/data.js';
+import { spinner } from '../common/loaders.js';
 
-const profileTemplate = ( quizzes, visitorIsOwner, userProfile) => html`
+
+const profileTemplate = (userId, quizzes, visitorIsOwner, userProfile) => html`
     <div id="profile-page" class="glass common">
 
         <div class="content-preview">
@@ -11,11 +13,17 @@ const profileTemplate = ( quizzes, visitorIsOwner, userProfile) => html`
 
             <h2>${visitorIsOwner ? 'You have' : `${userProfile} has`} ${quizzes.length} quiz${quizzes.length == 1 ? '' : 'zes'}:</h2>
         
-             ${quizzes.map(quizzTemplates)}
+             ${until(loadOwnerQuizzes(userId), spinner())}
         </div>
     </div>
 `;
 
+async function loadOwnerQuizzes(userId){
+    const allQuizzes = await getQuizzes();
+    const userQuizzes = allQuizzes.filter(x => x.owner.objectId == userId);
+
+    return userQuizzes.map(quizzTemplates);
+}
 
 const quizzTemplates = (quiz) => html`
 <article class="quiz-preview">
@@ -44,5 +52,5 @@ export async function profilePage(ctx){
     const userQuizzes = allQuizzes.filter(x => x.owner.objectId == userId);
     const userProfile = await getUserById(userId);
 
-    ctx.render(profileTemplate(userQuizzes, userId == sessionStorage.getItem('userId'), userProfile));
+    ctx.render(profileTemplate(userId, userQuizzes, userId == sessionStorage.getItem('userId'), userProfile));
 }
