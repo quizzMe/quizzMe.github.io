@@ -4,7 +4,8 @@ import { spinner } from '../../common/loaders.js';
 
 const quizTemplate = (quiz, questions, answers, currentIndex, onSelect, resetQuiz, onSubmit) => html`
 <section id="quiz" class="glass common">
-    <header id="quiz-navigation" class="edit-create-title">
+    ${sessionStorage.getItem('userId') != null ? 
+    html `<header id="quiz-navigation" class="edit-create-title">
         <h1>${quiz.title}</h1>
         <h2>Question ${currentIndex + 1} / ${questions.length}</h2>
         <nav class="quiestions-banner">
@@ -46,7 +47,24 @@ const quizTemplate = (quiz, questions, answers, currentIndex, onSelect, resetQui
             </nav>
         </article>
 
-    </div>
+    </div>`
+
+    : html `
+    <div id="info-div">
+        <div id="list-icon" class="sad-face-icon">
+        <i class="far fa-frown"></i>
+        </div>
+        <div id="greating" class="common">
+            <h1>Bad Request!</h1>
+            <p>
+            In order to take quizzes you must be registered.
+            </p>
+            <p>
+            It takes just a second!
+            </p>
+            <a href="/register" class="common choose blink" data-micron="fade" data-micron-duration=".8">Sign up here!</a>
+        </div>
+    </div>` }
 </section>
 `;
 
