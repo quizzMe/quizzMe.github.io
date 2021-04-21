@@ -25,7 +25,7 @@ page('/contacts', decorateContext, contactPage);
 page('/browse', decorateContext, renderBrowsePage);
 page('/create', decorateContext, editorPage);
 page('/edit/:id', decorateContext, editorPage);
-page('/details/:id', decorateContext, detailsPage);
+page('/details/:id', decorateContext, getQuiz, detailsPage);
 page('/quiz/:id', decorateContext, getQuiz, quizPage)
 
 page.start();
