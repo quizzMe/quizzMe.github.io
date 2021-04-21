@@ -11,7 +11,7 @@ const profileTemplate = (userId, quizzes, visitorIsOwner, userProfile) => html`
                 html`<h1>Hello, ${sessionStorage.getItem('username')}</h1>` 
                 : '' }
 
-            <h2>${visitorIsOwner ? 'You have' : `${userProfile} has`} ${quizzes.length} quiz${quizzes.length == 1 ? '' : 'zes'}:</h2>
+            <h2>${visitorIsOwner ? 'You have' : `${userProfile} has`} ${quizzes.length == 1 ? 'only': ''} ${quizzes.length} quiz${quizzes.length == 1 ? '' : 'zes'}:</h2>
         
              ${until(loadOwnerQuizzes(userId), spinner())}
         </div>
