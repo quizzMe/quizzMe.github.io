@@ -31,7 +31,8 @@ body, #guest-home-page {
 #browse-container,
 #editor,
 #quiz,
-#details{
+#details,
+#profile-page{
     width: 75%;
     margin: auto;
     margin-top: 2%;

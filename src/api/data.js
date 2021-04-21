@@ -23,6 +23,12 @@ function addOwner(object){
     return result
 }
 
+export async function getUserById(id) {
+    const response = await api.get(host + '/users/' + id)
+
+    return response.username;
+}
+
 // Quiz Collection
 export async function getQuizzes() {
     const quizzes = (await api.get(host + '/classes/Quiz')).results;
