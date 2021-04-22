@@ -8,7 +8,7 @@ const profileTemplate = (userId, quizzes, visitorIsOwner, userProfile) => html`
 
         <div class="content-preview">
              ${visitorIsOwner ? 
-                html`<h1>Hello, ${sessionStorage.getItem('username')}</h1>` 
+                html`<h1>${sessionStorage.getItem('username')}</h1>` 
                 : '' }
 
             <h2>${visitorIsOwner ? 'You have' : `${userProfile} has`} ${quizzes.length == 1 ? 'only': ''} ${quizzes.length} quiz${quizzes.length == 1 ? '' : 'zes'}:</h2>

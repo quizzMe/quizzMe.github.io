@@ -77,7 +77,6 @@ async function onSubmit(formData, ctx) {
     nextSlide(parent, nextForm, ctx);
     setTimeout(redirectHome, 1500);
     await register(formData);
-    console.log(formData);
 
     function redirectHome(){
         ctx.setUserNav();

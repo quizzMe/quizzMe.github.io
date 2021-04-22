@@ -98,7 +98,10 @@ export function nextSlide(parent, nextForm) {
     parent.querySelector('input').blur();
 
     nextForm.classList.add('active');
-    nextForm.querySelector('input').focus();
+    
+    if(nextForm.querySelector('input') != null){
+        nextForm.querySelector('input').focus();
+    }
 }
 
 export function previousSlide(ev) {
