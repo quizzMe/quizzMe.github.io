@@ -65,6 +65,16 @@ body::after{
     opacity: 0.6;
 }
 
+.content-page-holder{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+
+main{
+    margin-bottom: 50px;
+}
+
 
 .glass{
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.568);
