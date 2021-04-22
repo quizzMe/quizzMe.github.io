@@ -6,7 +6,7 @@ import { createQuestion as apiCreate, updateQuestion } from '../../api/data.js';
 
 const editorTemplate = (data, index, onSave, onCancel) => html`
 <div class="question-head">
-    <h3>Qestion ${index + 1}</h3>
+    <h3>Question ${index + 1}</h3>
     <div class="question-control">
         <button @click=${onSave} class="save-btn choose common"><i class="fas fa-check-double"></i>
             Save</button>

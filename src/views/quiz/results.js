@@ -59,7 +59,7 @@ export async function resultPage(ctx) {
         const resultHolder = document.getElementById('result-questions');
 
         resultHolder.style.display = resultHolder.style.display == 'none' ? 'block' : 'none';
-        ev.target.innerHTML = resultHolder.style.display == 'none' ? '<a> <i class="fas fa-clipboard-list"></i> See Details</a>' : '<a> <i class="fas fa-clipboard-list"></i> See Less</a>';
+        ev.target.innerHTML = resultHolder.style.display == 'none' ? '<i class="fas fa-clipboard-list"></i>See Details' : '<i class="fas fa-clipboard-list"></i> See Less';
 
         //<i class="fas fa-clipboard-list"></i> See Details</a>
     }
