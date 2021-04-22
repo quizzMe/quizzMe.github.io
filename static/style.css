@@ -130,3 +130,7 @@ a{
     75%		{ background-color: #b4b1c2;}
     100%	        { background-color: #d5d4e7;}
 } */
+#welcome-user a{
+    font-family: 'Dancing Script', cursive;
+    font-size: 30px;
+}
