@@ -1,0 +1,53 @@
+#summary .details h1{
+    font-size: 40px;
+}
+
+#summary .details h2:nth-child(2){
+    font-size: 35px;
+}
+
+#summary .details h2{
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.details h2 a {
+    color: rgb(84, 218, 84);
+}
+
+.summary-top{
+    margin-top: 6px;
+}
+
+.summary-top,
+.summary-bottom{
+    margin-bottom: 2px;
+    font-size: 18px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+}
+
+.btn-holderr{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.btn-holderr a{
+    font-size: 16px;
+    margin-right: 10px;
+    font-weight: 700;
+    padding: 7px 9px;
+}
+
+.btn-holderr a:hover{
+    font-size: 16px;
+    font-weight: 700;
+    padding: 7px 9px;
+}
+
+.result-holder{
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 80%;
+}
