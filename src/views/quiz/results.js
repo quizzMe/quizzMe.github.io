@@ -1,11 +1,12 @@
 import { html } from '../../libraries.js';
 
 const resultTemplate = (quiz, result) => html`
-<section id="summary">
-    <div class="hero layout">
-        <article class="details glass">
+<section id="summary" class="glass common">
+    <div>
+        <article class="details">
             <h1>Quiz Results</h1>
             <h2>${quiz.title}</h2>
+            <h2>A quiz by <a class="blink" data-micron="fade" data-micron-duration="2" href=${`/profile/${quiz.owner.objectId}`}>${quiz.owner.username}</a></h2>
 
             <div class="summary summary-top">
                 ${result.percent}%
