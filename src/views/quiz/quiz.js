@@ -149,7 +149,7 @@ export async function quizPage(ctx) {
 
         ctx.render(spinner())
         await submitSolution(ctx.quiz.objectId, solution);
-        ctx.page.redirect('/result/' + ctx.quiz.objectId);
+        ctx.page.redirect('/summary/' + ctx.quiz.objectId);
     }
 
 
