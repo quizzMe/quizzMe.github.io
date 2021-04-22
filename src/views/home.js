@@ -22,6 +22,7 @@ const homeTemplate = (userId) => html `
 
     <div id="more" style=${styleMap(userId ? {display: 'block'}: {display: 'none'})}>
 
+
     ${until(loadRecent(userId), spinner())}
 
     </div>

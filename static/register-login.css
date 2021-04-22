@@ -144,3 +144,18 @@ div.active{
     font-weight: 500;
     cursor: pointer;
 }
+
+.input-info{
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background: #FFFFFF; */
+    /* height: 50px; */
+    /* width: 400px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    transition: all 1.5s ease;
+}

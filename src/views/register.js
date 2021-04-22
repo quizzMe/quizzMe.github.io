@@ -10,18 +10,21 @@ const registerTemplate = (onArrowClick, onSubmit, formData, ctx) => html`
     </div>
 
     <form @submit=${onSubmit.bind(event, formData, ctx)} id="register-form">
+    
         <div class="name-field">
             <i class="fas fa-user"></i>
             <input type="text" placeholder="Username" name="username" required autofocus >
             <i class="fas fa-arrow-down"></i>
         </div>
+    
 
-
+       
         <div class="email-field inactive">
             <i class="fas fa-envelope"></i>
             <input type="email" placeholder="Email" name="email"  required>
             <i class="fas fa-arrow-down"></i>
         </div>
+  
 
         <div class="password-field inactive">
             <i class="fas fa-key"></i>
@@ -52,6 +55,12 @@ const formData = {};
 let currentPass = '';
 export function registerPage(ctx) {
     ctx.render(registerTemplate(onArrowClick, onSubmit, formData, ctx));
+    const currentField = document.querySelector('input').parentNode;
+    if(currentField.classList.contains('active')){
+        console.log('true');
+    }
+
+
     [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => {
         if(ctx.pathname.includes(btn.textContent.toLowerCase())){
             btn.classList.add('clicked')

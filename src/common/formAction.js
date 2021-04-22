@@ -18,6 +18,7 @@ export function onArrowClick(formData) {
         }
         
         backBtn = document.querySelector('#back-arrow-holder');
+        
 
         //Check for validation
         if (input.name === 'username' && validateUser(input)) {
@@ -50,7 +51,7 @@ function validateUser(user) {
         errorBackground(false);
         return true;
     } else {
-        errorBackground(true);
+        errorBackground(true, 'Username must be at least 6 charachters long. Only word characters are allowed!');
     }
 }
 
@@ -59,7 +60,7 @@ function validateSamePass(currentPass, inputPass){
         errorBackground(false);
         return true;
     } else {
-        errorBackground(true);
+        errorBackground(true, 'Passwords don\'t match!');
     }
 }
 
@@ -70,7 +71,7 @@ function validateEmail(email) {
         errorBackground(false);
         return true;
     } else {
-        errorBackground(true);
+        errorBackground(true, 'Please sign up with a valid email!');
     }
 }
 
@@ -81,13 +82,14 @@ function validatePassword(pass){
         errorBackground(false);
         return true;
     } else {
-        errorBackground(true);
+        errorBackground(true, 'Password must be at least 6 characters long, containing both numbers and letters!');
     }
 }
 
-function errorBackground(mistake) {
+function errorBackground(mistake, message) {
     const container = document.getElementById('register-container') || document.getElementById('login-container');
     mistake ? container.style.backgroundImage = 'linear-gradient(97deg, rgba(218,111,111,0.989233193277311) 21%, rgba(172,75,75,1) 48%, rgba(170,93,93,1) 72%)' : container.style.backgroundImage = 'linear-gradient(90deg, rgba(33,29,99,1) 0%, rgba(68,37,190,1) 38%, rgba(131,24,187,1) 100%)'
+    message ? setTimeout(function(){alert(message)}, 700) : '';
 }
 
 export function nextSlide(parent, nextForm) {
