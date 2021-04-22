@@ -51,3 +51,8 @@
     margin-bottom: 30px;
     width: 80%;
 }
+
+.result-holder i{
+    float: right;
+    font-size: 30px;
+}
