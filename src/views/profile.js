@@ -3,7 +3,7 @@ import { getQuizzes, getUserById, getSolutionsByUserId, getQuizById } from '../a
 import { spinner } from '../common/loaders.js';
 
 
-const profileTemplate = (userId, quizzes, visitorIsOwner, userProfile, showMyQuizzes, loadScores) => html`
+const profileTemplate = (userId, quizzes, visitorIsOwner, userProfile, showMyQuizzes, loadScores, showAllScores) => html`
     <div id="profile-page" class="glass common">
 
         <div class="content-preview">
@@ -14,10 +14,10 @@ const profileTemplate = (userId, quizzes, visitorIsOwner, userProfile, showMyQui
                 <h2>${visitorIsOwner ? 'Your' : `${userProfile}'s`} best score:</h2>
 
                 <div class="best-score-holder">
-                    ${until(loadScores(userId), spinner())}
+                    ${until(loadScores(userId, false), spinner())}
                 </div>
 
-                <div class="btn-holderr">
+                <div @click=${showAllScores.bind(event, userId)} class="btn-holderr">
                 <a class="add-answer-btn common choose" href='javascript:void(0)'> <i class="fas fa-info"></i> Show All Scores</a>
             </div>
 
@@ -36,14 +36,13 @@ const profileTemplate = (userId, quizzes, visitorIsOwner, userProfile, showMyQui
 `;
 
 async function loadOwnerQuizzes(userId){
-    render(spinner(), document.querySelector('.own-quizzes-holder'))
     const allQuizzes = await getQuizzes();
     const userQuizzes = allQuizzes.filter(x => x.owner.objectId == userId);
 
     return userQuizzes.map(quizzTemplates);
 }
 
-async function loadScores(userId){
+async function loadScores(userId, isOn){
     const solutions = await getSolutionsByUserId(userId);
     let filteredSolutions = solutions.sort((a,b) => (b.correct / b. total * 100) - (a.correct / a. total * 100));
 
@@ -57,7 +56,9 @@ async function loadScores(userId){
 
     }, [])
 
-    return await filteredSolutions.map(bestScores)
+    const best = [];
+    best.push(filteredSolutions[0]);
+    return isOn ? await filteredSolutions.map(bestScores) : await best.map(bestScores);
 }
 
 const quizzTemplates = (quiz) => html`
@@ -103,6 +104,7 @@ async function showMyQuizzes(userId, event){
     const element = document.querySelector('.own-quizzes-holder');
     const quizzes = await loadOwnerQuizzes(userId);
 
+    
    event.target.innerHTML = event.target.innerHTML == ' <i class="fas fa-info"></i> Show Owner Quizzes' ?
    ' <i class="fas fa-info"></i> Hide Owner Quizzes' :
    ' <i class="fas fa-info"></i> Show Owner Quizzes'
@@ -113,6 +115,19 @@ async function showMyQuizzes(userId, event){
     
 }
 
+async function showAllScores(userId, event){
+    const element = document.querySelector('.best-score-holder');
+    render(spinner(), document.querySelector('.best-score-holder'))
+
+    event.target.innerHTML = event.target.innerHTML == ' <i class="fas fa-info"></i> Show All Scores' ? 
+    ' <i class="fas fa-info"></i> Hide All Scores' :
+    ' <i class="fas fa-info"></i> Show All Scores'
+
+    event.target.innerHTML == ' <i class="fas fa-info"></i> Show All Scores' ? 
+    render(await loadScores(userId, false), element) :
+    render(await loadScores(userId, true), element)
+}
+
 export async function profilePage(ctx){
     const userId = ctx.params.id;
     const allQuizzes = await getQuizzes();
@@ -120,7 +135,7 @@ export async function profilePage(ctx){
     const userProfile = await getUserById(userId);
 
 
-    ctx.render(profileTemplate(userId, userQuizzes, userId == sessionStorage.getItem('userId'), userProfile, showMyQuizzes, loadScores));
+    ctx.render(profileTemplate(userId, userQuizzes, userId == sessionStorage.getItem('userId'), userProfile, showMyQuizzes, loadScores, showAllScores));
 
     [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => {
         if(ctx.pathname.includes(btn.textContent.toLowerCase())){
