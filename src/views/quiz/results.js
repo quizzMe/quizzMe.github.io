@@ -6,7 +6,9 @@ const resultTemplate = (quiz, result, correctAnswers, showResults) => html`
         <h1>Quiz Results</h1>
         <h2>${quiz.title}</h2>
         <h2>A quiz by <a class="blink" data-micron="fade" data-micron-duration="2"
-                href=${`/profile/${quiz.owner.objectId}`}>${quiz.owner.username} </a> </h2> <div class="summary-top">
+                href=${`/profile/${quiz.owner.objectId}`}>${quiz.owner.username} </a> </h2> 
+                
+                <div class="summary-top">
                 ${result.percent}%
                 </div>
 

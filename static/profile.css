@@ -4,3 +4,8 @@
     border-color: rgba(124, 188, 6, 0.92);
     background-color: green;
 }
+
+.profile-view:hover {
+    border-color: rgba(124, 188, 6, 0.92);
+    background-color: green;
+}
