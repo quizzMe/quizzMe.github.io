@@ -8,10 +8,10 @@ const profileTemplate = (userId, quizzes, visitorIsOwner, userProfile, showMyQui
 
         <div class="content-preview">
              ${visitorIsOwner ? 
-                html`<h1>${sessionStorage.getItem('username')}</h1>` 
+                html`<h1 class="score-nav">${sessionStorage.getItem('username')}</h1>` 
                 : '' }
 
-                <h2>${visitorIsOwner ? 'Your' : `${userProfile}'s`} best score:</h2>
+                <h2 class="score-nav">${visitorIsOwner ? 'Your' : `${userProfile}'s`} best score:</h2>
 
                 <div class="best-score-holder">
                     ${until(loadScores(userId, false), spinner())}
@@ -44,6 +44,25 @@ async function loadOwnerQuizzes(userId){
 
 async function loadScores(userId, isOn){
     const solutions = await getSolutionsByUserId(userId);
+    
+    if(solutions.length == 0) {
+
+        return html`
+        <div id="info-div">
+             <div id="list-icon" class="sad-face-icon">
+             <i class="fas fa-bomb"></i>
+            </div>
+            <div id="greating" class="common">
+                <h1>No solutions yet!</h1>
+                <p>
+                    Take a quiz first!
+                </p>
+                <a href="/browse" class="common choose blink" data-micron="fade" data-micron-duration=".8">Check Quizzes</a>
+            </div>
+        </div>
+        `
+    }
+
     let filteredSolutions = solutions.sort((a,b) => (b.correct / b. total * 100) - (a.correct / a. total * 100));
 
     await filteredSolutions.reduce(async (a, c) => {

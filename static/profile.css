@@ -1,6 +1,21 @@
+.score-nav{
+    font-family: 'Montserrat', 'sans-serif';
+}
+
 .all-scores{
     display: flex;
     flex-flow: column wrap;
+}
+
+.all-scores a{
+    transition: 0.2s ease;
+}
+
+.all-scores a:hover{
+    background: transparent;
+    font-size: 16px;
+    font-weight: 900;
+    padding: 8px 10px;
 }
 
 .profile-view {
