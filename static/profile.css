@@ -1,0 +1,6 @@
+.profile-view {
+    display: flex;
+    flex-flow: column wrap;
+    border-color: rgba(124, 188, 6, 0.92);
+    background-color: green;
+}

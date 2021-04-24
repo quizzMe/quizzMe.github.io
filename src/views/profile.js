@@ -1,5 +1,5 @@
 import { html, until } from '../libraries.js';
-import { getQuizzes, getUserById } from '../api/data.js';
+import { getQuizzes, getUserById, getSolutionsByUserId } from '../api/data.js';
 import { spinner } from '../common/loaders.js';
 
 
@@ -10,6 +10,24 @@ const profileTemplate = (userId, quizzes, visitorIsOwner, userProfile) => html`
              ${visitorIsOwner ? 
                 html`<h1>${sessionStorage.getItem('username')}</h1>` 
                 : '' }
+
+                <h2>${visitorIsOwner ? 'Your' : `${userProfile}'s`} best score:</h2>
+                <article class="quiz-preview profile-view">
+                <h2>History of the Byzantine Empire</h2>
+
+                <div class="summary-top">
+                100%
+                </div>
+
+                <div class="summary-bottom view-quiz">
+                    3/3 correct answers
+                </div>
+
+                <div class="btn-holderr">
+                    <a class="add-answer-btn common choose" href='#'> <i
+                        class="fas fa-sync-alt"></i> View Quiz</a>
+                </div>
+                </article>
 
             <h2>${visitorIsOwner ? 'You have' : `${userProfile} has`} ${quizzes.length == 1 ? 'only': ''} ${quizzes.length} quiz${quizzes.length == 1 ? '' : 'zes'}:</h2>
         
@@ -51,6 +69,9 @@ export async function profilePage(ctx){
     const allQuizzes = await getQuizzes();
     const userQuizzes = allQuizzes.filter(x => x.owner.objectId == userId);
     const userProfile = await getUserById(userId);
+    const solutions = await getSolutionsByUserId(userId);
+    const filteredSolutions = solutions.sort((a,b) => (b.correct / b. total * 100) - (a.correct / a. total * 100));
+    console.log(solutions);
 
     ctx.render(profileTemplate(userId, userQuizzes, userId == sessionStorage.getItem('userId'), userProfile));
 
