@@ -1,4 +1,4 @@
-import { html, until, render } from '../libraries.js';
+import { html, until, render, classMap } from '../libraries.js';
 import { getQuizzes, getUserById, getSolutionsByUserId, getQuizById } from '../api/data.js';
 import { spinner } from '../common/loaders.js';
 
@@ -58,7 +58,7 @@ async function loadScores(userId, isOn){
 
     const best = [];
     best.push(filteredSolutions[0]);
-    return isOn ? await filteredSolutions.map(bestScores) : await best.map(bestScores);
+    return isOn ? await filteredSolutions.map((s, i) => bestScores(s, i)) : await best.map(bestScores);
 }
 
 const quizzTemplates = (quiz) => html`
@@ -82,8 +82,8 @@ const quizzTemplates = (quiz) => html`
 </article>
 `;
 
-const bestScores = (solution) => html`
-<article class="quiz-preview profile-view">
+const bestScores = (solution, index) => html`
+<article class=${classMap(index == 0 ? {'quiz-preview': true, 'all-scores':true, 'profile-view' : true} : {'quiz-preview': true, 'all-scores':true, 'profile-view' : false})}>
     <h2>${solution.quiz.title}</h2>
 
     <div class="summary-top">

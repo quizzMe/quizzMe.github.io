@@ -1,6 +1,9 @@
-.profile-view {
+.all-scores{
     display: flex;
     flex-flow: column wrap;
+}
+
+.profile-view {
     border-color: rgba(124, 188, 6, 0.92);
     background-color: green;
 }
