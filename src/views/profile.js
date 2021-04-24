@@ -1,9 +1,9 @@
 import { html, until, render } from '../libraries.js';
-import { getQuizzes, getUserById, getSolutionsByUserId } from '../api/data.js';
+import { getQuizzes, getUserById, getSolutionsByUserId, getQuizById } from '../api/data.js';
 import { spinner } from '../common/loaders.js';
 
 
-const profileTemplate = (userId, quizzes, visitorIsOwner, userProfile, showMyQuizzes) => html`
+const profileTemplate = (userId, quizzes, visitorIsOwner, userProfile, showMyQuizzes, loadScores) => html`
     <div id="profile-page" class="glass common">
 
         <div class="content-preview">
@@ -12,31 +12,24 @@ const profileTemplate = (userId, quizzes, visitorIsOwner, userProfile, showMyQui
                 : '' }
 
                 <h2>${visitorIsOwner ? 'Your' : `${userProfile}'s`} best score:</h2>
-                <article class="quiz-preview profile-view">
-                    <h2>History of the Byzantine Empire</h2>
 
-                    <div class="summary-top">
-                        100%
-                    </div>
+                <div class="best-score-holder">
+                    ${until(loadScores(userId), spinner())}
+                </div>
 
-                    <div class="summary-bottom view-quiz">
-                         3/3 correct answers
-                    </div>
-
-                    <div class="btn-holderr">
-                        <a class="add-answer-btn common choose" href='#'> <i class="fas fa-info"></i> View Quiz</a>
-                    </div>
-                </article>
+                <div class="btn-holderr">
+                <a class="add-answer-btn common choose" href='javascript:void(0)'> <i class="fas fa-info"></i> Show All Scores</a>
+            </div>
 
             <h2>${visitorIsOwner ? 'You have' : `${userProfile} has`} ${quizzes.length == 1 ? 'only': ''} ${quizzes.length} quiz${quizzes.length == 1 ? '' : 'zes'}:</h2>
         
             <div @click=${(showMyQuizzes.bind(event, userId))} class="btn-holderr">
-                <a class="add-answer-btn common choose" href='javascript:void(0)'> <i class="fas fa-info"></i> Show Own Quizzes</a>
+                <a class="add-answer-btn common choose" href='javascript:void(0)'> <i class="fas fa-info"></i> Show Owner Quizzes</a>
             </div>
 
              <div class="own-quizzes-holder">
 
-                <!-- until(loadOwnerQuizzes(userId), spinner()) -->
+                
              </div>
         </div>
     </div>
@@ -48,6 +41,23 @@ async function loadOwnerQuizzes(userId){
     const userQuizzes = allQuizzes.filter(x => x.owner.objectId == userId);
 
     return userQuizzes.map(quizzTemplates);
+}
+
+async function loadScores(userId){
+    const solutions = await getSolutionsByUserId(userId);
+    let filteredSolutions = solutions.sort((a,b) => (b.correct / b. total * 100) - (a.correct / a. total * 100));
+
+    await filteredSolutions.reduce(async (a, c) => {
+        const details = await getQuizById(c.quiz.objectId);
+        c.quiz = details;
+        const result = await a;
+        result.push(details.title)
+
+        return result;
+
+    }, [])
+
+    return await filteredSolutions.map(bestScores)
 }
 
 const quizzTemplates = (quiz) => html`
@@ -71,15 +81,33 @@ const quizzTemplates = (quiz) => html`
 </article>
 `;
 
+const bestScores = (solution) => html`
+<article class="quiz-preview profile-view">
+    <h2>${solution.quiz.title}</h2>
+
+    <div class="summary-top">
+         ${(solution.correct / solution.total * 100).toFixed(0)}%
+    </div>
+
+    <div class="summary-bottom view-quiz">
+        ${solution.correct}/${solution.total} correct answers
+    </div>
+
+    <div class="btn-holderr">
+        <a class="add-answer-btn common choose" href=${`/details/${solution.quiz.objectId}`}> <i class="fas fa-info"></i> View Quiz</a>
+    </div>
+</article>
+`;
+
 async function showMyQuizzes(userId, event){
     const element = document.querySelector('.own-quizzes-holder');
     const quizzes = await loadOwnerQuizzes(userId);
 
-   event.target.innerHTML = event.target.innerHTML == ' <i class="fas fa-info"></i> Show Own Quizzes' ?
-   ' <i class="fas fa-info"></i> Hide Own Quizzes' :
-   ' <i class="fas fa-info"></i> Show Own Quizzes'
+   event.target.innerHTML = event.target.innerHTML == ' <i class="fas fa-info"></i> Show Owner Quizzes' ?
+   ' <i class="fas fa-info"></i> Hide Owner Quizzes' :
+   ' <i class="fas fa-info"></i> Show Owner Quizzes'
 
-   event.target.innerHTML == ' <i class="fas fa-info"></i> Show Own Quizzes' ? 
+   event.target.innerHTML == ' <i class="fas fa-info"></i> Show Owner Quizzes' ? 
    render('', element) :
    render(quizzes, element)
     
@@ -90,11 +118,9 @@ export async function profilePage(ctx){
     const allQuizzes = await getQuizzes();
     const userQuizzes = allQuizzes.filter(x => x.owner.objectId == userId);
     const userProfile = await getUserById(userId);
-    const solutions = await getSolutionsByUserId(userId);
-    const filteredSolutions = solutions.sort((a,b) => (b.correct / b. total * 100) - (a.correct / a. total * 100));
-    console.log(solutions);
 
-    ctx.render(profileTemplate(userId, userQuizzes, userId == sessionStorage.getItem('userId'), userProfile, showMyQuizzes));
+
+    ctx.render(profileTemplate(userId, userQuizzes, userId == sessionStorage.getItem('userId'), userProfile, showMyQuizzes, loadScores));
 
     [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => {
         if(ctx.pathname.includes(btn.textContent.toLowerCase())){
