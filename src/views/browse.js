@@ -6,10 +6,11 @@ const browseTemplate = (choose) => html `
     <div id="browse-container" class="glass">
     <header class="browse-header">
         <h1 class="common">All quizzes</h1>
-    <div>
-        <form @change=${choose}>
+
+    <div class="filter-holder">
+        <form @change=${choose} class="common">
         <label>
-            <span>Topic:</span>
+            <span>Filter quizzes by category:</span>
             <select class="input" name="topic" .value = '' >
             <option value="0">-- All</option>
                 ${Object.entries(topics).map(([k,v]) => html`<option value=${k}>${v}</option>`)}
@@ -92,6 +93,7 @@ const quizTemplate = (quiz) => html`
 
 async function choose(ev){
     const element = document.querySelector('.questions-browse-holder');
+    render(spinner(), element)
     render(await loadAllQuizzes(ev.target.value), element)
     
 }
