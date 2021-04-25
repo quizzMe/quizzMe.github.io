@@ -52,7 +52,7 @@ const quizTemplate = (quiz, questions, answers, currentIndex, onSelect, resetQui
     : html `
     <div id="info-div">
         <div id="list-icon" class="sad-face-icon">
-        <i class="far fa-frown"></i>
+        <i class="fas fa-lock"></i>
         </div>
         <div id="greating" class="common">
             <h1>Bad Request!</h1>

@@ -183,7 +183,6 @@
     margin: auto;
     padding-top: 45px;
     padding-bottom: 45px;
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 #recent-quizzes h2{
@@ -267,4 +266,15 @@
 .veiw-all-quizzes a:hover{
     padding:9px 16px;
     font-size: 19px;
+}
+
+/* Browse page */
+
+.browse-header::after{
+    content: ""; 
+    display: block;
+    margin: 0 auto; 
+    width: 85%; 
+    padding-top: 20px; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
 }
