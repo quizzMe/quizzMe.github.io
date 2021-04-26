@@ -78,7 +78,7 @@ const quizTemplate = (quiz) => html`
         <div class="quiz-meta">
             <span>${quiz.questionCount} question${quiz.questionCount == 1 ? '' : 's'}</span>
             <span>|</span>
-            <span>Taken ? times</span>
+            <span>Taken ${quiz.taken} ${quiz.taken==1 ? 'time' : 'times'}</span>
             </div>
         </div>
 

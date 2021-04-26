@@ -1,6 +1,7 @@
 import { html } from '../libraries.js';
+import {getSolutionCount} from '../api/data.js';
 
-const detailsTemplate = (quiz) => html`
+const detailsTemplate = (quiz, taken) => html`
 <section id="details" class="glass common">
     <div class="question-template">
         <article class="details">
@@ -9,7 +10,7 @@ const detailsTemplate = (quiz) => html`
             <div class="quiz-meta">
                 <span> ${quiz.questions.length} Questions</span>
                 <span>|</span>
-                <span>Taken ? times</span>
+                <span>Taken ${taken} ${taken==1 ? 'time' : 'times'}</span>
             </div>
             <p class="quiz-desc"> ${quiz.description} </p>
 
@@ -23,7 +24,9 @@ const detailsTemplate = (quiz) => html`
 `;
 
 export async function detailsPage (ctx){
-    ctx.render(detailsTemplate(ctx.quiz));
+    let taken = await getSolutionCount(ctx.quiz.objectId.split());
+    taken = Object.values(taken)[0]
+    ctx.render(detailsTemplate(ctx.quiz, taken));
 
     // clears the clicked effect on all buttons
     [...document.getElementById('navigation').querySelectorAll('a')].forEach(btn => btn.classList.remove('clicked'))
