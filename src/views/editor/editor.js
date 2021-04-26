@@ -35,6 +35,12 @@ const quizEditorTemplate = (quiz, onSave, inProgress) => html`
                 ${Object.entries(topics).map(([k,v]) => html`<option value=${k} ?selected=${quiz? quiz.topic == k : 0} >${v}</option>`)}
             </select>
         </label>
+
+        <label>
+            <span>Time:</span>
+            <input class="input" name="time" type="number" placeholder="minutes">
+        </label>
+
         <label>
             <span>Description:</span>
             <textarea name="description" .value=${quiz ? quiz.description : ''} ?disabled=${inProgress} ></textarea>
@@ -97,12 +103,19 @@ export async function editorPage(ctx){
         const title = formData.get('title');
         const topic = formData.get('topic');
         const description = formData.get('description');
+        const time = formData.get('time');
+        
+        if(time <= 0){
+            return alert('Set an appropriate value to time. Time cannot be 0 or negative number!')
+        }
+
     
         const data = {
             title,
             topic,
             description,
-            questionCount: questions.length
+            questionCount: questions.length,
+            time: Number(time)
         }
 
         try{

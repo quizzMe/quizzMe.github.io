@@ -12,6 +12,10 @@ const quizTemplate = (quiz, questions, answers, currentIndex, onSelect, resetQui
             <span class="block">Question index</span>
             ${questions.map((q, i) => indexTemplate(quiz.objectId, i, currentIndex == i, answers[i] != undefined))}
         </nav>
+        <p class="current-time">
+        <span>Time left: </span>
+        <span id="time">${quiz.time < 10 ? `0${quiz.time}:00` : `${quiz.time}:00`}</span>
+        </p>
     </header>
     <div class="question-template">
 
