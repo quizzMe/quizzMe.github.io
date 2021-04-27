@@ -38,7 +38,7 @@ const quizEditorTemplate = (quiz, onSave, inProgress) => html`
 
         <label>
             <span>Time:</span>
-            <input class="input" name="time" type="number" placeholder="minutes">
+            <input class="input" name="time" type="number" placeholder="minutes" .value=${quiz ? quiz.time : ''} >
         </label>
 
         <label>

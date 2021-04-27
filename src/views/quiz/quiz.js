@@ -1,4 +1,4 @@
-import { html, until, styleMap, classMap } from '../../libraries.js';
+import { html, until, styleMap, classMap, render } from '../../libraries.js';
 import { submitSolution } from '../../api/data.js';
 import { spinner } from '../../common/loaders.js';
 
@@ -14,7 +14,7 @@ const quizTemplate = (quiz, questions, answers, currentIndex, onSelect, resetQui
         </nav>
         <p class="current-time">
         <span>Time left: </span>
-        <span id="time">${quiz.time < 10 ? `0${quiz.time}:00` : `${quiz.time}:00`}</span>
+        <span id="time"></span>
         </p>
     </header>
     <div class="question-template">
@@ -50,7 +50,6 @@ const quizTemplate = (quiz, questions, answers, currentIndex, onSelect, resetQui
                 </div>
             </nav>
         </article>
-
     </div>`
 
     : html `
@@ -105,14 +104,24 @@ const answerTemplate = (questionIndex, index, value) => html`
 
 
 export async function quizPage(ctx) {
+    let state = {time: 0, path: ''};
     const index = Number(ctx.querystring.split('=')[1] || 1) - 1;
     const questions = ctx.quiz.questions;
-    const answers = ctx.quiz.answers;
+    let answers = ctx.quiz.answers;    
     update();
+    
+    const initialMinutes = ctx.quiz.time;
+    let time = initialMinutes * 60;
+    state.path =  '/quiz/' + ctx.quiz.objectId;
+
+    if(state.path.toString().includes(ctx.path)){
+        state.time = time;
+        countDown();
+    }
+
 
     function onSelect(event){
         const questionIndex = Number(event.target.name.split('-')[1]);
-        
         if(Number.isNaN(questionIndex) != true){
             const answer = Number(event.target.value);
             answers[questionIndex] = answer;
@@ -129,13 +138,69 @@ export async function quizPage(ctx) {
         }
     }
 
-    async function onSubmit(){
-        const unaswered = answers.filter(x => x == undefined).length;
-        if(unaswered > 0){
-            const confirmed = confirm(`There are ${unaswered} unanswered questions. Are you sure you want to proceed forward?`)
+    function countDown(){
+        const countDownEl = document.getElementById('time');
+        const timeHolder = document.querySelector('.current-time')
+        setInterval(updateTime, 1000);
+        // const a = [...document.getElementsByClassName('q-index')];
         
-            if(confirmed == false){
-                return;
+        // a.forEach(x => x.classList.remove('q-answered'));
+
+        function updateTime(){
+            let minutes;
+            let seconds;
+            
+            if(window.location.href.toString().includes('quiz') == false){
+                state.time = ctx.quiz.time * 60;
+                answers = answers.reduce((a,c) => {
+                        a.push(undefined);
+                    
+                        return a;
+                    }, [])
+                    
+                    // a.forEach(x => x.classList.remove('q-answered'));
+                    
+                return false;
+            } else {
+               
+                minutes = Math.floor(state.time / 60);
+                seconds = state.time % 60;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                
+                
+                time--;
+                state.time = time;
+
+                if(state.time <= 60){
+                    timeHolder.style.backgroundColor = 'red';
+                    timeHolder.classList.add('blink')
+                    timeHolder.setAttribute('data-micron', 'fade');
+                    timeHolder.setAttribute('data-micron-duration', '0.4s');
+                }
+    
+                if(state.time == 0){
+                    onSubmit(false);
+                    return false;
+                } else {
+                    countDownEl.textContent = `${minutes}:${seconds}`
+                }
+            }
+        }
+   
+    }
+
+    async function onSubmit(verify = true){
+        const unaswered = answers.filter(x => x == undefined).length;
+
+        if(verify == true){
+
+            if(unaswered > 0){
+                const confirmed = confirm(`There are ${unaswered} unanswered questions. Are you sure you want to proceed forward?`)
+            
+                if(confirmed == false){
+                    return;
+                }
             }
         }
 

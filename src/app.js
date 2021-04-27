@@ -6,7 +6,7 @@ import { aboutPage } from './views/about.js';
 import { contactPage } from './views/contacts.js';
 import { renderBrowsePage } from './views/browse.js';
 import { editorPage } from './views/editor/editor.js';
-import { quizPage } from './views/quiz/quiz.js';
+import { quizPage} from './views/quiz/quiz.js';
 import { resultPage } from './views/quiz/results.js';
 import { detailsPage } from './views/details.js';
 import { profilePage } from './views/profile.js';
@@ -55,7 +55,6 @@ function clearCache(quizId) {
         delete state[quizId];
     }
 }
-
 
 function decorateContext(ctx, next) {
     ctx.render = (content) => render(content, main);
