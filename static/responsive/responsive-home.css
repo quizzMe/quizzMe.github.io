@@ -1,0 +1,21 @@
+/* Phone */
+@media all and (max-width: 520px){
+
+    body::after,
+    body::before{
+        display: none;
+    }
+
+    #header-nav{
+        display: block;
+    }
+
+    #logo{
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    #logo::before{
+        content: '';
+    }
+}

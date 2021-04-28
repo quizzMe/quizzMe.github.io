@@ -12,6 +12,11 @@
 
 @import 'https://use.fontawesome.com/releases/v5.10.2/css/all.css';
 
+/* Responsive */
+@import './responsive/responsive-home.css';
+
+
+
 * {
     margin: 0;
     padding: 0;
