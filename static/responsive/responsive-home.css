@@ -13,9 +13,47 @@
     #logo{
         text-align: center;
         margin-bottom: 40px;
+        font-size: 38px;
+    }
+
+    #logo i{
+        font-size: 30px;
     }
 
     #logo::before{
         content: '';
+    }
+
+    .user,
+    .guest{
+        width: 100%;
+    }
+
+    #header-nav #navigation ul{
+        flex-flow: column;
+        justify-content: space-between;
+    }
+
+    #header-nav #navigation ul li{
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    #header-nav #navigation ul li a{
+        width: 100%;
+    }
+
+    #home-container #info-div{
+        height: 60vh;
+        width: 72%;
+        text-align: center;
+    }
+
+    #home-container #info-div #greating{
+        margin-right: 0px;
+    }
+
+    #home-container #info-div #list-icon{
+        display: none;
     }
 }
