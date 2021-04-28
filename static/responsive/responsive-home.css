@@ -44,7 +44,7 @@
     }
 
     #home-container #info-div{
-        height: 60vh;
+        height: 72vh;
         width: 72%;
         text-align: center;
     }
@@ -53,7 +53,26 @@
         margin-right: 0px;
     }
 
+    #home-container #info-div #greating h1{
+        font-size: 35px;
+        margin-bottom: 18px;
+    }
+
+    #home-container #info-div #greating p{
+        margin-bottom: 23px;
+        font-size: 21px;
+    }
+
+    #home-container #info-div #greating a{
+        margin:auto;
+        font-size: 17px;
+    }
+
     #home-container #info-div #list-icon{
         display: none;
+    }
+
+    #show-more{
+        margin-bottom: 30px;
     }
 }
