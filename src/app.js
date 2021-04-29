@@ -31,7 +31,8 @@ hamburger.addEventListener('click', ()=>{
 navLinks.forEach(ul=> {
     ul.addEventListener('click', (ev)=>{
         if(ev.target.tagName == 'A' || ev.target.tagName == 'LI'){
-            ul.classList.remove('open')
+            ul.classList.remove('open');
+            links.forEach(l => l.classList.remove('fade'))
         }
     })
 })
