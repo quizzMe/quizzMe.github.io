@@ -6,6 +6,20 @@
         display: none;
     }
 
+    #home-container,
+    #register-container,
+    #login-container,
+    #about-container,
+    #contacts-container,
+    #browse-container,
+    #editor,
+    #quiz,
+    #details,
+    #profile-page,
+    #summary{
+    width: 100%;
+}
+
     .content-page-holder{
         margin-top: -21%
     }
@@ -31,20 +45,6 @@
     #header-nav #navigation{
         display: none;
     }
-
-    /* #header-nav #navigation ul{
-        flex-flow: column;
-        justify-content: space-between;
-    } */
-
-    /* #header-nav #navigation ul li{
-        margin: auto;
-        margin-bottom: 20px;
-    }
-
-    #header-nav #navigation ul li a{
-        width: 100%;
-    } */
 
     #home-container #info-div{
         height: 72vh;
@@ -122,7 +122,7 @@
     .hamburger{
         position: absolute;
         cursor: pointer;
-        right: 5%;
+        right: 2%;
         top: -80%;
         transform: translate(-5%, -80%);
     }
@@ -133,6 +133,7 @@
 
     #mobile-navigation .nav-links{
         position: fixed;
+        left: 0;
         z-index: 1;
         height: 90vh;
         width: 100%;
@@ -195,9 +196,39 @@
     }
 }
 
+/* Fix for smaller phone */
+@media all and (max-width: 360px){
+    .hamburger{
+        right: 43%;
+        top: -15%;
+    }
+}
+
+@media all and (max-width: 420px){
+    #home-container #info-div{
+        height: 80vh;
+    }
+}
+
 
 @media all and (min-width: 551px){
     #mobile-navigation{
         display: none;
     }
+
+    #home-container,
+#register-container,
+#login-container,
+#about-container,
+#contacts-container,
+#browse-container,
+#editor,
+#quiz,
+#details,
+#profile-page,
+#summary{
+    width: 75%;
+}
+
+
 }

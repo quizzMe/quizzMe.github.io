@@ -41,7 +41,7 @@ body, #guest-home-page {
 #details,
 #profile-page,
 #summary{
-    width: 75%;
+    /* width: 75%; */
     margin: auto;
     margin-top: 2%;
     position: relative;
