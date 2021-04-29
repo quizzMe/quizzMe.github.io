@@ -110,7 +110,9 @@
         text-align: center;
     }
 
-
+    #recent-quizzes{
+        width: 100%;
+    }
 
     /* Hamburger Menu */
     #mobile-navigation{
@@ -185,9 +187,6 @@
         font-size: 20px;
     }
 
-    #recent-quizzes{
-        width: 100%;
-    }
 
 
     /* Browse Page */
@@ -208,10 +207,23 @@
     }
 }
 
-/* For longer phones */
-@media all and (min-height: 780px){
-    .hamburger{
-        top: -66%;
+@media all and (min-width: 551px){
+    #mobile-navigation{
+        display: none;
+    }
+
+    #home-container,
+    #register-container,
+    #login-container,
+    #about-container,
+    #contacts-container,
+    #browse-container,
+    #editor,
+    #quiz,
+    #details,
+    #profile-page,
+    #summary{
+    width: 75%;
     }
 }
 
@@ -221,25 +233,16 @@
     }
 }
 
-
-@media all and (min-width: 551px){
-    #mobile-navigation{
-        display: none;
+/* For longer phones */
+@media all and (min-height: 780px){
+    .hamburger{
+        top: -66%;
     }
-
-    #home-container,
-#register-container,
-#login-container,
-#about-container,
-#contacts-container,
-#browse-container,
-#editor,
-#quiz,
-#details,
-#profile-page,
-#summary{
-    width: 75%;
+    #mobile-navigation .nav-links.open{
+        clip-path: circle(880px at 90% -10%);
+        -webkit-clip-path: circle(880px at 90% -10%);
+        pointer-events: all;
+    }
 }
 
 
-}
