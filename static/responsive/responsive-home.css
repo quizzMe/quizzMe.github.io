@@ -204,6 +204,13 @@
     }
 }
 
+/* For longer phones */
+@media all and (min-height: 780px){
+    .hamburger{
+        top: -66%;
+    }
+}
+
 @media all and (max-width: 420px){
     #home-container #info-div{
         height: 80vh;
