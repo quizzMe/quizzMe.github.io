@@ -1,9 +1,13 @@
 /* Phone */
-@media all and (max-width: 520px){
+@media all and (max-width: 550px){
 
     body::after,
     body::before{
         display: none;
+    }
+
+    .content-page-holder{
+        margin-top: -21%
     }
 
     #header-nav{
@@ -24,24 +28,23 @@
         content: '';
     }
 
-    .user,
-    .guest{
-        width: 100%;
+    #header-nav #navigation{
+        display: none;
     }
 
-    #header-nav #navigation ul{
+    /* #header-nav #navigation ul{
         flex-flow: column;
         justify-content: space-between;
-    }
+    } */
 
-    #header-nav #navigation ul li{
+    /* #header-nav #navigation ul li{
         margin: auto;
         margin-bottom: 20px;
     }
 
     #header-nav #navigation ul li a{
         width: 100%;
-    }
+    } */
 
     #home-container #info-div{
         height: 72vh;
@@ -108,6 +111,46 @@
     }
 
 
+
+    /* Hamburger Menu */
+    #mobile-navigation{
+        display: block;
+        height: 10vh;
+        position: relative;
+    }
+
+    .hamburger{
+        position: absolute;
+        cursor: pointer;
+        right: 5%;
+        top: -80%;
+        transform: translate(-5%, -80%);
+    }
+
+    .hamburger i{
+        font-size: 33px;
+    }
+
+    #mobile-navigation .nav-links{
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        background-color: coral;
+        list-style: none;
+        justify-content: space-around;
+        align-items: center;
+        margin-left: auto;
+        flex-direction: column;
+        display: none;
+    }
+
+    #mobile-navigation .nav-links li a{
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+
     /* Browse Page */
     .browse-header{
         text-align: center;
@@ -115,5 +158,12 @@
 
     .browse-header .filter-holder select{
         margin-top: 15px;
+    }
+}
+
+
+@media all and (min-width: 551px){
+    #mobile-navigation{
+        display: none;
     }
 }
