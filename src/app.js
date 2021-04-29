@@ -25,8 +25,15 @@ const links = [...document.querySelectorAll('.nav-links li')];
 hamburger.addEventListener('click', ()=>{
     navLinks.forEach(ul => ul.classList.toggle('open'));
     navLinks.forEach(ul => ul.classList.toggle('glass'));
-    console.log(links);
     links.forEach(l => l.classList.toggle('fade'))
+})
+
+navLinks.forEach(ul=> {
+    ul.addEventListener('click', (ev)=>{
+        if(ev.target.tagName == 'A' || ev.target.tagName == 'LI'){
+            ul.classList.remove('open')
+        }
+    })
 })
 
 page('/', decorateContext, homePage);
