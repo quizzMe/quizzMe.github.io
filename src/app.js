@@ -20,10 +20,13 @@ setUserNav();
 document.getElementById('logoutBtn').addEventListener('click', logoutUser);
 const hamburger = document.querySelector('.hamburger');
 const navLinks = [...document.querySelectorAll('.nav-links')];
-const links = document.querySelectorAll('.nav-links li')
+const links = [...document.querySelectorAll('.nav-links li')];
 
 hamburger.addEventListener('click', ()=>{
     navLinks.forEach(ul => ul.classList.toggle('open'));
+    navLinks.forEach(ul => ul.classList.toggle('glass'));
+    console.log(links);
+    links.forEach(l => l.classList.toggle('fade'))
 })
 
 page('/', decorateContext, homePage);

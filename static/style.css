@@ -46,6 +46,7 @@ body, #guest-home-page {
     margin-top: 2%;
     position: relative;
     margin-bottom: 26px;
+    z-index: 0;
  
 }
 
