@@ -142,7 +142,14 @@
         align-items: center;
         margin-left: auto;
         flex-direction: column;
-        display: none;
+        clip-path: circle(100px at 90% -20%);
+        -webkit-clip-path: circle(100px at 90% -20%);
+        transition: all 1s ease-out;
+    }
+
+    #mobile-navigation .nav-links.open{
+        clip-path: circle(820px at 90% -10%);
+        -webkit-clip-path: circle(820px at 90% -10%);
     }
 
     #mobile-navigation .nav-links li a{

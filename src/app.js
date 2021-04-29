@@ -18,6 +18,13 @@ const state = {};
 const main = document.querySelector('main');
 setUserNav();
 document.getElementById('logoutBtn').addEventListener('click', logoutUser);
+const hamburger = document.querySelector('.hamburger');
+const navLinks = [...document.querySelectorAll('.nav-links')];
+const links = document.querySelectorAll('.nav-links li')
+
+hamburger.addEventListener('click', ()=>{
+    navLinks.forEach(ul => ul.classList.toggle('open'));
+})
 
 page('/', decorateContext, homePage);
 page('/register', decorateContext, registerPage);
