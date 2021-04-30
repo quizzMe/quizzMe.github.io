@@ -5,7 +5,33 @@
 
     #profile-page h1,
     #profile-page h2,
-    #profile-page .btn-holderr{
+    #profile-page .btn-holderr,
+    #details{
         text-align: center;
     }
+
+    #quiz #quiz-navigation h1,
+    #quiz #quiz-navigation h2{
+        text-align: center;
+    }
+
+    #quiz #quiz-navigation{
+        padding-left: 0px;
+    }
+
+    .quiestions-banner,
+    .current-time{
+        margin: auto;
+        margin-top: 19px;
+    }
+
+    .quiestions-banner .block{
+        text-align: center;
+    }
+
+
+    .current-time{
+        width: 50%;
+    }
+
 }
