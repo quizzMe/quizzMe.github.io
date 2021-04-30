@@ -82,7 +82,6 @@ function decorateContext(ctx, next) {
 
 function setUserNav() {
     const user = sessionStorage.getItem('userId');
-    console.log(user);
     if (user) {
         // Sets elements according to user
         [...document.querySelectorAll('.user')].forEach(a => a.style.display = 'block');
@@ -90,7 +89,9 @@ function setUserNav() {
 
         // sets href to profile button
         const profileBtn = [...document.getElementById('navigation').querySelectorAll('a')].filter(l => l.textContent == 'Profile')[0];
+        const profileBtnMobile = [...document.getElementById('mobile-navigation').querySelectorAll('a')].filter(l => l.textContent == 'Profile')[0];
         profileBtn.setAttribute('href', '/profile/' + user);
+        profileBtnMobile.setAttribute('href', '/profile/' + user);
 
         // sets welcome message
         document.getElementById('welcome-user').querySelector('span').textContent = `Welcome, ${sessionStorage.getItem('username')}`
