@@ -114,6 +114,11 @@
         width: 100%;
     }
 
+    #info-div{
+        align-items: center;
+        font-size: 20px;
+    }
+
     /* Hamburger Menu */
     #mobile-navigation{
         display: block;
@@ -184,7 +189,7 @@
 
     #mobile-navigation .nav-links li a{
         text-decoration: none;
-        font-size: 20px;
+        font-size: 27px;
     }
 
     /* Greating */
