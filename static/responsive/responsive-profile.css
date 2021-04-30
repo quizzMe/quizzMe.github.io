@@ -1,0 +1,11 @@
+@media all and (max-width: 550px){
+    #profile-page .content-preview{
+        width: 100%;
+    }
+
+    #profile-page h1,
+    #profile-page h2,
+    #profile-page .btn-holderr{
+        text-align: center;
+    }
+}
