@@ -29,9 +29,33 @@
         text-align: center;
     }
 
+    .quiestions-banner .q-index{
+        width: 20px;
+        height: 20px;
+    }
+
 
     .current-time{
         width: 50%;
+    }
+
+    .question-template{
+        width: 100%;
+    }
+
+    .question,
+    .quiestions-banner{
+        font-size: 20px;
+    }
+
+    .question .q-text{
+        font-size: 26px;
+    }
+
+    .q-control,
+    .q-control .right-col{
+        display: flex;
+        flex-direction: column;
     }
 
 }
