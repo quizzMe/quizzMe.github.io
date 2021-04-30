@@ -255,4 +255,15 @@
     }
 }
 
+@media all and (max-width: 1030px){
+    #info-div{
+        height: 72vh;
+    }
+
+    .quiz-preview {
+        width: 100%;
+        flex-direction: column;
+    }
+}
+
 
