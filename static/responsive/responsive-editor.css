@@ -1,0 +1,14 @@
+@media all and (max-width: 550px){
+    .setup-new-quiz,
+    .add-question-btn,
+    .question-holder,
+    .add-answer-btn{
+        width: 100%;
+    }
+
+
+    .setup-new-quiz,
+    .setup-new-quiz .save-btn{
+        font-size: 20px;
+    }
+}
