@@ -137,7 +137,7 @@
         position: fixed;
         left: 0;
         z-index: 1;
-        height: 90vh;
+        height: 50vh;
         width: 100%;
         display: flex;
         background: linear-gradient(90deg, rgba(33,29,99,1) 0%, rgba(68,37,190,1) 38%, rgba(131,24,187,1) 100%);
@@ -146,8 +146,8 @@
         align-items: center;
         margin-left: auto;
         flex-direction: column;
-        clip-path: circle(100px at 90% -20%);
-        -webkit-clip-path: circle(100px at 90% -20%);
+        clip-path: circle(60px at 90% -20%);
+        -webkit-clip-path: circle(60px at 90% -20%);
         transition: all 1s ease-out;
         pointer-events: none;
     }
@@ -187,7 +187,12 @@
         font-size: 20px;
     }
 
-
+    /* Greating */
+    #welcome-user{
+        text-align: center;
+        position: relative;
+        top: 43px;
+    }
 
     /* Browse Page */
     .browse-header{

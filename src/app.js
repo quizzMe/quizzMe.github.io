@@ -17,7 +17,7 @@ import { getQuestionsByQuizId, getQuizById, logout as apiLogout } from './api/da
 const state = {};
 const main = document.querySelector('main');
 setUserNav();
-document.getElementById('logoutBtn').addEventListener('click', logoutUser);
+[...document.querySelectorAll('.logoutBtn')].forEach(btn => btn.addEventListener('click', logoutUser));
 const hamburger = document.querySelector('.hamburger');
 const navLinks = [...document.querySelectorAll('.nav-links')];
 const links = [...document.querySelectorAll('.nav-links li')];
@@ -82,11 +82,11 @@ function decorateContext(ctx, next) {
 
 function setUserNav() {
     const user = sessionStorage.getItem('userId');
-
+    console.log(user);
     if (user) {
         // Sets elements according to user
-        [...document.querySelectorAll('.user')].forEach(a => a.style.display = 'block')
-        document.querySelector('.guest').style.display = 'none';
+        [...document.querySelectorAll('.user')].forEach(a => a.style.display = 'block');
+        [...document.querySelectorAll('.guest')].forEach(a => a.style.display = 'none');
 
         // sets href to profile button
         const profileBtn = [...document.getElementById('navigation').querySelectorAll('a')].filter(l => l.textContent == 'Profile')[0];
@@ -98,8 +98,8 @@ function setUserNav() {
 
         document.getElementById('header-nav').style.width = '94%'
     } else {
-        [...document.querySelectorAll('.user')].forEach(a => a.style.display = 'none')
-        document.querySelector('.guest').style.display = 'block';
+        [...document.querySelectorAll('.user')].forEach(a => a.style.display = 'none');
+        [...document.querySelectorAll('.guest')].forEach(a => a.style.display = 'block');
 
         document.getElementById('header-nav').style.width = '100%'
     }

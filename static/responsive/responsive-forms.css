@@ -1,0 +1,8 @@
+@media all and (max-width: 550px){
+    .name-field,
+    .password-field,
+    .email-field,
+    .rePass-field{
+        width: 83%;
+    }
+}
