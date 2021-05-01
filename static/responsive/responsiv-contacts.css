@@ -1,4 +1,9 @@
 @media all and (max-width: 550px){
+
+    #contact-div{
+        height: 50vh;
+    }
+
     #contact-div .social-links{
         flex-direction: column;
 
