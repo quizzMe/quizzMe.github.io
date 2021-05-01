@@ -12,3 +12,11 @@ QuizzMe is a SPA (Single Page Application) made as a school project, which serve
 * Interactive quizz editor
 * QuizzMe is a responsive application, meaning it can be used on all devices - mobile, tablets, PC
 
+## Technologies
+* HTML
+* CSS
+* JavaScript
+* lit-html
+* page.js
+* GitHub Pages
+* Back4app
