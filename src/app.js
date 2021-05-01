@@ -27,6 +27,7 @@ hamburger.addEventListener('click', ()=>{
     if(user){
         [...document.querySelectorAll('.user')].forEach(a => a.style.display = 'block');
         [...document.querySelectorAll('.guest')].forEach(a => a.style.display = 'none');
+
     } else {
         [...document.querySelectorAll('.user')].forEach(a => a.style.display = 'none');
         [...document.querySelectorAll('.guest')].forEach(a => a.style.display = 'block');
@@ -110,6 +111,7 @@ function setUserNav() {
         profileBtnMobile.setAttribute('href', '/profile/' + user);
 
         // sets welcome message
+        document.getElementById('welcome-user').style.display = 'block';
         document.getElementById('welcome-user').querySelector('span').textContent = `Welcome, ${sessionStorage.getItem('username')}`
         document.getElementById('welcome-user').querySelector('a').setAttribute('href', '/profile/' + user);
 
@@ -126,5 +128,9 @@ function setUserNav() {
 async function logoutUser() {
     await apiLogout();
     setUserNav();
+    if(screen.width < 550){
+        [...document.querySelectorAll('.user')].forEach(a => a.style.display = 'none');
+        [...document.querySelectorAll('.guest')].forEach(a => a.style.display = 'none');
+    }
     page.redirect('/');
 }
