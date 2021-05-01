@@ -23,9 +23,19 @@ const navLinks = [...document.querySelectorAll('.nav-links')];
 const links = [...document.querySelectorAll('.nav-links li')];
 
 hamburger.addEventListener('click', ()=>{
+    const user = sessionStorage.getItem('userId');
+    if(user){
+        [...document.querySelectorAll('.user')].forEach(a => a.style.display = 'block');
+        [...document.querySelectorAll('.guest')].forEach(a => a.style.display = 'none');
+    } else {
+        [...document.querySelectorAll('.user')].forEach(a => a.style.display = 'none');
+        [...document.querySelectorAll('.guest')].forEach(a => a.style.display = 'block');
+    }
+
+
     navLinks.forEach(ul => ul.classList.toggle('open'));
     navLinks.forEach(ul => ul.classList.toggle('glass'));
-    links.forEach(l => l.classList.toggle('fade'))
+    links.forEach(l => l.classList.toggle('fade'));
 })
 
 navLinks.forEach(ul=> {
@@ -86,6 +96,12 @@ function setUserNav() {
         // Sets elements according to user
         [...document.querySelectorAll('.user')].forEach(a => a.style.display = 'block');
         [...document.querySelectorAll('.guest')].forEach(a => a.style.display = 'none');
+
+        if(screen.width < 550){
+            [...document.querySelectorAll('.user')].forEach(a => a.style.display = 'none');
+            [...document.querySelectorAll('.guest')].forEach(a => a.style.display = 'none');
+        }
+
 
         // sets href to profile button
         const profileBtn = [...document.getElementById('navigation').querySelectorAll('a')].filter(l => l.textContent == 'Profile')[0];

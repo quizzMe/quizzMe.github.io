@@ -80,6 +80,7 @@ async function onSubmit(formData, ctx) {
 
     function redirectHome(){
         ctx.setUserNav();
+        const navLinks = [...document.querySelectorAll('.nav-links')];
         ctx.page.redirect('/')
     }
 }
