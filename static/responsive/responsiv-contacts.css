@@ -1,0 +1,34 @@
+@media all and (max-width: 550px){
+    #contact-div .social-links{
+        flex-direction: column;
+
+    }
+
+    #contact-div .social-links li{
+        margin-bottom: 18px;
+        margin-right: 0px;
+        padding-right: 0px;
+        
+    }
+
+
+    #contact-div .social-links .facebook a {
+        color: #3A5794;
+    }
+    
+    #contact-div .social-links .github a{
+        color: #995a13;
+    }
+    
+    #contact-div .social-links .mail a{
+        color: #DD4B39;
+    }
+    
+    #contact-div .social-links .linkedin a{
+        color: #007BB6;
+    }
+    
+    #contact-div .social-links .instagram a{
+        color: #EE5C04;
+    }
+}
