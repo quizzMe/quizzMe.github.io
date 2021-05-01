@@ -78,3 +78,8 @@ QuizzMe is a SPA (Single Page Application) made as a school project, which serve
     owner: Pointer<user>
 }
 ```
+
+## Access Control
+* Guests can register, browse the quizzes, see details about the quizzes and see users' profile pages
+* Registered users can solve quizzes and see their results
+* Only quiz author can edit and delete the quiz
