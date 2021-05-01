@@ -32,3 +32,49 @@ QuizzMe is a SPA (Single Page Application) made as a school project, which serve
 * Contest Mode - answering questions, each question is a separated view, interactive quiz navigation
 * Result Page - results summary with options to retake the quiz or see details about current result
 * Editor Page - view for creating and editing quizzes, questions and answeres 
+
+## Data Structure
+### Collections
+* Sessions
+* Useres
+```javascript
+{
+    objectId: String
+    email: String,
+    username: String,
+    password: String,
+}
+```
+* Quiz
+```javascript
+{
+    objectId: String
+    title: String,
+    topic: String,
+    questionCount: Number,
+    description: String,
+    time: Number,
+    owner: Pointer<user>
+}
+```
+* Questions
+```javascript
+{
+    objectId: String
+    text: String,
+    answers: Array<String>,
+    correctIndex: Number,
+    quiz: Pointer<Quiz>,
+    owner: Pointer<user>
+}
+```
+* Solution
+```javascript
+{
+    objectId: String
+    correct: Number,
+    tota: Number,
+    quiz: Pointer<Quiz>,
+    owner: Pointer<user>
+}
+```
