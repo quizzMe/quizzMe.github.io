@@ -10,7 +10,9 @@ QuizzMe is a SPA (Single Page Application) made as a school project, which serve
 * User Authentication - only logged in users can solve and create quizzes. Only quiz author can edit or delete their own quizzes. A guest can only browse through the quizzes.
 * Diffrent topics, by which quizzes can be filtered
 * Interactive quizz editor
+* Timer, which tracks the time for taking the quizz. When the time is over quiz result submits automatically. The amount of time is set up by the quiz author.
 * QuizzMe is a responsive application, meaning it can be used on all devices - mobile, tablets, PC
+
 
 ## Technologies
 * HTML
