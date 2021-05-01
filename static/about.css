@@ -1,0 +1,10 @@
+.about-info{
+    font-family: 'Lato', sans-serif;
+    line-height: 1.5rem;
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.about-info a{
+    color: #ce7367d7;
+}
