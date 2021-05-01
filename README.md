@@ -22,3 +22,13 @@ QuizzMe is a SPA (Single Page Application) made as a school project, which serve
 * page.js
 * GitHub Pages
 * Back4app
+
+## Views
+* Landing Page (Home Page) - User view - greeting user, updated user navigation, three most recent quizzes. Guest view - a short information about the app, guest navigation, three most recent quizzes
+* Login/Register - registration with username, email and password. Login with username and password
+* Profile Page - Highest result , followed by an option to see all results, sorted in descending order. Option to see all quizzes, created by the current user
+* Browse Page - a list with all quizzes and an option to filter them by quiz topic
+* Details Page - additional quiz description, statistics for how many times the quiz has been taken, link to author's profile page, start quizz button
+* Contest Mode - answering questions, each question is a separated view, interactive quiz navigation
+* Result Page - results summary with options to retake the quiz or see details about current result
+* Editor Page - view for creating and editing quizzes, questions and answeres 
