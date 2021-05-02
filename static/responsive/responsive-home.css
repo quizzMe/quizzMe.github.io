@@ -261,6 +261,12 @@
     }
 }
 
+@media all and (max-width: 810px){
+    .content-page-holder #info-div{
+        height: 55vh
+    }
+}
+
 @media all and (max-width: 1030px){
     #info-div{
         height: 40vh
