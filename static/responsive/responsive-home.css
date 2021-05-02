@@ -263,13 +263,13 @@
 
 @media all and (max-width: 810px){
     .content-page-holder #info-div{
-        height: 55vh
+        height: 66vh
     }
 }
 
 @media all and (max-width: 1030px){
     #info-div{
-        height: 40vh
+        height: 48vh
     }
 
     .quiz-preview {
