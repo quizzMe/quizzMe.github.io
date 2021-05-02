@@ -83,16 +83,20 @@
 #info-div,
 #contact-div{
     margin: auto;
-    margin-top: 30px;
+    margin-top: 40px;
     margin-bottom: 30px;
-    height: 30vh;
+    /* height: 30vh; */
     padding-top: 40px;
-    height: 40vh;
+    /* height: 40vh; */
     display: flex;
     justify-content: space-around;
     align-items: stretch;
     width: 58%;
     animation: fadeInUp  1.5s;
+}
+
+#contact-div{
+    margin-top: 150px;
 }
 
 @keyframes fadeInUp {

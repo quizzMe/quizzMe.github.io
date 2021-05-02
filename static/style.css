@@ -159,3 +159,8 @@ a{
     font-family: 'Dancing Script', cursive;
     font-size: 30px;
 }
+
+/* SVG Waves */
+.bottom-waves{
+    display: block;
+}

@@ -4,7 +4,7 @@ import { login } from '../api/data.js';
 
 const loginTemplate = (onArrowClick, onSubmit, formData, ctx) => html`
 <div @keypress=${onArrowClick.bind(event, formData)} @click=${onArrowClick.bind(event, formData,)} id="login-container" class="glass">
-<div @click=${previousSlide} id="back-arrow-holder" class="common" style = ${styleMap({display: 'none'})}>
+    <div @click=${previousSlide} id="back-arrow-holder" class="common" style = ${styleMap({display: 'none'})}>
         <i class="fas fa-angle-double-left"></i>
         <span class="use-for-check">Back</span>
     </div>
