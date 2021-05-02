@@ -54,7 +54,7 @@ QuizzMe is a SPA (Single Page Application) made as a school project, which serve
     questionCount: Number,
     description: String,
     time: Number,
-    owner: Pointer<user>
+    owner: Pointer<User>
 }
 ```
 * Questions
@@ -65,7 +65,7 @@ QuizzMe is a SPA (Single Page Application) made as a school project, which serve
     answers: Array<String>,
     correctIndex: Number,
     quiz: Pointer<Quiz>,
-    owner: Pointer<user>
+    owner: Pointer<User>
 }
 ```
 * Solution
@@ -75,7 +75,7 @@ QuizzMe is a SPA (Single Page Application) made as a school project, which serve
     correct: Number,
     tota: Number,
     quiz: Pointer<Quiz>,
-    owner: Pointer<user>
+    owner: Pointer<User>
 }
 ```
 
